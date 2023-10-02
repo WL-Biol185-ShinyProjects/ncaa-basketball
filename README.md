@@ -1,2 +1,3 @@
 # ncaa-basketball
-20 years of statistical analysis on division I college basketball seasons. 
+20 years of statistical analysis on division I college basketball seasons.
+
