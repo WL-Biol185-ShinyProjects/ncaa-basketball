@@ -1,0 +1,52 @@
+---
+title: "apply_function"
+author: "Sophia"
+date: "10/18/2023"
+output: html_document
+---
+making a list
+```{r}
+l <- list(1, 2, 3, 4)
+l
+```
+```{r}
+l <- list(1, 2, 3, 4, "mix types", TRUE)
+l
+```
+
+```{r}
+l[[1]]
+l[1]
+```
+can name the elements in a list
+```{r}
+l <- list(a = 1, bob = "mix types", sadness = TRUE)
+l
+```
+using the lapply function to make a list
+```{r}
+myList <-
+  lapply(1:10, function(x) {
+    x + 10
+  })
+
+myList
+```
+
+```{r}
+myList <-
+  lapply(list.files("./demo-shiny/"), function(x) {
+    read.csv(x)
+  })
+myList
+```
+sapply function: take a list and turn it into a vector
+```{r}
+myList2 <-
+  sapply(rawStrings, function(x) {
+    p( a(hrefs = x) )
+  })
+
+myList2
+```
+
