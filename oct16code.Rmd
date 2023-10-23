@@ -16,6 +16,28 @@ library(leaflet)
 leaflet(data = ncaa) %>% setView(lng = -95.71, lat = 37.09, zoom =4) %>% 
   addTiles() 
 ```
+
+
+
+```{r}
+library(shiny)
+library(ggplot2)
+
+shinyServer(function(input, output))
+
+#See help of shiny to see what to do for click/ doubleclick
+
+
+#show a plot of the generated distribution
+mainPanel(
+  plotOutput("", click = ""),
+  textOutput("")
+)
+
+#Have a separate server code of text
+
+```
+
 ## need to add state name column/ addresses for schools into CSV Data, add regions
 
 # https://github.com/mmperryman/ncaa/blob/master/teams.csv
