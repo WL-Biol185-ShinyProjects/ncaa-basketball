@@ -11,3 +11,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ncaa <- read.csv("cbb.csv")
 ```
 
+```{r}
+library(leaflet)
+leaflet(data = ncaa) %>% setView(lng = -95.71, lat = 37.09, zoom =4) %>% 
+  addTiles() 
+```
+## need to add state name column/ addresses for schools into CSV Data, add regions
+
+# https://github.com/mmperryman/ncaa/blob/master/teams.csv
+
