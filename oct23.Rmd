@@ -1,0 +1,30 @@
+---
+title: "oct23"
+author: "Sophia"
+date: "10/23/2023"
+output: html_document
+
+```{r}
+library(shiny)
+library(ggplot)
+
+mainPanel(
+    plotOutput("carsPlot", click = "carPlotClick"),
+    textOutput("carsInfo")
+    )
+)
+
+shinyServer(function(input, output) {
+
+  output$carsPlot <- renderPlot({
+  ggplot(mtcars, aes(cyl, mpg)) + geom_point()
+  })
+  
+  output$carInfo <- renderText({
+  coords <- input$carPlotClick
+  row <- nearPoints(mtcars, coords)
+  rownames(row)
+  })
+})
+```
+
