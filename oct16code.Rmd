@@ -70,7 +70,7 @@ merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 
 ```{r}
 library(leaflet)
-leaflet(data = merged_data) %>% setView(lng = -95.71, lat = 37.09, zoom =4) %>% 
+leaflet(data = merged_data) %>% setView(lng = -95.71, lat = 37.09, zoom =3) %>% 
   addTiles() %>%
   addCircleMarkers(radius = 1, label = "TEAM")
 ```
