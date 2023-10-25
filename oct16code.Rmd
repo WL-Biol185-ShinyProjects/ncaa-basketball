@@ -42,3 +42,13 @@ mainPanel(
 
 # https://github.com/mmperryman/ncaa/blob/master/teams.csv
 
+```{r}
+install.packages("readxl")
+library(readxl)
+
+excel_data <- read_excel("college_locations_sophia.xlsx")
+```
+```{r}
+write.csv(excel_data, file = "geodata.csv", row.names = FALSE)
+```
+
