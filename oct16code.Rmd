@@ -86,3 +86,13 @@ leaflet(data = merged_data) %>% setView(lng = -95.71, lat = 37.09, zoom =4) %>%
   addMarkers(popup = ~TEAM)
 ```
 
+```{r}
+merged_data$percent_won <- merged_data$W / merged_data$G
+merged_data$radius_won <- merged_data$percent_won*10
+
+library(leaflet)
+leaflet(data = merged_data) %>% setView(lng = -95.71, lat = 37.09, zoom =3) %>% 
+  addTiles() %>%
+  addCircleMarkers(radius = ~radius_won, label = ~TEAM)
+```
+
