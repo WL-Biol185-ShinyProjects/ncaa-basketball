@@ -45,11 +45,17 @@ mainPanel(
 ```{r}
 install.packages("readxl")
 library(readxl)
+```
 
+```{r}
 excel_data <- read_excel("college_locations_sophia.xlsx")
 ```
+
 ```{r}
 write.csv(excel_data, file = "geodata.csv", row.names = FALSE)
+geodf <- read.csv("geodata.csv")
+colnames(geodf)[2] <- "TEAM"
+write.csv(geodf, "geodata.csv", row.names=FALSE)
 ```
 
 ```{r}
