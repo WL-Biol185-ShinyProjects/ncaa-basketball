@@ -52,3 +52,8 @@ excel_data <- read_excel("college_locations_sophia.xlsx")
 write.csv(excel_data, file = "geodata.csv", row.names = FALSE)
 ```
 
+```{r}
+college_geo <- read.csv("geodata.csv")
+bb_data <- read.csv("cbb.csv")
+```
+
