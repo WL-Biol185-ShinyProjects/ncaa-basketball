@@ -29,6 +29,7 @@ merged_data %>%
   filter(Count>0)
 
 ```
+
 ```{r}
 merged_data %>%
   group_by(TEAM) %>%
