@@ -72,11 +72,32 @@ merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 library(leaflet)
 leaflet(data = merged_data) %>% setView(lng = -95.71, lat = 37.09, zoom =3) %>% 
   addTiles() %>%
-  addCircleMarkers(radius = 1, label = "TEAM")
+  addCircleMarkers(radius = 1, label = ~TEAM)
 ```
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0effaccfcc1e8c96b52c24c33714f4cf8f547660
 ## do we need this? 
 ## merged_data <- "merged_data.csv"
 ## write.csv(merged_data, file = merged_data, row.names = FALSE)
+
+```{r}
+library(leaflet)
+leaflet(data = merged_data) %>% setView(lng = -95.71, lat = 37.09, zoom =4) %>% 
+  addTiles() %>%
+  addMarkers(popup = ~TEAM)
+```
+
+```{r}
+merged_data$percent_won <- merged_data$W / merged_data$G
+merged_data$radius_won <- merged_data$percent_won*10
+
+library(leaflet)
+leaflet(data = merged_data) %>% setView(lng = -95.71, lat = 37.09, zoom =3) %>% 
+  addTiles() %>%
+  addCircleMarkers(radius = ~radius_won, label = ~TEAM)
+```
+
