@@ -25,8 +25,7 @@ leaflet(data = merged_data) %>% setView(lng = -95.71, lat = 37.09, zoom =3) %>%
 ```{r}
 merged_data %>%
   group_by(TEAM) %>%
-  summarise(POSTSEASON = "Champions", na.rm = TRUE)
-
+  summarise(Count = sum(POSTSEASON == "Champions", na.rm = TRUE))
 
 ```
 
