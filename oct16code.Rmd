@@ -23,7 +23,7 @@ leaflet(data = ncaa) %>% setView(lng = -95.71, lat = 37.09, zoom =4) %>%
 library(shiny)
 library(ggplot2)
 
-shinyServer(function(input, output))
+
 
 #See help of shiny to see what to do for click/ doubleclick
 
@@ -41,4 +41,58 @@ mainPanel(
 ## need to add state name column/ addresses for schools into CSV Data, add regions
 
 # https://github.com/mmperryman/ncaa/blob/master/teams.csv
+
+```{r}
+install.packages("readxl")
+library(readxl)
+```
+
+```{r}
+excel_data <- read_excel("college_locations_sophia.xlsx")
+```
+
+```{r}
+write.csv(excel_data, file = "geodata.csv", row.names = FALSE)
+geodf <- read.csv("geodata.csv")
+colnames(geodf)[2] <- "TEAM"
+write.csv(geodf, "geodata.csv", row.names=FALSE)
+```
+
+```{r}
+college_geo <- read.csv("geodata.csv")
+bb_data <- read.csv("cbb.csv")
+
+library(dplyr)
+merged_data <- left_join(bb_data, college_geo, by = "TEAM")
+```
+
+
+
+```{r}
+library(leaflet)
+leaflet(data = merged_data) %>% setView(lng = -95.71, lat = 37.09, zoom =3) %>% 
+  addTiles() %>%
+  addCircleMarkers(radius = 1, label = ~TEAM)
+```
+
+## do we need this? 
+## merged_data <- "merged_data.csv"
+## write.csv(merged_data, file = merged_data, row.names = FALSE)
+
+```{r}
+library(leaflet)
+leaflet(data = merged_data) %>% setView(lng = -95.71, lat = 37.09, zoom =4) %>% 
+  addTiles() %>%
+  addMarkers(popup = ~TEAM)
+```
+
+```{r}
+merged_data$percent_won <- merged_data$W / merged_data$G
+merged_data$radius_won <- merged_data$percent_won*10
+
+library(leaflet)
+leaflet(data = merged_data) %>% setView(lng = -95.71, lat = 37.09, zoom =3) %>% 
+  addTiles() %>%
+  addCircleMarkers(radius = ~radius_won, label = ~TEAM)
+```
 
