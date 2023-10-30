@@ -74,5 +74,3 @@ merged_data %>%
   summarize(AvgValue = mean(FTR))
 ```
 
-
-
