@@ -70,8 +70,8 @@ merged_data %>%
 
 ```{r}
 merged_data %>%
-  group_by(TEAM, YEAR) %>%
-  summarize(AvgValue = mean(ftr), na.rm = TRUE))
+  group_by(TEAM) %>%
+  summarize(AvgValue = mean(FTR))
 ```
 
 
