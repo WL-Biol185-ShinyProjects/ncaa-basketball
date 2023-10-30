@@ -30,6 +30,7 @@ merged_data %>%
 
 ```
 
+
 ```{r}
 merged_data %>%
   group_by(TEAM) %>%
@@ -65,4 +66,13 @@ merged_data %>%
   summarize(Count = sum(POSTSEASON == "S16", na.rm = TRUE)) %>%
   filter(Count>0)
 ```
+
+
+```{r}
+merged_data %>%
+  group_by(TEAM) %>%
+  summarize(AvgValue = mean(ftr), na.rm = TRUE))
+```
+
+
 
