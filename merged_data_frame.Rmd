@@ -29,6 +29,12 @@ merged_data %>%
   filter(Count>0)
 
 ```
+```{r}
+merged_data %>%
+  group_by(TEAM) %>%
+  summarize(Count = sum(SEED <= 4, na.rm = FALSE))  %>%
+  filter(Count>0)
+```
 
 
 ```{r}
