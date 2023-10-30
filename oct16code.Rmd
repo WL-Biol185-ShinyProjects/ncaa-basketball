@@ -23,7 +23,7 @@ leaflet(data = ncaa) %>% setView(lng = -95.71, lat = 37.09, zoom =4) %>%
 library(shiny)
 library(ggplot2)
 
-shinyServer(function(input, output))
+
 
 #See help of shiny to see what to do for click/ doubleclick
 

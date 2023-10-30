@@ -12,7 +12,11 @@ box(plotOutput("plot 1", height = 250)),
 
       box(
         title = "Number of National Championship Wins",
-        sliderInput ("slider", "Wins", 1, 25, 10)
+
+
+
+   sliderInput ("slider", "Wins", 1, 25, 10)
+
     )
   )
 )
