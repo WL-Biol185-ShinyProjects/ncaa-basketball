@@ -30,3 +30,32 @@ merged_data %>%
 
 ```
 
+
+```{r}
+merged_data %>%
+  group_by(TEAM) %>%
+  summarize(Count = sum(POSTSEASON == "2ND", na.rm = TRUE)) %>%
+  filter(Count>0)
+```
+
+```{r}
+merged_data %>%
+  group_by(TEAM) %>%
+  summarize(Count = sum(POSTSEASON == "E8", na.rm = TRUE)) %>%
+  filter(Count>0)
+```
+
+```{r}
+merged_data %>%
+  group_by(TEAM) %>%
+  summarize(Count = sum(POSTSEASON == "F4", na.rm = TRUE)) %>%
+  filter(Count>0)
+```
+
+```{r}
+merged_data %>%
+  group_by(TEAM) %>%
+  summarize(Count = sum(POSTSEASON == "S16", na.rm = TRUE)) %>%
+  filter(Count>0)
+```
+
