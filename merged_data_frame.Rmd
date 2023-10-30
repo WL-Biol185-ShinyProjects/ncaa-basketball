@@ -22,3 +22,11 @@ leaflet(data = merged_data) %>% setView(lng = -95.71, lat = 37.09, zoom =3) %>%
   addCircleMarkers(radius = 1, label = ~TEAM)
 ```
 
+```{r}
+merged_data %>%
+  group_by(TEAM) %>%
+  summarise(POSTSEASON = "Champions", na.rm = TRUE)
+
+
+```
+
