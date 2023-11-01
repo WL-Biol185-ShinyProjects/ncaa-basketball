@@ -75,4 +75,28 @@ merged_data %>%
 ```
 
 
+```{r}
+library(ggplot2)
+
+
+ggplot(data = merged_data, aes(x = factor(CONF), y = factor(YEAR), fill = FTR)) + 
+  geom_tile() + 
+  scale_fill_gradient(low = "white", high = "blue") +
+  labs(title = "Heatmap of Conference Winners", x = "CONF", y = "POSTSEAON") +
+  theme_minimal()
+```
+```{r}
+library(leaflet)
+library(sf)
+library(leaflet.extras)
+
+us_map <- leaflet() %>%
+  setView(lng = -96, lat = 37.8, zoom = 4) %>%
+  addProviderTiles("CartoDB.Positron")
+
+us_map <- us_map %>%
+  addHeatmap( data = merged_data, radius = 2)
+
+View(us_map)
+```
 
