@@ -8,8 +8,69 @@ output: html_document
 ```{r}
 merged_data %>%
   group_by(CONF) %>%
-  summarize(AvgValue = mean(FTR)) %>%
-  arrange(AvgValue) %>%
+  summarize(AvgFTR = mean(FTR)) %>%
+  arrange(AvgFTR) %>%
   mutate(CONF = factor(CONF, levels = CONF, ordered = TRUE)) %>%
-  ggplot(aes(CONF, AvgValue)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust = 1))
+  ggplot(aes(CONF, AvgFTR)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+
+```{r}
+merged_data %>%
+  group_by(CONF) %>%
+  summarize(AvgADJOE = mean(ADJOE)) %>%
+  arrange(AvgADJOE) %>%
+  mutate(CONF = factor(CONF, levels = CONF, ordered = TRUE)) %>%
+  ggplot(aes(CONF, AvgADJOE)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+
+```{r}
+merged_data %>%
+  group_by(CONF) %>%
+  summarize(AvgADJDE = mean(ADJDE)) %>%
+  arrange(AvgADJDE) %>%
+  mutate(CONF = factor(CONF, levels = CONF, ordered = TRUE)) %>%
+  ggplot(aes(CONF, AvgADJDE)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+```{r}
+merged_data %>%
+  group_by(CONF) %>%
+  summarize(AvgTOR = mean(TOR)) %>%
+  arrange(AvgTOR) %>%
+  mutate(CONF = factor(CONF, levels = CONF, ordered = TRUE)) %>%
+  ggplot(aes(CONF, AvgTOR)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+```{r}
+merged_data %>%
+  group_by(CONF) %>%
+  summarize(AvgEFG_O = mean(EFG_O)) %>%
+  arrange(AvgEFG_O) %>%
+  mutate(CONF = factor(CONF, levels = CONF, ordered = TRUE)) %>%
+  ggplot(aes(CONF, AvgEFG_O)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+
+```{r}
+merged_data %>%
+  group_by(CONF) %>%
+  summarize(AvgEFG_D = mean(EFG_D)) %>%
+  arrange(AvgEFG_D) %>%
+  mutate(CONF = factor(CONF, levels = CONF, ordered = TRUE)) %>%
+  ggplot(aes(CONF, AvgEFG_D)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+
+```{r}
+merged_data %>%
+  group_by(CONF) %>%
+  summarize(AvgPowerRating = mean(BARTHAG)) %>%
+  arrange(AvgPowerRating) %>%
+  mutate(CONF = factor(CONF, levels = CONF, ordered = TRUE)) %>%
+  ggplot(aes(CONF, AvgPowerRating)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+
+```{r}
+merged_data$percent_win <- merged_data$W / merged_data$G
+
+merged_data %>%
+  group_by(CONF) %>%
+  summarize(percent_win) %>%
+  ggplot(aes(CONF, percent_win)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust = 1))
 ```
