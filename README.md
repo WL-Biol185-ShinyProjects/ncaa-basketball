@@ -1,2 +1,2 @@
 
-updated the app code. Some weird funky stuff was happening!
+My eyes are killing me! I think my head is about to explode
