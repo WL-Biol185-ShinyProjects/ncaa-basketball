@@ -80,3 +80,8 @@ library(tidyverse)
 ggplot(merged_data, aes(CONF, FTR)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust  = 1))
 ```
 
+```{r}
+library(ggplot2)
+library(tidyverse)
+ggplot(merged_data, aes(CONF, ADJOE)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust  = 1))
+```
