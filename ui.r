@@ -11,8 +11,8 @@ dashboardBody(
           box(plotOutput("plot1", height = 250)),
           
           box(
-            title = "Controls",
-            sliderInput("slider", "Number of observations:", 1, 100, 50)
+            title = "March Madness Ranking",
+            sliderInput("slider", "Seed:", 1, 100, 50)
           )
         )
   )
