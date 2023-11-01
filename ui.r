@@ -10,11 +10,9 @@ Sidebar <- dashboardSidebar(
     menuItem("Free Throws", tabName = "Free Throws")
   )
 ),
+
 dashboardBody()
+
 )
 
-
- 
-
-  
             
