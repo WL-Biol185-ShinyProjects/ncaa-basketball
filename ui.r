@@ -22,9 +22,26 @@ body<-dashboardBody(
   
   tabItem(tabName = "Conferences",
            h2("Conferences")
-           )
+           ),
+  
+  
+#conference tab 
+tabItem(tabName= "Conferences",
+fluidRow(box(background = "blue", width = 12, p("This page shows the NCAA statistics separated by conference, Press on all of the tabs to explore different things!")
+             )), 
+fluidRow(
+  box(background = "black", selectInput(plot, "Choices", "Free Throws")
+         )
+
+
+)
+
+  
+  
+  
+  
   )
 )
-)
+
 
 
