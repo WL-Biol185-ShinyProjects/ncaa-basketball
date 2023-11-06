@@ -23,7 +23,7 @@ merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 #     summarize(AvgFTR = mean(FTR)) %>%
 #     arrange(AvgFTR) %>%
 #     mutate(CONF = factor(CONF, levels = CONF, ordered = TRUE)) %>%
-#     ggplot(aes(CONF, AvgFTR)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust = 1))
+#     ggplot(aes_string(CONF, AvgFTR)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust = 1))
 # 
 #   
 }
