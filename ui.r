@@ -13,18 +13,3 @@ Sidebar <- dashboardSidebar(
 
 dashboardBody()
 )
-<<<<<<< HEAD
-=======
-
->>>>>>> ba17c9bd3490aefdf048c3591f22becff6ec116d
-
-
-<<<<<<< HEAD
-
-
-
-            
-=======
-
->>>>>>> ba17c9bd3490aefdf048c3591f22becff6ec116d
-
