@@ -1,1 +1,1 @@
-got rid of the stuff that was weird 
+FIXING SOME THINGS 
