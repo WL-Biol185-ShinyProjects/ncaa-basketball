@@ -72,5 +72,6 @@ merged_data$percent_win <- merged_data$W / merged_data$G
 merged_data %>%
   group_by(CONF) %>%
   summarize(percent_win) %>%
+  
   ggplot(aes(CONF, percent_win)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust = 1))
 ```
