@@ -102,9 +102,13 @@ us_map <- us_map %>%
   addHeatmap( data = merged_data, radius = 2)
 
 View(us_map)
+<<<<<<< HEAD
 ```
 
 ```{r}
+=======
+
+>>>>>>> ba17c9bd3490aefdf048c3591f22becff6ec116d
 library(tidyverse)
 ggplot(merged_data, aes(CONF, ADJOE)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust  = 1))
 ```
@@ -113,9 +117,13 @@ ggplot(merged_data, aes(CONF, ADJOE)) + geom_bar(stat = 'identity') + theme(axis
 library(ggplot2)
 library(tidyverse)
 ggplot(merged_data, aes(CONF, ADJDE)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust  = 1))
+<<<<<<< HEAD
 ```
 
 ```{r}
 ggplot(merged_data, aes(STATE, W)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust  = 1))
+=======
+
+>>>>>>> ba17c9bd3490aefdf048c3591f22becff6ec116d
 ```
 
