@@ -83,8 +83,6 @@ ggplot(merged_data, aes(CONF, FTR)) + geom_bar(stat = 'identity') + theme(axis.t
 ```{r}
 library(ggplot2)
 
-
-
 ggplot(data = merged_data, aes(x = factor(CONF), y = factor(YEAR), fill = FTR)) + 
   geom_tile() + 
   scale_fill_gradient(low = "white", high = "blue") +

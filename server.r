@@ -2,6 +2,7 @@ server <- function(input,output,session
                 )
 {
   
+<<<<<<< HEAD
 
 
   
@@ -31,3 +32,14 @@ merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 #   
 }
   
+=======
+  library(ggplot2)
+  library(tidyverse)
+  merged_data %>%
+    group_by(CONF) %>%
+    summarize(AvgFTR = mean(FTR)) %>%
+    arrange(AvgFTR) %>%
+    mutate(CONF = factor(CONF, levels = CONF, ordered = TRUE)) %>%
+    ggplot(aes(CONF, AvgFTR)) + geom_bar(stat = 'identity') + theme(axis.text.x = element_text(angle = 60, hjust = 1))
+}
+>>>>>>> ba17c9bd3490aefdf048c3591f22becff6ec116d
