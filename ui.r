@@ -7,8 +7,17 @@ DashboardHeader <- dashboardHeader(title = "NCAA Basketball"),
 Sidebar <- dashboardSidebar(
   sidebarMenu(
     menuItem("Home", tabName = "Home"),
-    menuItem("Free Throws", tabName = "Free Throws")
+    menuItem("Confrences", tabName = "Confrences")
   )
 ),
+<<<<<<< HEAD
 dashboardBody()
 )
+=======
+
+dashboardBody()
+
+)
+
+            
+>>>>>>> f27915d10ee656e3646271f4dace0dc9013d596b
