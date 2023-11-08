@@ -14,4 +14,13 @@ bb_data <- read.csv("cbb.csv")
 merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 
 function(input,output,session){
+  output$plot <- renderPlot({
+    
+    ggplot(data=merged_data, aes_string(x='CONF',
+                                        y=input$y_var)) +
+                                        geom_bar(stat = "identity", width = 0.8) +
+                                        labs(x="CONF", y=input$y_var)
+  })
 }
+
+
