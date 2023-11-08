@@ -30,6 +30,8 @@ body<-dashboardBody(
 tabItem(tabName= "Conferences",
 fluidPage(box(background = "blue", width = 12, p("This page shows the NCAA statistics separated by conference, Press on all of the tabs to explore different things!")
              )), 
+  selectInput("Conferences"),
+  plotOutput("Free Throws")
 
 
 
