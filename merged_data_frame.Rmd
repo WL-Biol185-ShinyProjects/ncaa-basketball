@@ -133,12 +133,12 @@ merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
 
 state_avgPR <- merged_data %>%
-  group_by(STATE) %>%
+  group_by(state.x) %>%
   summarize(avgPR = mean(BARTHAG), na.rm = TRUE)
 
 geo <- geojson_read("states.geo.json", what = "sp")
 
-geo@data <- left_join(geo@data, state_avgPR, by = c("state" = "STATE"))
+geo@data <- left_join(geo@data, state_avgPR, by = c("STATE" ="state.x"))
 
 pal <- colorBin("YlOrRd", domain = geo@data$BARTHOG)
 
