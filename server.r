@@ -14,8 +14,4 @@ bb_data <- read.csv("cbb.csv")
 merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 
 function(input,output,session){
-  
-  output$bar <- renderPlot({
-    barplot(rnorm(input$Conferences))
-  })
 }
