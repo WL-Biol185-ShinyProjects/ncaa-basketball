@@ -34,6 +34,7 @@ fluidPage(
   box(background = "black", selectInput(plot, "Choices", "Free Throws")
          )
 )
+<<<<<<< HEAD
 
   
   
@@ -45,3 +46,5 @@ fluidPage(
 
 
 
+=======
+>>>>>>> d10ec0e18208ddca00ee449b708a085819b50231
