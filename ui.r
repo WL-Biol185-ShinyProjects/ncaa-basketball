@@ -18,7 +18,8 @@ body<-dashboardBody(
   tabItem(tabName = "Home",
            h2("Welcome!"),
           box(background = "orange", p(" Here is the data!"))
-           ),
+           )
+   ),
   
   tabItem(tabName = "Conferences",
            h2("Conferences")
@@ -27,18 +28,17 @@ body<-dashboardBody(
   
 #conference tab 
 tabItem(tabName= "Conferences",
-fluidRow(box(background = "blue", width = 12, p("This page shows the NCAA statistics separated by conference, Press on all of the tabs to explore different things!")
+fluidPage(box(background = "blue", width = 12, p("This page shows the NCAA statistics separated by conference, Press on all of the tabs to explore different things!")
              )), 
-fluidRow(
+fluidPage(
   box(background = "black", selectInput(plot, "Choices", "Free Throws")
          )
-
-
 )
 
   
   
-  
+)
+ 
   
   )
 )
