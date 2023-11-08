@@ -20,7 +20,7 @@ dashboardPage(
       
       tabItem(tabName = "page2", p("Conference Statistics"),
       selectInput(
-        "x_var",
+        "y_var",
         label= "Conference Data",
         choices = colnames(merged_data),
         selected = "CONF"),
