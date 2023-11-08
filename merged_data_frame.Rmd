@@ -120,23 +120,27 @@ ggplot(merged_data, aes(STATE, W)) + geom_bar(stat = 'identity') + theme(axis.te
 ```
 
 ```{r}
+
+library(leaflet)
+library(geojsonio)
+library(tidyverse)
+library(sf)
 library(dplyr)
+library(ggplot2)
+
 state_avgPR <- merged_data %>%
   group_by(STATE) %>%
   summarize(avgPR = mean(BARTHAG, na.rm = TRUE))
 
-library(sf)
-library(ggplot2)
-usStates <- st_read("cb_2018_us_state_500k.shp")
-statePR <- left_join(state_avgPR, usStates, by = c("STATE" = "STUSPS"))
+geo <- geojson_read("states.geo.json", what = "sp")
 
-#### ALLYSSA - SEE CDE IN CHATGPT FOR CONVERTING LAT AND LONG TO SINGLE COORD
+# geo@data <- left_join(geo@data, myTable, by = c("NAME" = "State"))
 
-ggplot(statePR) +
-  geom_sf(aes(fill = avgPR), geometry = color = "black", size = "0.5") +
-  scale_fill_viridis_c(option = "magma", direction = -1) +
-  labs(title = "Average Power Ratings of NCAA D1 Basketball Teams by State")  +
-  theme_minimal() +
-  theme(legend.position = "right")
+geo@data <- mutate(geo@data, value = sample(1:100, nrow(geo@data)))
+
+pal <- colorBin("YlOrRd", domain = geo@data$value)
+
+leaflet(geo) %>%
+  addPolygons(fillColor = ~pal(value))
 ```
 
