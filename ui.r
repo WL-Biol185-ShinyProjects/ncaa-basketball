@@ -14,12 +14,20 @@ dashboardPage(
   dashboardBody(
     tabItems(
       tabItem(tabName = "page1", p("Home"),
-      h2("Welcome!"),
-      box(background = "purple", p("Introduction!"))
-      
+        h2("Welcome!"),
+        box(background = "purple", p("Introduction!"))
       ),
-      tabItem(tabName = "page2", p("Conference Statistics"))
+      
+      tabItem(tabName = "page2", p("Conference Statistics"),
+      selectInput(
+        "x_var",
+        label= "Conference Data",
+        choices = colnames(merged_data),
+        selected = "CONF"),
+        plotOutput("plot")
+      )
+      )
     )
+  
   )
-)
 
