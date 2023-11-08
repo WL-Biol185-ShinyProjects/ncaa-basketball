@@ -1,34 +1,34 @@
 
 library(shiny)
+library(leaflet)
 library(shinydashboard)
 
-DashboardPage <- dashboardPage(
-  skin = "red",
-DashboardHeader <- dashboardHeader(title = "NCAA Basketball", titleWidth = 300),
-Sidebar <- dashboardSidebar(
+dashboardPage(
+  skin = "purple",
+dashboardHeader(title = "NCAA Basketball", titleWidth = 300),
+dashboardSidebar(
   sidebarMenu(
-    menuItem("Home", tabName = "Home"),
+    menuItem("Introduction", tabName = "Introduction"),
     menuItem("Conferences", tabName = "Conferences")
   )
 ),
-
-body<-dashboardBody(
+dashboardBody(
  
-   tabItems(
-  tabItem(tabName = "Home",
+# Introduction Page 
+  tabItems(
+  tabItem("Introduction", tabName = "Introduction"),
            h2("Welcome!"),
-          box(background = "orange", p(" Here is the data!"))
+          box(background = "blue", p(" Here is the data!"))
            )
    ),
   
-  tabItem(tabName = "Conferences",
-           h2("Conferences")
-           ),
-  
-  
-#conference tab 
-tabItem(tabName= "Conferences",
-fluidPage(box(background = "blue", width = 12, p("This page shows the NCAA statistics separated by conference, Press on all of the tabs to explore different things!")
+# Conference Page 
+  tabItem("Conferences", tabName = "Conferences"),
+           h2("Conferences"),
+           )
+#Conferences tab 
+tabItem(tabName = "Conferences",
+fluidPage(box(width = 12, p("This page shows the NCAA statistics separated by conference, Press on all of the tabs to explore different things!")
              )), 
 
 
@@ -38,7 +38,7 @@ fluidPage(box(background = "blue", width = 12, p("This page shows the NCAA stati
 )
  
   
-  )
-)
+  
+
 
 
