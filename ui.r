@@ -24,7 +24,7 @@ dashboardPage(
         "y_var",
         label= "Conference Data",
         choices = colnames(merged_data),
-        selected = "CONF"),
+        selected = "Conference"),
         plotOutput("plot")
       )
       )
