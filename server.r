@@ -36,5 +36,7 @@ function(input,output,session){
                                         y=input$y_var)) +
                                         geom_bar(stat = "identity", width = 0.8) +
                                         labs(x="CONF", y=input$y_var)
+  output$map <- renderLeaflet
+  #finish server for leaflet maps
   })
 }
