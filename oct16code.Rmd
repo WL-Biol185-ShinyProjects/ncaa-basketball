@@ -48,6 +48,8 @@ library(readxl)
 ```
 
 ```{r}
+
+library(readxl)
 excel_data <- read_excel("college_locations_sophia.xlsx")
 ```
 
