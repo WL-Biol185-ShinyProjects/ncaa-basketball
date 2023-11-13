@@ -172,12 +172,44 @@ state_avgPR <- merged_data %>%
 
 geo <- geojson_read("states.geo.json", what = "sp")
 
-geo@data <- left_join(geo@data, state_avgPR, by = c("STATE" ="state.x"))
+geo@data <- left_join(geo@data, state_avgPR, by = c("NAME" ="state.x"))
 
-pal <- colorBin("YlOrRd", domain = geo@data$BARTHOG)
+pal <- colorBin("Blues", domain = geo@data$BARTHAG)
+```
+
+```{r}
 
 leaflet(geo) %>%
-  addPolygons(fillColor = ~pal(BARTHOG))
+  addPolygons(fillOpacity = 2.5,
+              fillColor = ~pal(avgPR),
+              color = "white",
+              dashArray = '3',
+              weight = 03)
 
+```
+
+
+
+```{r}
+
+state_names_data <- read.csv("table-data.csv")
+merged_data <- merged_data  %>%
+  left_join(state_names_data, by = c("STATE" = "code"))
+
+state_avgPR <- merged_data %>%
+  group_by(state.x) %>%
+  summarize(avgPR = mean(BARTHAG), na.rm = TRUE)
+
+geo <- geojson_read("states.geo.json", what = "sp")
+
+geo@data <- left_join(geo@data, state_avgPR, by = c("NAME" ="state.x"))
+
+pal <- colorBin("YlOrRd", domain = geo@data$BARTHAG)
+
+print(geo@data)
+
+leaflet(geo) %>%
+  addPolygons(fillOpacity = 0.8,
+              fillColor = ~pal(avgPR))
 ```
 
