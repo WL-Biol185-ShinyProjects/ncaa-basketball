@@ -188,28 +188,177 @@ leaflet(geo) %>%
 
 ```
 
+```{r}
+
+state_FTHROW <- merged_data %>%
+  group_by(state.x) %>%
+  summarize(avgFT = mean(EFG_O), na.rm = TRUE)
+
+geo <- geojson_read("states.geo.json", what = "sp")
+
+geo@data <- left_join(geo@data, state_FTHROW, by = c("NAME" ="state.x"))
+
+pal <- colorBin("Blues", domain = geo@data$BARTHAG)
+```
+
+```{r}
+
+leaflet(geo) %>%
+  addPolygons(fillOpacity = 2.5,
+              fillColor = ~pal(avgFT),
+              color = "white",
+              dashArray = '3',
+              weight = 2)
+
+```
+
+
+```{r}
+state_FGOAL <- merged_data %>%
+  group_by(state.x) %>%
+  summarize(avgFG = mean(EFG_O), na.rm = TRUE)
+
+geo <- geojson_read("states.geo.json", what = "sp")
+
+geo@data <- left_join(geo@data, state_FGOAL, by = c("NAME" ="state.x"))
+
+pal <- colorBin("Blues", domain = geo@data$EFG_O)
+```
+
+```{r}
+
+leaflet(geo) %>%
+  addPolygons(fillOpacity = 2.5,
+              fillColor = ~pal(avgFG),
+              color = "white",
+              dashArray = '3',
+              weight = 2)
+
+```
+
+```{r}
+
+state_turnover <- merged_data %>%
+  group_by(state.x) %>%
+  summarize(avgTOR = mean(TOR), na.rm = TRUE)
+
+geo <- geojson_read("states.geo.json", what = "sp")
+
+geo@data <- left_join(geo@data, state_turnover, by = c("NAME" ="state.x"))
+
+pal <- colorBin("Blues", domain = geo@data$TOR)
+```
+
+```{r}
+
+leaflet(geo) %>%
+  addPolygons(fillOpacity = 2.5,
+              fillColor = ~pal(avgTOR),
+              color = "white",
+              dashArray = '3',
+              weight = 2)
+
+```
 
 
 ```{r}
 
-state_names_data <- read.csv("table-data.csv")
-merged_data <- merged_data  %>%
-  left_join(state_names_data, by = c("STATE" = "code"))
-
-state_avgPR <- merged_data %>%
+state_avgsteal <- merged_data %>%
   group_by(state.x) %>%
-  summarize(avgPR = mean(BARTHAG), na.rm = TRUE)
+  summarize(avgTORD = mean(TORD), na.rm = TRUE)
 
 geo <- geojson_read("states.geo.json", what = "sp")
 
-geo@data <- left_join(geo@data, state_avgPR, by = c("NAME" ="state.x"))
+geo@data <- left_join(geo@data, state_avgsteal, by = c("NAME" ="state.x"))
 
-pal <- colorBin("YlOrRd", domain = geo@data$BARTHAG)
+pal <- colorBin("Blues", domain = geo@data$TORD)
+```
 
-print(geo@data)
+```{r}
 
 leaflet(geo) %>%
-  addPolygons(fillOpacity = 0.8,
-              fillColor = ~pal(avgPR))
+  addPolygons(fillOpacity = 2.5,
+              fillColor = ~pal(avgTORD),
+              color = "white",
+              dashArray = '3',
+              weight = 3)
+
 ```
+
+
+```{r}
+
+state_offRebound <- merged_data %>%
+  group_by(state.x) %>%
+  summarize(avgORB= mean(ORB), na.rm = TRUE)
+
+geo <- geojson_read("states.geo.json", what = "sp")
+
+geo@data <- left_join(geo@data, state_offRebound, by = c("NAME" ="state.x"))
+
+pal <- colorBin("Blues", domain = geo@data$ORB)
+```
+
+```{r}
+
+leaflet(geo) %>%
+  addPolygons(fillOpacity = 2.5,
+              fillColor = ~pal(avgORB),
+              color = "white",
+              dashArray = '3',
+              weight = 3)
+
+```
+
+
+```{r}
+state_avgFTR <- merged_data %>%
+  group_by(state.x) %>%
+  summarize(avgFTR= mean(FTR), na.rm = TRUE)
+
+geo <- geojson_read("states.geo.json", what = "sp")
+
+geo@data <- left_join(geo@data, state_avgFTR, by = c("NAME" ="state.x"))
+
+pal <- colorBin("Blues", domain = geo@data$FTR)
+```
+
+```{r}
+
+leaflet(geo) %>%
+  addPolygons(fillOpacity = 2.5,
+              fillColor = ~pal(avgFTR),
+              color = "white",
+              dashArray = '3',
+              weight = 3)
+
+```
+
+
+
+```{r}
+state_avgFTR <- merged_data %>%
+  group_by(state.x) %>%
+  summarize(avgFTR= mean(FTR), na.rm = TRUE)
+
+geo <- geojson_read("states.geo.json", what = "sp")
+
+geo@data <- left_join(geo@data, state_avgFTR, by = c("NAME" ="state.x"))
+
+pal <- colorBin("Blues", domain = geo@data$FTR)
+```
+
+```{r}
+
+leaflet(geo) %>%
+  addPolygons(fillOpacity = 2.5,
+              fillColor = ~pal(avgFTR),
+              color = "white",
+              dashArray = '3',
+              weight = 3)
+
+```
+
+
+
 
