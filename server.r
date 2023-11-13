@@ -9,34 +9,27 @@ geodf <- read.csv("geodata.csv")
 
 # Recoding Geodf to have column name 2 as TEAM 
 colnames(geodf)[2] <- "TEAM"
+colnames(merged_data)[2] <- "Conference"
+colnames(merged_data)[5] <- "Adjusted Offensive Efficiency"
+colnames(merged_data)[6] <- "Adjusted Defensive Efficiency"
+colnames(merged_data)[7] <- "Power Rating"
+colnames(merged_data)[8] <- "Effective Field Goal Percentage Shot"
+colnames(merged_data)[9] <- "Effective Field Goal Percentage Allowed"
+colnames(merged_data)[10] <- "Turnover Percentage"
+colnames(merged_data)[11] <- "Steal Rate"
+colnames(merged_data)[12] <- "Offensive Rebound Rate"
+colnames(merged_data)[13] <- "Offensive Rebound Rate Allowed"
+colnames(merged_data)[14] <- "Free Throw Rate"
+colnames(merged_data)[15] <- "Free Throw Rate Allowed"
+colnames(merged_data)[16] <- "Two Point Shooting Range"
+colnames(merged_data)[17] <- "Two Point Shooting Range Allowed"
+colnames(merged_data)[18] <- "Three Point Shooting Range"
+colnames(merged_data)[19] <- "Three Point Shooting Range Allowed"
+colnames(merged_data)[20] <- "Adjusted Tempo"
+colnames(merged_data)[21] <- "Wins Above Bubble"
 college_geo <- read.csv("geodata.csv")
 bb_data <- read.csv("cbb.csv")
 merged_data <- left_join(bb_data, college_geo, by = "TEAM")
-
-# Fixing the column names in merged data
-merged_data %>%
-  plyr::rename(
-    CONF = Conference,
-    G = Number.of.Games.Played,
-    W = Number.of.Wins,
-    ADJOE = Adjusted.Offensive.Efficency,
-    ADJDE = Adjusted.Defensive.Efficiency,
-    BARTHAG = Power.Rating,
-    EFG_O = Effective.Field.Goal.Percentage.Shot,
-    EFG_D = Effective.Field.Goal.Percentage.Allowed,
-    TOR = Turnover.Percentage.Rate,
-    TORD = Steal.Rate,
-    ORB = Offensive.Rebound.Rate,
-    DRB = Offensive.Rebound.Rate.Allowed,
-    FTR = Free.Throw.Rate,
-    FTRD = Free.Throw.Rate.Allowed,
-    X2P_O = Two.Point.Shooting.Range,
-    X2P_D = Two.Point.Shooting.Range.Allowed,
-    X3P_O = Three.Point.Shooting.Range.Allowed,
-    X3P_D = Three.Point.Shooting.Range.Allowed,
-    ADJ_T = Adjusted.Tempo,
-    WAB = Wins.Above.Bubble)
-
 
 function(input,output,session){
   output$plot <- renderPlot({
