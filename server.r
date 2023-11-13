@@ -1,32 +1,30 @@
-library(shiny)
-library(leaflet)
-library(ggplot2)
-library(tidyverse)
-library(plyr)
+function(input,output, session) {
+  
+}
 
-#Loading data frames
 geodf <- read.csv("geodata.csv")
-
-# Recoding Geodf to have column name 2 as TEAM 
 colnames(geodf)[2] <- "TEAM"
-colnames(merged_data)[2] <- "Conference"
-colnames(merged_data)[5] <- "Adjusted Offensive Efficiency"
-colnames(merged_data)[6] <- "Adjusted Defensive Efficiency"
-colnames(merged_data)[7] <- "Power Rating"
-colnames(merged_data)[8] <- "Effective Field Goal Percentage Shot"
-colnames(merged_data)[9] <- "Effective Field Goal Percentage Allowed"
-colnames(merged_data)[10] <- "Turnover Percentage"
-colnames(merged_data)[11] <- "Steal Rate"
-colnames(merged_data)[12] <- "Offensive Rebound Rate"
-colnames(merged_data)[13] <- "Offensive Rebound Rate Allowed"
-colnames(merged_data)[14] <- "Free Throw Rate"
-colnames(merged_data)[15] <- "Free Throw Rate Allowed"
-colnames(merged_data)[16] <- "Two Point Shooting Range"
-colnames(merged_data)[17] <- "Two Point Shooting Range Allowed"
-colnames(merged_data)[18] <- "Three Point Shooting Range"
-colnames(merged_data)[19] <- "Three Point Shooting Range Allowed"
-colnames(merged_data)[20] <- "Adjusted Tempo"
-colnames(merged_data)[21] <- "Wins Above Bubble"
+colnames(geodf)[2] <- "Conference"
+colnames(geodf)[5] <- "Adjusted Offensive Efficiency"
+colnames(geodf)[6] <- "Adjusted Defensive Efficiency"
+colnames(geodf)[7] <- "Power Rating"
+colnames(geodf)[8] <- "Effective Field Goal Percentage Shot"
+colnames(geodf)[9] <- "Effective Field Goal Percentage Allowed"
+colnames(geodf)[10] <- "Turnover Percentage"
+colnames(geodf)[11] <- "Steal Rate"
+colnames(geodf)[12] <- "Offensive Rebound Rate"
+colnames(geodf)[13] <- "Offensive Rebound Rate Allowed"
+colnames(geodf)[14] <- "Free Throw Rate"
+colnames(geodf)[15] <- "Free Throw Rate Allowed"
+colnames(geodf)[16] <- "Two Point Shooting Range"
+colnames(geodf)[17] <- "Two Point Shooting Range Allowed"
+colnames(geodf)[18] <- "Three Point Shooting Range"
+colnames(geodf)[19] <- "Three Point Shooting Range Allowed"
+colnames(geodf)[20] <- "Adjusted Tempo"
+colnames(geodf)[21] <- "Wins Above Bubble"
+college_geo <- read.csv("geodata.csv")
+bb_data <- read.csv("cbb.csv")
+merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 college_geo <- read.csv("geodata.csv")
 bb_data <- read.csv("cbb.csv")
 merged_data <- left_join(bb_data, college_geo, by = "TEAM")
@@ -40,5 +38,3 @@ function(input,output,session){
                                         labs(x="CONF", y=input$y_var)
   })
 }
-
-

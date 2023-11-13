@@ -23,6 +23,16 @@ leaflet(data = merged_data) %>% setView(lng = -95.71, lat = 37.09, zoom =3) %>%
 ```
 
 ```{r}
+#Conference Tab:
+
+#Output for Bar Graphs  
+output$BarGraphs <- renderTable(
+  
+)
+```
+
+
+```{r}
 merged_data %>%
   group_by(TEAM) %>%
   summarize(Count = sum(POSTSEASON == "Champions", na.rm = TRUE)) %>%
