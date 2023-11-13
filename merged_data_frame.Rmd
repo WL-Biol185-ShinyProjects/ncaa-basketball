@@ -150,16 +150,22 @@ geo <- geojson_read("states.geo.json", what = "sp")
 
 geo@data <- left_join(geo@data, state_avgPR, by = c("NAME" ="state.x"))
 
-pal <- colorBin("YlOrRd", domain = geo@data$BARTHAG)
+pal <- colorBin("Blues", domain = geo@data$BARTHAG)
+```
 
-print(geo@data)
+```{r}
 
 leaflet(geo) %>%
-  addPolygons(fillOpacity = 0.8,
-              fillColor = ~pal(avgPR))
-
+  addPolygons(fillOpacity = 2.5,
+              fillColor = ~pal(avgPR),
+              color = "white",
+              dashArray = '3',
+              weight = 03)
 
 ```
+
+
+
 ```{r}
 
 state_names_data <- read.csv("table-data.csv")
