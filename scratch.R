@@ -1,9 +1,3 @@
-library(shiny)
-library(dplyr)
-library(ggplot2)
-library(tidyverse)
-library(leaflet)
-
 geodf <- read.csv("geodata.csv")
 colnames(geodf)[2] <- "TEAM"
 write.csv(geodf, "geodata.csv", row.names=FALSE)
@@ -12,7 +6,7 @@ college_geo <- read.csv("geodata.csv")
 bb_data <- read.csv("cbb.csv")
 
 merged_data <- left_join(bb_data, college_geo, by = "TEAM")
-colnames(merged_data)[1] <- "TEAM"
+colnames(merged_data)[2] <- "TEAM"
 colnames(merged_data)[2] <- "Conference"
 colnames(merged_data)[5] <- "Adjusted Offensive Efficiency"
 colnames(merged_data)[6] <- "Adjusted Defensive Efficiency"
@@ -32,15 +26,3 @@ colnames(merged_data)[19] <- "Three Point Shooting Range Allowed"
 colnames(merged_data)[20] <- "Adjusted Tempo"
 colnames(merged_data)[21] <- "Wins Above Bubble"
 df = subset(merged_data, select = -c(TEAM, G, W, POSTSEASON, SEED, YEAR, UNITID, STREET, CITY, STATE, ZIP, STFIP, NMCNTY, LOCALE, LAT, LON, CBSA, NMCBSA, CBSATYPE, CSA, NMCSA, NMNECTA, CD, SLDL, SLDU, SCHOOLYEAR, CNTY, NECTA))
-
-
-function(input,output,session){
-  
-  output$plot <- renderPlot({
-    
-    ggplot(data = df, aes_string(x = 'Conference',
-                                        y = input$y_var)) +
-                                        geom_bar(stat = "identity", width = 0.8) +
-                                        labs(x = "Conference", y = input$y_var)
-  })
-}
