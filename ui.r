@@ -24,7 +24,7 @@ dashboardPage(
       selectInput(
         "y_var",
         label= "Conference Data",
-        choices = colnames(conf_stats),
+        choices = colnames(df),
         selected = "Conference"),
         plotOutput("plot")
       ),

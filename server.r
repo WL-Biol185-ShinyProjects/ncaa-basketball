@@ -10,15 +10,17 @@ write.csv(geodf, "geodata.csv", row.names=FALSE)
 college_geo <- read.csv("geodata.csv")
 bb_data <- read.csv("cbb.csv")
 merged_data <- left_join(bb_data, college_geo, by = "TEAM")
-conf_stats <- read.csv("edited_data.csv")
+conference_stats<- read.table("df")
+
 
 function(input,output,session){
   output$plot <- renderPlot({
     
-    ggplot(conf_stats, aes_string(x='Conference',
+    ggplot(df, aes_string(x='Conference',
                                         y=input$y_var)) +
                                         geom_bar(stat = "identity", width = 0.8) +
                                         labs(x="Conference", y=input$y_var)
+    outputt$plot
 
   })
 }
