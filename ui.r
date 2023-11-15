@@ -9,7 +9,8 @@ dashboardPage(
   dashboardSidebar(
     sidebarMenu(
       menuItem("Home", tabName = "page1"),
-      menuItem("Conference Statistics", tabName = "page2")
+      menuItem("Conference Statistics", tabName = "page2"),
+      menuItem("Maps", tabName = "page3")
     )
   ),
   dashboardBody(
@@ -26,9 +27,13 @@ dashboardPage(
         choices = colnames(merged_data),
         selected = "Conference"),
         plotOutput("plot")
-      )
+      ),
+      
+      tabItem(tabName = "page3", p("Maps"),
+     
+      
       )
     )
   
   )
-
+)

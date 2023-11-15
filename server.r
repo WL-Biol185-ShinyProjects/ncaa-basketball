@@ -1,10 +1,12 @@
-function(input,output, session) {
-  
-}
+library(shiny)
+library(tidyverse)
+library(leaflet)
+library(ggplot2)
+library(dplyr)
 
 geodf <- read.csv("geodata.csv")
-colnames(geodf)[2] <- "TEAM"
-colnames(geodf)[2] <- "Conference"
+colnames(geodf)[2] <- "Team"
+colnames(geodf)[3] <- "Conference"
 colnames(geodf)[5] <- "Adjusted Offensive Efficiency"
 colnames(geodf)[6] <- "Adjusted Defensive Efficiency"
 colnames(geodf)[7] <- "Power Rating"
@@ -28,6 +30,7 @@ merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 college_geo <- read.csv("geodata.csv")
 bb_data <- read.csv("cbb.csv")
 merged_data <- left_join(bb_data, college_geo, by = "TEAM")
+
 
 function(input,output,session){
   output$plot <- renderPlot({
