@@ -30,6 +30,16 @@ dashboardPage(
       ),
       
       tabItem(tabName = "page3", p("Maps"),
+              fluidPage(
+                # map output
+                leafletOutput("PRMap"),
+                
+                # line break (puts some space between map and button)
+                br(),
+                
+                # a button
+                actionButton("newButton", "New place!")
+              )
      
       
       )
