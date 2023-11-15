@@ -35,6 +35,7 @@ colnames(merged_data)[21] <- "Wins Above Bubble"
 conf_stats = subset(merged_data, select = -c(TEAM, G, W, POSTSEASON, SEED, YEAR, UNITID, STREET, CITY, STATE, ZIP, STFIP, NMCNTY, LOCALE, LAT, LON, CBSA, NMCBSA, CBSATYPE, CSA, NMCSA, NMNECTA, CD, SLDL, SLDU, SCHOOLYEAR, CNTY, NECTA))
 write.csv(df, "edited_data.csv", rownames=FALSE)
 
+conf_stats <- read.csv("edited_data.csv")
 
 function(input,output,session){
   output$plot <- renderPlot({
