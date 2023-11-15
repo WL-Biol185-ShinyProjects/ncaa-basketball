@@ -9,7 +9,8 @@ dashboardPage(
   dashboardSidebar(
     sidebarMenu(
       menuItem("Home", tabName = "page1"),
-      menuItem("Conference Statistics", tabName = "page2")
+      menuItem("Conference Statistics", tabName = "page2"),
+      menuItem("Maps", tabName = "page3")
     )
   ),
   dashboardBody(
@@ -23,12 +24,16 @@ dashboardPage(
       selectInput(
         "y_var",
         label= "Conference Data",
-        choices = colnames(df),
+        choices = colnames(conf_stats),
         selected = "Conference"),
         plotOutput("plot")
-      )
+      ),
+      
+      tabItem(tabName = "page3", p("Maps"),
+     
+      
       )
     )
   
   )
-
+)
