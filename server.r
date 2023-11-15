@@ -32,18 +32,16 @@ colnames(merged_data)[18] <- "Three Point Shooting Range"
 colnames(merged_data)[19] <- "Three Point Shooting Range Allowed"
 colnames(merged_data)[20] <- "Adjusted Tempo"
 colnames(merged_data)[21] <- "Wins Above Bubble"
-df = subset(merged_data, select = -c(TEAM, G, W, POSTSEASON, SEED, YEAR, UNITID, STREET, CITY, STATE, ZIP, STFIP, NMCNTY, LOCALE, LAT, LON, CBSA, NMCBSA, CBSATYPE, CSA, NMCSA, NMNECTA, CD, SLDL, SLDU, SCHOOLYEAR, CNTY, NECTA))
+conf_stats = subset(merged_data, select = -c(TEAM, G, W, POSTSEASON, SEED, YEAR, UNITID, STREET, CITY, STATE, ZIP, STFIP, NMCNTY, LOCALE, LAT, LON, CBSA, NMCBSA, CBSATYPE, CSA, NMCSA, NMNECTA, CD, SLDL, SLDU, SCHOOLYEAR, CNTY, NECTA))
 write.csv(df, "edited_data.csv", rownames=FALSE)
 
-conf_stats <- read.csv("edited_data.csv")
 
 function(input,output,session){
   output$plot <- renderPlot({
     
-    ggplot(data=df, aes_string(x='Conference',
+    ggplot(data=conf_stats, aes_string(x='Conference',
                                         y=input$y_var)) +
                                         geom_bar(stat = "identity", width = 0.8) +
-                                        labs(x="CONF", y=input$y_var)
                                         labs(x="Conference", y=input$y_var)
 
   })
