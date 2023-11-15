@@ -2,6 +2,7 @@
 library(shiny)
 library(shinydashboard)
 library(ggplot2)
+library(leaflet)
 conf_stats <- read.csv("conference_stats.csv")
 
 dashboardPage(
@@ -32,15 +33,10 @@ dashboardPage(
       
       tabItem(tabName = "page3", p("Maps"),
               fluidPage(
-                # map output
-                leafletOutput("PRMap"),
+                leafletOutput("map"),
+                plotOutput("plot")
                 
-                # line break (puts some space between map and button)
-                br(),
-                
-                # a button
-                actionButton("newButton", "New place!")
-              )
+          
      
       
       )
