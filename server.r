@@ -21,7 +21,7 @@ function(input,output,session){
                                         y=input$y_var)) +
                                         geom_bar(stat = "identity", width = 0.8) +
                                         labs(x="Conference", y=input$y_var)
-   
+ 
 
   })
 }

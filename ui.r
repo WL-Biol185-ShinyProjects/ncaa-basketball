@@ -31,6 +31,9 @@ dashboardPage(
       ),
       
       tabItem(tabName = "page3", p("Maps"),
+              leafletOutput("map"
+                
+              )
      
       
       )

@@ -30,5 +30,8 @@ df = subset(merged_data, select = -c(CONF,TEAM, G, W, POSTSEASON, SEED, YEAR, UN
 
 write.csv(df, "conference_stats.csv", row.names=FALSE)
 
+# df <- select(merged_data, 
 ```
+
+DF <- SELECT(MERGE_DATA, A:Z)
 
