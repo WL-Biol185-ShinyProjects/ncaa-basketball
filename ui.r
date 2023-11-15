@@ -2,6 +2,7 @@
 library(shiny)
 library(shinydashboard)
 library(ggplot2)
+library(leaflet)
 conf_stats <- read.csv("conference_stats.csv")
 
 dashboardPage(
@@ -31,9 +32,17 @@ dashboardPage(
       ),
       
       tabItem(tabName = "page3", p("Maps"),
+<<<<<<< HEAD
               leafletOutput("map"
                 
               )
+=======
+              fluidPage(
+                leafletOutput("map"),
+                plotOutput("plot")
+                
+          
+>>>>>>> 3085ca15363ec70f0364165d1cb2b4319217bc38
      
       
       )

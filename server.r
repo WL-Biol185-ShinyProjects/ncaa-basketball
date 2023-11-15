@@ -2,7 +2,10 @@ library(shiny)
 library(tidyverse)
 library(leaflet)
 library(ggplot2)
+library(leaflet)
+library(geojsonio)
 library(dplyr)
+library()
 
 geodf <- read.csv("geodata.csv")
 colnames(geodf)[2] <- "TEAM"
@@ -24,4 +27,16 @@ function(input,output,session){
  
 
   })
-}
+  
+  output$map <- renderLeaflet({
+      leaflet(geo) %>%
+        addPolygons(
+          fillOpacity = 2.5,
+          fillColor = ~pal(avgPR),
+          color = "white",
+          dashArray = '3',
+          weight = 0.3
+        )
+    })
+  }
+
