@@ -25,7 +25,10 @@ colnames(merged_data)[18] <- "Three Point Shooting Range"
 colnames(merged_data)[19] <- "Three Point Shooting Range Allowed"
 colnames(merged_data)[20] <- "Adjusted Tempo"
 colnames(merged_data)[21] <- "Wins Above Bubble"
-df = subset(merged_data, select = -c(TEAM, G, W, POSTSEASON, SEED, YEAR, UNITID, STREET, CITY, STATE, ZIP, STFIP, NMCNTY, LOCALE, LAT, LON, CBSA, NMCBSA, CBSATYPE, CSA, NMCSA, NMNECTA, CD, SLDL, SLDU, SCHOOLYEAR, CNTY, NECTA))
-write.csv(df, "edited_data.csv", row.names = FALSE)
+df = subset(merged_data, select = -c(CONF,TEAM, G, W, POSTSEASON, SEED, YEAR, UNITID, STREET, CITY, STATE, ZIP, STFIP, NMCNTY, LOCALE, LAT, LON, CBSA, NMCBSA, CBSATYPE, CSA, NMCSA, NMNECTA, CD, SLDL, SLDU, SCHOOLYEAR, CNTY, NECTA))
+
+
+write.csv(df, "conference_stats.csv", row.names=FALSE)
+
 ```
 

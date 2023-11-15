@@ -2,6 +2,7 @@
 library(shiny)
 library(shinydashboard)
 library(ggplot2)
+conf_stats <- read.csv("conference_stats.csv")
 
 dashboardPage(
   skin = "purple",
