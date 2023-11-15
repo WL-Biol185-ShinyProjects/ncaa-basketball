@@ -2,6 +2,7 @@
 library(shiny)
 library(shinydashboard)
 library(ggplot2)
+conf_stats <- read.csv("conference_stats.csv")
 
 dashboardPage(
   skin = "purple",
@@ -24,7 +25,7 @@ dashboardPage(
       selectInput(
         "y_var",
         label= "Conference Data",
-        choices = colnames(df),
+        choices = colnames(conf_stats),
         selected = "Conference"),
         plotOutput("plot")
       ),
