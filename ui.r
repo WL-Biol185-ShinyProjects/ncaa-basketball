@@ -34,6 +34,18 @@ dashboardPage(
                 leafletOutput("map"),
                 plotOutput("plot2")
               )
+              Gamble, Katelyn
+              ​
+              Utecht, Allyssa
+              ​
+              fluidRow(
+                sidebarPanel(
+                  selectInput(
+                    inputId = "Conference",
+                    label = "Select Conference:",
+                    choices = unique(conf_stats$Conference)
+                  )
+                ),
               )
       
       )

@@ -12,8 +12,7 @@ college_geo <- read.csv("geodata.csv")
 bb_data <- read.csv("cbb.csv")
 conf_stats <- read.csv("conference_stats.csv")
 
-server <- function(input, output, session) {
-  print("checkpoint")
+server <- function(input, output, session){
  
   output$plot <- renderPlot({
     
