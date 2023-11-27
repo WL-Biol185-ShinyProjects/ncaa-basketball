@@ -287,7 +287,6 @@ leaflet(geo) %>%
 
 
 ```{r}
-
 state_offRebound <- merged_data %>%
   group_by(state.x) %>%
   summarize(avgORB= mean(ORB), na.rm = TRUE)
@@ -337,25 +336,25 @@ leaflet(geo) %>%
 
 
 ```{r}
-state_avgFTR <- merged_data %>%
+state_avgTempo <- merged_data %>%
   group_by(state.x) %>%
-  summarize(avgFTR= mean(FTR), na.rm = TRUE)
+  summarize(avgTEMPO= mean(ADJ_T), na.rm = TRUE)
 
 geo <- geojson_read("states.geo.json", what = "sp")
 
-geo@data <- left_join(geo@data, state_avgFTR, by = c("NAME" ="state.x"))
+geo@data <- left_join(geo@data, state_avgTempo, by = c("NAME" ="state.x"))
 
-pal <- colorBin("Blues", domain = geo@data$FTR)
+pal <- colorBin("Blues", domain = geo@data$ADJ_T)
 ```
 
 ```{r}
 
 leaflet(geo) %>%
-  addPolygons(fillOpacity = 2.5,
-              fillColor = ~pal(avgFTR),
+  addPolygons(fillOpacity = 1,
+              fillColor = ~pal(avgTEMPO),
               color = "white",
               dashArray = '3',
-              weight = 3)
+              weight = 4)
 
 ```
 
