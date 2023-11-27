@@ -29,14 +29,15 @@ function(input,output,session){
   })
   
   output$map <- renderLeaflet({
-    leaflet(geo) %>%
+    print("checkpoint")
+    leaflet() %>%
         addPolygons(
           fillOpacity = 2.5,
           fillColor = ~pal(avgPR),
           color = "white",
           dashArray = '3',
-          weight = 0.3
-          data = 
+          weight = 0.3,
+          data = geo@data
         )
       addTiles() %>%
         
