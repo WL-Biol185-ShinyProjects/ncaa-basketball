@@ -29,7 +29,8 @@ function(input,output,session){
   })
   
   output$map <- renderLeaflet({
-      leaflet(geo) %>%
+    geojson_date <- readr::read_file("states.geojson")
+    leaflet(geo) %>%
         addPolygons(
           fillOpacity = 2.5,
           fillColor = ~pal(avgPR),
@@ -37,6 +38,8 @@ function(input,output,session){
           dashArray = '3',
           weight = 0.3
         )
+      addTiles() %>%
+        
+        addGeoJSON(geojson_data)
     })
   }
-
