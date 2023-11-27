@@ -5,6 +5,7 @@ library(ggplot2)
 library(geojsonio)
 library(dplyr)
 
+
 geodf <- read.csv("geodata.csv")
 colnames(geodf)[2] <- "TEAM"
 write.csv(geodf, "geodata.csv", row.names=FALSE)
@@ -12,7 +13,9 @@ college_geo <- read.csv("geodata.csv")
 bb_data <- read.csv("cbb.csv")
 conf_stats <- read.csv("conference_stats.csv")
 
-function(input,output,session){
+server <- function(input, output, session) {
+  browser()
+  print("checkpoint")
   
   output$plot <- renderPlot({
     
@@ -29,7 +32,6 @@ function(input,output,session){
   })
   
   output$map <- renderLeaflet({
-    print("checkpoint")
     leaflet() %>%
         addPolygons(
           fillOpacity = 2.5,
