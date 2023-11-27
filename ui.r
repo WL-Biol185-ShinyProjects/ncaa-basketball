@@ -32,11 +32,19 @@ dashboardPage(
       ),
       
       tabItem(tabName = "page3", p("Maps"),
+              leafletOutput("map"
+                
+              ),
+
+              leafletOutput("map"
+                
+              ),
+
               fluidPage(
                 leafletOutput("map"),
                 plotOutput("plot")
-                
-          
+              )
+
      
       
       )
