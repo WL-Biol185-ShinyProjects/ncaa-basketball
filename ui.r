@@ -14,7 +14,7 @@ dashboardPage(
       menuItem("Conference Statistics", tabName = "page2"),
       menuItem("Maps", tabName = "page3")
     )
-  ),
+  )),
   dashboardBody(
     tabItems(
       tabItem(tabName = "page1", p("Home"),
@@ -32,17 +32,17 @@ dashboardPage(
       ),
       
       tabItem(tabName = "page3", p("Maps"),
-<<<<<<< HEAD
+
               leafletOutput("map"
                 
-              )
-=======
+              ),
+
               fluidPage(
                 leafletOutput("map"),
                 plotOutput("plot")
                 
           
->>>>>>> 3085ca15363ec70f0364165d1cb2b4319217bc38
+
      
       
       )
