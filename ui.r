@@ -43,7 +43,7 @@ dashboardPage(
               title = "Choose Conference",
               status = "primary",
               width = 6,
-              selectInput( "Select Year", unique(heatmap_stats$YEAR)),
+              selectInput( "selectededyear", "Select Year", unique(heatmap_stats$YEAR)),
   # This is the actual heatmap
               fluidRow(
                 box(
