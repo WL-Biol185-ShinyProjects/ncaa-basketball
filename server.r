@@ -2,9 +2,7 @@ library(shiny)
 library(tidyverse)
 library(leaflet)
 library(ggplot2)
-library(geojsonio)
 library(dplyr)
-library(d3heatmap)
 
 conf_stats <- read.csv("conference_stats.csv")
 
