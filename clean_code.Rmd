@@ -1,9 +1,23 @@
+---
+title: "clean_code"
+author: "Sophia"
+date: "11/28/2023"
+output: html_document
+---
+
 ```{r}
 library(shiny)
 library(tidyverse)
 library(leaflet)
 library(ggplot2)
 library(dplyr)
+
+geodf <- read.csv("geodata.csv")
+colnames(geodf)[2] <- "TEAM"
+write.csv(geodf, "geodata.csv", row.names=FALSE)
+
+college_geo <- read.csv("geodata.csv")
+bb_data <- read.csv("cbb.csv")
 
 merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 colnames(merged_data)[2] <- "TEAM"
@@ -27,36 +41,9 @@ colnames(merged_data)[20] <- "Adjusted Tempo"
 colnames(merged_data)[21] <- "Wins Above Bubble"
 df = subset(merged_data, select = -c(TEAM, G, W, POSTSEASON, SEED, YEAR, UNITID, STREET, CITY, STATE, ZIP, STFIP, NMCNTY, LOCALE, LAT, LON, CBSA, NMCBSA, CBSATYPE, CSA, NMCSA, NMNECTA, CD, SLDL, SLDU, SCHOOLYEAR, CNTY, NECTA))
 
-
 write.csv(df, "conference_stats.csv", row.names=FALSE)
 
 conf_stats <- read.csv("conference_stats.csv")
-
-# df <- select(merged_data, 
 ```
 
-```{r}
-conf_stats <- read.csv("conference_stats.csv")
-```
 
-```{r}
-library(d3heatmap)
-conf_heatmapdata <- read.csv("conference_stats.csv")
-    row_labels <- conf_heatmapdata$Conference
-    heatmap_data <- conf_heatmapdata[, -1]
-d3heatmap(log1p(heatmap_data), scale = "column", Rowv = row_labels, dendrogram = "none", colors = "Blues", )
-
-```
-```{r}
-# 
-class(conf_heatmapdata)
-
-```
-```{r}
-conf_heatmapdata <- read.csv("conference_stats.csv")
-heatmap_data <- as.matrix(conf_heatmapdata[, -1])
-row_labels <- conf_heatmapdata$Conference
-
-# Create the heatmap
-d3heatmap(heatmap_data, scale = "column", Rowv = row_labels, dendrogram = "none", colors = "Blues")
-```
