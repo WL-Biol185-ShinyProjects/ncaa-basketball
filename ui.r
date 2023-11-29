@@ -26,23 +26,6 @@ dashboardPage(
                 selected = "Conference"),
                 plotOutput("plot")
               )
-<<<<<<< HEAD
-              Gamble, Katelyn
-              ​
-              Utecht, Allyssa
-              ​
-              fluidRow(
-                sidebarPanel(
-                  selectInput(
-                    inputId = "Conference",
-                    label = "Select Conference:",
-                    choices = unique(conf_stats$Conference)
-                  )
-                ),
-              )
-      
-=======
->>>>>>> 9a340ebbbd93ce8acd1de7a41ecda70d2a78f163
       )
     )
   )
