@@ -73,3 +73,27 @@ colnames(cbb_13)[21] <- "Wins Above Bubble"
 cbb13_new = subset(cbb_13, select = -c(TEAM, G, W, POSTSEASON, SEED))
 ```
 
+```{r}
+cbb_14 <- read.csv("cbb14.csv")
+
+colnames(cbb_14)[2] <- "Conference"
+colnames(cbb_14)[5] <- "Adjusted Offensive Efficiency"
+colnames(cbb_14)[6] <- "Adjusted Defensive Efficiency"
+colnames(cbb_14)[7] <- "Power Rating"
+colnames(cbb_14)[8] <- "Effective Field Goal Percentage Shot"
+colnames(cbb_14)[9] <- "Effective Field Goal Percentage Allowed"
+colnames(cbb_14)[10] <- "Turnover Percentage"
+colnames(cbb_14)[11] <- "Steal Rate"
+colnames(cbb_14)[12] <- "Offensive Rebound Rate"
+colnames(cbb_14)[13] <- "Offensive Rebound Rate Allowed"
+colnames(cbb_14)[14] <- "Free Throw Rate"
+colnames(cbb_14)[15] <- "Free Throw Rate Allowed"
+colnames(cbb_14)[16] <- "Two Point Shooting Range"
+colnames(cbb_14)[17] <- "Two Point Shooting Range Allowed"
+colnames(cbb_14)[18] <- "Three Point Shooting Range"
+colnames(cbb_14)[19] <- "Three Point Shooting Range Allowed"
+colnames(cbb_14)[20] <- "Adjusted Tempo"
+colnames(cbb_14)[21] <- "Wins Above Bubble"
+cbb14_new = subset(cbb_14, select = -c(TEAM, G, W, POSTSEASON, SEED))
+```
+
