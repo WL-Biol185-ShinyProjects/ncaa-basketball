@@ -33,7 +33,7 @@ function(input,output,session){
   
   output$textBox <- renderText({
     "Welcome to our cutting-edge dashboard, where we look at a decades worth of statistical data on NCAA Division 1 basketball teams. The postseason
-    period of college basketball, coined "March Madness", is one of the most revered sporting events of all time. Statistical data covers both in-season and post-season information, including importatn points such as power ranking, win percentage,
+    period of college basketball, coined March Madness, is one of the most revered sporting events of all time. Statistical data covers both in-season and post-season information, including importatn points such as power ranking, win percentage,
     and free throw success. This data illustrates a unique narrative about each season and how the game of basektball has evolved over the 
     last decade. Data can be used to understand conference performance, recruitment patterns, the impact of rule changes and adaptations, 
     and team trends over time. This app provides a comprehensive understanding of the sport's development over time by identifying patterns and
