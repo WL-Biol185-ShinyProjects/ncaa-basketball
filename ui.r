@@ -5,6 +5,7 @@ library(d3heatmap)
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
+
 dashboardPage(
   skin = "purple",
   dashboardHeader(title = "NCAA Basketball"),
@@ -44,7 +45,8 @@ dashboardPage(
               title = "Choose Conference",
               status = "primary",
               width = 6,
-              selectInput( "selectededyear", "Select Year", unique(heatmap_stats$YEAR)),
+              selectInput( "selectededyear", "Select Year", unique(heatmap_stats$YEAR),
+                           selected = max(heatmap_stats$YEAR, multiple =FALSE)),
   # This is the actual heatmap
               fluidRow(
                 box(
