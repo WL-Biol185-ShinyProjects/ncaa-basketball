@@ -49,3 +49,27 @@ heatmap_stats <- read.csv("heatmap_data.csv")
 ```
 
 
+```{r}
+cbb_13 <- read.csv("cbb13.csv")
+
+colnames(cbb_13)[2] <- "Conference"
+colnames(cbb_13)[5] <- "Adjusted Offensive Efficiency"
+colnames(cbb_13)[6] <- "Adjusted Defensive Efficiency"
+colnames(cbb_13)[7] <- "Power Rating"
+colnames(cbb_13)[8] <- "Effective Field Goal Percentage Shot"
+colnames(cbb_13)[9] <- "Effective Field Goal Percentage Allowed"
+colnames(cbb_13)[10] <- "Turnover Percentage"
+colnames(cbb_13)[11] <- "Steal Rate"
+colnames(cbb_13)[12] <- "Offensive Rebound Rate"
+colnames(cbb_13)[13] <- "Offensive Rebound Rate Allowed"
+colnames(cbb_13)[14] <- "Free Throw Rate"
+colnames(cbb_13)[15] <- "Free Throw Rate Allowed"
+colnames(cbb_13)[16] <- "Two Point Shooting Range"
+colnames(cbb_13)[17] <- "Two Point Shooting Range Allowed"
+colnames(cbb_13)[18] <- "Three Point Shooting Range"
+colnames(cbb_13)[19] <- "Three Point Shooting Range Allowed"
+colnames(cbb_13)[20] <- "Adjusted Tempo"
+colnames(cbb_13)[21] <- "Wins Above Bubble"
+cbb13_new = subset(cbb_13, select = -c(TEAM, G, W, POSTSEASON, SEED))
+```
+
