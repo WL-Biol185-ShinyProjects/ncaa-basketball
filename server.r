@@ -14,4 +14,6 @@ function(input,output,session){
       geom_bar(stat = "identity", width = 0.8) +
       labs(x="Conference", y=input$y_var)
   })
+ 
+  
 }

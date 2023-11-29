@@ -365,14 +365,34 @@ leaflet(geo) %>%
   
   
   tabItem(tabName = "page3", p("Maps"),
-              
-              fluidPage(
-                leafletOutput("map"),
-                
-                br(),
-                
-                actionButton("newButton", "New place!")
-                plotOutput("plot2")
-              )
+     fluidPage(
+     leafletOutput("map"),
+     br(),
+     actionButton("newButton" "New Place!")
+     plotOutput("plot2")
+)
 
 
+
+
+addPolygons(
+      fillOpacity = 2.5,
+      fillColor = ~pal(avgPR),
+      color = "white",
+      dashArray = '3',
+      weight = 0.3,
+      data = geo@data
+      
+      
+  lats <- -90:90
+  long <- -180:180
+  output$map <- renderLeaflet({
+    leaflet() %>%
+      setView(lng = -79.442778, lat = 37.783889, zoom = 5) %>% 
+      addTiles()
+  })
+  observe({
+    btn <- input$newButton
+    leafletProxy("worldMap") %>%
+      setView(lng = sample(lons, 1), lat = sample(lats, 1), zoom = 5)
+  })

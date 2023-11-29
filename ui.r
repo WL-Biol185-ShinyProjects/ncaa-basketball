@@ -26,6 +26,8 @@ dashboardPage(
                 selected = "Conference"),
                 plotOutput("plot")
               )
-      )
+    )
+    
     )
   )
+
