@@ -5,7 +5,7 @@ library(ggplot2)
 library(dplyr)
 
 conf_stats <- read.csv("conference_stats.csv")
-
+ 
 function(input,output,session){
   output$plot <- renderPlot({
     
