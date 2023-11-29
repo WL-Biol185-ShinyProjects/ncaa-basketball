@@ -2,7 +2,6 @@ library(shiny)
 library(tidyverse)
 library(leaflet)
 library(ggplot2)
-library(geojsonio)
 library(dplyr)
 
 conf_stats <- read.csv("conference_stats.csv")

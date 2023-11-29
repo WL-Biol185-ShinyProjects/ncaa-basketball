@@ -35,5 +35,28 @@ conf_stats <- read.csv("conference_stats.csv")
 # df <- select(merged_data, 
 ```
 
-DF <- SELECT(MERGE_DATA, A:Z)
+```{r}
+conf_stats <- read.csv("conference_stats.csv")
+```
 
+```{r}
+library(d3heatmap)
+conf_heatmapdata <- read.csv("conference_stats.csv")
+    row_labels <- conf_heatmapdata$Conference
+    heatmap_data <- conf_heatmapdata[, -1]
+d3heatmap(log1p(heatmap_data), scale = "column", Rowv = row_labels, dendrogram = "none", colors = "Blues", )
+
+```
+```{r}
+# 
+class(conf_heatmapdata)
+
+```
+```{r}
+conf_heatmapdata <- read.csv("conference_stats.csv")
+heatmap_data <- as.matrix(conf_heatmapdata[, -1])
+row_labels <- conf_heatmapdata$Conference
+
+# Create the heatmap
+d3heatmap(heatmap_data, scale = "column", Rowv = row_labels, dendrogram = "none", colors = "Blues")
+```
