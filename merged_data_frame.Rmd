@@ -362,16 +362,15 @@ leaflet(geo) %>%
   })
   
   }
-  
-  
-  tabItem(tabName = "page3", p("Maps"),
-     fluidPage(
-     leafletOutput("map"),
-     br(),
-     actionButton("newButton" "New Place!")
-     plotOutput("plot2")
-)
 
+tabItem(tabName = "page3", p("Maps"),
+              selectInput(
+                fluidPage(
+                leafletOutput("map"),
+                br(),
+                actionButton("newButton" "New Place!")
+                plotOutput("plot2")
+              )
 
 
 
