@@ -21,19 +21,18 @@ function(input,output,session){
   })
         
   # Conference Tab Heat Map
+        filtered_data <- reactive({
+          subset(conf_avg, Conference == input$selected_conference)
+        })
         output$heatmap <- renderD3heatmap({
-        selected_data <- subset(conf_avg, Conference == input$selected_conference)
-        selected_variable <- as.numeric(selected_data[[input$selected_variable]])
-        heatmap_data <- data.frame(Value = selected_variable)
-        str(heatmap_data)
+        heatmap_data <- select(filtered_data(), -Conference) %>% t() %>% as.matrix()
+      
         
         d3heatmap(
           heatmap_data,
           scale = "column",
           dendrogram = "none",
-          colors = "Blues",
-          Rowv = FALSE,
-          Colv = FALSE
+          colors = "Blues"
           
         )
           

@@ -41,32 +41,23 @@ dashboardPage(
   # This is the dropdown box
             fluidRow(
              box(
-               title = "Select Conference and Desired Statstic",
+               title = "Select Conference",
                status = "primary",
                solidHeader = TRUE,
                width = 6,
-               selectInput(
-                 "selected_conference",
-                 label = "Select Conference",
-                 choices = unique(conf_avg$Conference),
-                 selected = unique(conf_avg$Conference)[1]
+               selectInput("selected_conference", "Select Conference",
+                           unique(conf_avg$Conference))
                ),
-               selectInput(
-                 "selected_variable",
-                 label = "Select Variable",
-                 choices = colnames(conf_avg)[-1],
-                 selected = colnames(conf_avg)[-1][1]
-               )
              )
             ),
   
   # This is the actual heatmap
               fluidRow(
-                width = 12,
                 box(
                   title = "Conference Heat Map",
                   status = "primary",
                   solidheader = TRUE,
+                  width = 12,
                   d3heatmapOutput("heatmap")
                 )
               )
@@ -78,5 +69,5 @@ dashboardPage(
   
       )
     )
-  )
+  
 
