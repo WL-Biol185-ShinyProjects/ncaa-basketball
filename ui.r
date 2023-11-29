@@ -3,7 +3,7 @@ library(shinydashboard)
 library(ggplot2)
 library(d3heatmap)
 conf_stats <- read.csv("conference_stats.csv")
-
+conf_avg <- read.csv("conference_statsAVG.csv")
 dashboardPage(
   skin = "purple",
   dashboardHeader(title = "NCAA Basketball"),
@@ -31,29 +31,45 @@ dashboardPage(
                   selectInput(
                     "y_var",
                     label = "Conference Data",
-                    choices = colnames(conf_stats),
+                    choices = colnames(conf_avg),
                     selected = "Conference")
                 ),
                 plotOutput("plot")
               ),
-      
-      tabItem(tabName = "page3", p("Maps"),
-              
-              ),
-      
-      tabItem(tabName = "page4", p("Heat Map"),
-              
-              )
-              ),
   
   # Heat Map for Conference
+  # This is the dropdown box
             fluidRow(
              box(
-               title = "Conference Heatmap",
+               title = "Select Conference and Desired Statstic",
                status = "primary",
                solidHeader = TRUE,
                width = 6,
-              d3heatmapOutput("heatmap")
+               selectInput(
+                 "selected_conference",
+                 label = "Select Conference",
+                 choices = unique(conf_avg$Conference),
+                 selected = unique(conf_avg$Conference)[1]
+               ),
+               selectInput(
+                 "selected_variable",
+                 label = "Select Variable",
+                 choices = colnames(conf_avg)[-1],
+                 selected = colnames(conf_avg)[-1][1]
+               )
+             )
+            ),
+  
+  # This is the actual heatmap
+              fluidRow(
+                width = 12,
+                box(
+                  title = "Conference Heat Map",
+                  status = "primary",
+                  solidheader = TRUE,
+                  d3heatmapOutput("heatmap")
+                )
+              )
     )
   )
   
@@ -63,4 +79,4 @@ dashboardPage(
       )
     )
   )
-)
+

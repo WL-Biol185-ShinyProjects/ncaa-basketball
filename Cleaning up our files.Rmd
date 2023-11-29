@@ -60,3 +60,18 @@ row_labels <- conf_heatmapdata$Conference
 # Create the heatmap
 d3heatmap(heatmap_data, scale = "column", Rowv = row_labels, dendrogram = "none", colors = "Blues")
 ```
+```{r}
+conf_avg <- read.csv("conference_statsAVG.csv")
+summary(conf_avg)
+```
+```{r}
+dput(head(conf_avg))
+```
+
+
+
+
+
+
+
+```
