@@ -44,6 +44,8 @@ df = subset(merged_data, select = -c(TEAM, G, W, POSTSEASON, SEED, YEAR, UNITID,
 write.csv(df, "conference_stats.csv", row.names=FALSE)
 
 conf_stats <- read.csv("conference_stats.csv")
+conf_avg <- read.csv("conference_statsAVG.csv")
+heatmap_stats <- read.csv("heatmap_data.csv")
 ```
 
 
