@@ -25,6 +25,14 @@ dashboardPage(
                 choices = colnames(conf_stats),
                 selected = "Conference"),
                 plotOutput("plot")
+              ),
+      
+      tabItem(tabName = "page3", p("Maps"),
+              
+              ),
+      
+      tabItem(tabName = "page4", p("Heat Map"),
+              
               )
     )
     
