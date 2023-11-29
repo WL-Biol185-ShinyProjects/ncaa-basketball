@@ -1,12 +1,19 @@
+# loading the necessary libraries
 library(shiny)
 library(tidyverse)
 library(leaflet)
 library(ggplot2)
 library(dplyr)
+library(d3heatmap)
 
+# specifying our conference data used in conference tab
 conf_stats <- read.csv("conference_stats.csv")
- 
+conf_avg <- read.csv("conference_statsAVG.csv")
+heatmap_stats <- read.csv("heatmap_data.csv")
+
+
 function(input,output,session){
+  
   output$home_img <- renderImage({
     
     list(src = "www/header_img.png",
@@ -32,13 +39,16 @@ function(input,output,session){
     and team trends over time."
   })
   
-  output$plot <- renderPlot({
-    
-    ggplot(data=conf_stats, aes_string(x='Conference',
+
+  
+  # Conference tab bar graph
+        output$plot <- renderPlot({
+        ggplot(data=conf_avg, aes_string(x='Conference',
                                        y=input$y_var)) +
-      geom_bar(stat = "identity", width = 0.8) +
-      labs(x="Conference", y=input$y_var)
+              geom_bar(stat = "identity", width = 0.8) +
+              labs(x="Conference", y=input$y_var)
   })
+
   
   output$textBox <- renderText({
     "In each of the graphs shown above, ."
@@ -46,3 +56,9 @@ function(input,output,session){
  
   
 }
+        
+  # Conference Tab Heat Map
+       output$heatmapPlot <- renderD3heatmap({
+       d3heatmap(heatmap_stats, YEAR == input$selectedYEAR)
+         })
+          

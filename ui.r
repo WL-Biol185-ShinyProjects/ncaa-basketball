@@ -1,7 +1,10 @@
 library(shiny)
 library(shinydashboard)
 library(ggplot2)
-
+library(d3heatmap)
+conf_stats <- read.csv("conference_stats.csv")
+conf_avg <- read.csv("conference_statsAVG.csv")
+heatmap_stats <- read.csv("heatmap_data.csv")
 dashboardPage(
   skin = "blue",
   dashboardHeader(title = "NCAA Basketball"),
@@ -35,18 +38,51 @@ dashboardPage(
               box(
                 width = 5,
                 status = "info",
-                textOutput("confExp")
+                textOutput("confExp")),
+                
+      tabItem(tabName = "page2", 
+              tabPanel("Conference Statistics",
+  # Bar Graph for Conference           
+              fluidRow(
+                box(
+                  title = "Conference Data",
+                  status = "primary",
+                  width = 6,
+                  selectInput(
+                    "y_var",
+                    label = "Conference Data",
+                    choices = colnames(conf_avg),
+                    selected = "Conference")
+                ),
+                plotOutput("plot")
               ),
-      
-      tabItem(tabName = "page3", p("Maps"),
-              
-              ),
-      
-      tabItem(tabName = "page4", p("Heat Map"),
-              
+  
+  # Heat Map for Conference
+              fluidRow(
+            box(
+              title = "Choose Conference",
+              status = "primary",
+              width = 6,
+              selectInput( "selectededyear", "Select Year", unique(heatmap_stats$YEAR)),
+  # This is the actual heatmap
+              fluidRow(
+                box(
+                  d3heatmapOutput("heatmapPlot")
+                )
               )
     )
     
     )
   )
+    )
+  )
+  
+  
+  
+  
+      )
+    )
+)
+
+  
 
