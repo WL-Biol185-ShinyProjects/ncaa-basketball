@@ -44,6 +44,272 @@ df = subset(merged_data, select = -c(TEAM, G, W, POSTSEASON, SEED, YEAR, UNITID,
 write.csv(df, "conference_stats.csv", row.names=FALSE)
 
 conf_stats <- read.csv("conference_stats.csv")
+conf_avg <- read.csv("conference_statsAVG.csv")
+heatmap_stats <- read.csv("heatmap_data.csv")
 ```
 
+
+```{r}
+cbb_13 <- read.csv("cbb13.csv")
+
+colnames(cbb_13)[2] <- "Conference"
+colnames(cbb_13)[5] <- "Adjusted Offensive Efficiency"
+colnames(cbb_13)[6] <- "Adjusted Defensive Efficiency"
+colnames(cbb_13)[7] <- "Power Rating"
+colnames(cbb_13)[8] <- "Effective Field Goal Percentage Shot"
+colnames(cbb_13)[9] <- "Effective Field Goal Percentage Allowed"
+colnames(cbb_13)[10] <- "Turnover Percentage"
+colnames(cbb_13)[11] <- "Steal Rate"
+colnames(cbb_13)[12] <- "Offensive Rebound Rate"
+colnames(cbb_13)[13] <- "Offensive Rebound Rate Allowed"
+colnames(cbb_13)[14] <- "Free Throw Rate"
+colnames(cbb_13)[15] <- "Free Throw Rate Allowed"
+colnames(cbb_13)[16] <- "Two Point Shooting Range"
+colnames(cbb_13)[17] <- "Two Point Shooting Range Allowed"
+colnames(cbb_13)[18] <- "Three Point Shooting Range"
+colnames(cbb_13)[19] <- "Three Point Shooting Range Allowed"
+colnames(cbb_13)[20] <- "Adjusted Tempo"
+colnames(cbb_13)[21] <- "Wins Above Bubble"
+cbb13_new = subset(cbb_13, select = -c(TEAM, G, W, POSTSEASON, SEED))
+```
+
+```{r}
+cbb_14 <- read.csv("cbb14.csv")
+
+colnames(cbb_14)[2] <- "Conference"
+colnames(cbb_14)[5] <- "Adjusted Offensive Efficiency"
+colnames(cbb_14)[6] <- "Adjusted Defensive Efficiency"
+colnames(cbb_14)[7] <- "Power Rating"
+colnames(cbb_14)[8] <- "Effective Field Goal Percentage Shot"
+colnames(cbb_14)[9] <- "Effective Field Goal Percentage Allowed"
+colnames(cbb_14)[10] <- "Turnover Percentage"
+colnames(cbb_14)[11] <- "Steal Rate"
+colnames(cbb_14)[12] <- "Offensive Rebound Rate"
+colnames(cbb_14)[13] <- "Offensive Rebound Rate Allowed"
+colnames(cbb_14)[14] <- "Free Throw Rate"
+colnames(cbb_14)[15] <- "Free Throw Rate Allowed"
+colnames(cbb_14)[16] <- "Two Point Shooting Range"
+colnames(cbb_14)[17] <- "Two Point Shooting Range Allowed"
+colnames(cbb_14)[18] <- "Three Point Shooting Range"
+colnames(cbb_14)[19] <- "Three Point Shooting Range Allowed"
+colnames(cbb_14)[20] <- "Adjusted Tempo"
+colnames(cbb_14)[21] <- "Wins Above Bubble"
+cbb14_new = subset(cbb_14, select = -c(TEAM, G, W, POSTSEASON, SEED))
+```
+
+```{r}
+cbb_15 <- read.csv("cbb15.csv")
+
+colnames(cbb_15)[2] <- "Conference"
+colnames(cbb_15)[5] <- "Adjusted Offensive Efficiency"
+colnames(cbb_15)[6] <- "Adjusted Defensive Efficiency"
+colnames(cbb_15)[7] <- "Power Rating"
+colnames(cbb_15)[8] <- "Effective Field Goal Percentage Shot"
+colnames(cbb_15)[9] <- "Effective Field Goal Percentage Allowed"
+colnames(cbb_15)[10] <- "Turnover Percentage"
+colnames(cbb_15)[11] <- "Steal Rate"
+colnames(cbb_15)[12] <- "Offensive Rebound Rate"
+colnames(cbb_15)[13] <- "Offensive Rebound Rate Allowed"
+colnames(cbb_15)[14] <- "Free Throw Rate"
+colnames(cbb_15)[15] <- "Free Throw Rate Allowed"
+colnames(cbb_15)[16] <- "Two Point Shooting Range"
+colnames(cbb_15)[17] <- "Two Point Shooting Range Allowed"
+colnames(cbb_15)[18] <- "Three Point Shooting Range"
+colnames(cbb_15)[19] <- "Three Point Shooting Range Allowed"
+colnames(cbb_15)[20] <- "Adjusted Tempo"
+colnames(cbb_15)[21] <- "Wins Above Bubble"
+cbb15_new = subset(cbb_15, select = -c(TEAM, G, W, POSTSEASON, SEED))
+```
+
+```{r}
+cbb_16 <- read.csv("cbb16.csv")
+
+colnames(cbb_16)[2] <- "Conference"
+colnames(cbb_16)[5] <- "Adjusted Offensive Efficiency"
+colnames(cbb_16)[6] <- "Adjusted Defensive Efficiency"
+colnames(cbb_16)[7] <- "Power Rating"
+colnames(cbb_16)[8] <- "Effective Field Goal Percentage Shot"
+colnames(cbb_16)[9] <- "Effective Field Goal Percentage Allowed"
+colnames(cbb_16)[10] <- "Turnover Percentage"
+colnames(cbb_16)[11] <- "Steal Rate"
+colnames(cbb_16)[12] <- "Offensive Rebound Rate"
+colnames(cbb_16)[13] <- "Offensive Rebound Rate Allowed"
+colnames(cbb_16)[14] <- "Free Throw Rate"
+colnames(cbb_16)[15] <- "Free Throw Rate Allowed"
+colnames(cbb_16)[16] <- "Two Point Shooting Range"
+colnames(cbb_16)[17] <- "Two Point Shooting Range Allowed"
+colnames(cbb_16)[18] <- "Three Point Shooting Range"
+colnames(cbb_16)[19] <- "Three Point Shooting Range Allowed"
+colnames(cbb_16)[20] <- "Adjusted Tempo"
+colnames(cbb_16)[21] <- "Wins Above Bubble"
+cbb16_new = subset(cbb_16, select = -c(TEAM, G, W, POSTSEASON, SEED))
+```
+
+```{r}
+cbb_17 <- read.csv("cbb17.csv")
+
+colnames(cbb_17)[2] <- "Conference"
+colnames(cbb_17)[5] <- "Adjusted Offensive Efficiency"
+colnames(cbb_17)[6] <- "Adjusted Defensive Efficiency"
+colnames(cbb_17)[7] <- "Power Rating"
+colnames(cbb_17)[8] <- "Effective Field Goal Percentage Shot"
+colnames(cbb_17)[9] <- "Effective Field Goal Percentage Allowed"
+colnames(cbb_17)[10] <- "Turnover Percentage"
+colnames(cbb_17)[11] <- "Steal Rate"
+colnames(cbb_17)[12] <- "Offensive Rebound Rate"
+colnames(cbb_17)[13] <- "Offensive Rebound Rate Allowed"
+colnames(cbb_17)[14] <- "Free Throw Rate"
+colnames(cbb_17)[15] <- "Free Throw Rate Allowed"
+colnames(cbb_17)[16] <- "Two Point Shooting Range"
+colnames(cbb_17)[17] <- "Two Point Shooting Range Allowed"
+colnames(cbb_17)[18] <- "Three Point Shooting Range"
+colnames(cbb_17)[19] <- "Three Point Shooting Range Allowed"
+colnames(cbb_17)[20] <- "Adjusted Tempo"
+colnames(cbb_17)[21] <- "Wins Above Bubble"
+cbb17_new = subset(cbb_17, select = -c(TEAM, G, W, POSTSEASON, SEED))
+```
+
+```{r}
+cbb_18 <- read.csv("cbb18.csv")
+
+colnames(cbb_18)[2] <- "Conference"
+colnames(cbb_18)[5] <- "Adjusted Offensive Efficiency"
+colnames(cbb_18)[6] <- "Adjusted Defensive Efficiency"
+colnames(cbb_18)[7] <- "Power Rating"
+colnames(cbb_18)[8] <- "Effective Field Goal Percentage Shot"
+colnames(cbb_18)[9] <- "Effective Field Goal Percentage Allowed"
+colnames(cbb_18)[10] <- "Turnover Percentage"
+colnames(cbb_18)[11] <- "Steal Rate"
+colnames(cbb_18)[12] <- "Offensive Rebound Rate"
+colnames(cbb_18)[13] <- "Offensive Rebound Rate Allowed"
+colnames(cbb_18)[14] <- "Free Throw Rate"
+colnames(cbb_18)[15] <- "Free Throw Rate Allowed"
+colnames(cbb_18)[16] <- "Two Point Shooting Range"
+colnames(cbb_18)[17] <- "Two Point Shooting Range Allowed"
+colnames(cbb_18)[18] <- "Three Point Shooting Range"
+colnames(cbb_18)[19] <- "Three Point Shooting Range Allowed"
+colnames(cbb_18)[20] <- "Adjusted Tempo"
+colnames(cbb_18)[21] <- "Wins Above Bubble"
+cbb18_new = subset(cbb_18, select = -c(TEAM, G, W, POSTSEASON, SEED))
+```
+
+```{r}
+cbb_19 <- read.csv("cbb19.csv")
+
+colnames(cbb_19)[2] <- "Conference"
+colnames(cbb_19)[5] <- "Adjusted Offensive Efficiency"
+colnames(cbb_19)[6] <- "Adjusted Defensive Efficiency"
+colnames(cbb_19)[7] <- "Power Rating"
+colnames(cbb_19)[8] <- "Effective Field Goal Percentage Shot"
+colnames(cbb_19)[9] <- "Effective Field Goal Percentage Allowed"
+colnames(cbb_19)[10] <- "Turnover Percentage"
+colnames(cbb_19)[11] <- "Steal Rate"
+colnames(cbb_19)[12] <- "Offensive Rebound Rate"
+colnames(cbb_19)[13] <- "Offensive Rebound Rate Allowed"
+colnames(cbb_19)[14] <- "Free Throw Rate"
+colnames(cbb_19)[15] <- "Free Throw Rate Allowed"
+colnames(cbb_19)[16] <- "Two Point Shooting Range"
+colnames(cbb_19)[17] <- "Two Point Shooting Range Allowed"
+colnames(cbb_19)[18] <- "Three Point Shooting Range"
+colnames(cbb_19)[19] <- "Three Point Shooting Range Allowed"
+colnames(cbb_19)[20] <- "Adjusted Tempo"
+colnames(cbb_19)[21] <- "Wins Above Bubble"
+cbb19_new = subset(cbb_19, select = -c(TEAM, G, W, POSTSEASON, SEED))
+```
+
+```{r}
+cbb_20 <- read.csv("cbb20.csv")
+
+colnames(cbb_20)[3] <- "Conference"
+colnames(cbb_20)[6] <- "Adjusted Offensive Efficiency"
+colnames(cbb_20)[7] <- "Adjusted Defensive Efficiency"
+colnames(cbb_20)[8] <- "Power Rating"
+colnames(cbb_20)[9] <- "Effective Field Goal Percentage Shot"
+colnames(cbb_20)[10] <- "Effective Field Goal Percentage Allowed"
+colnames(cbb_20)[11] <- "Turnover Percentage"
+colnames(cbb_20)[12] <- "Steal Rate"
+colnames(cbb_20)[13] <- "Offensive Rebound Rate"
+colnames(cbb_20)[14] <- "Offensive Rebound Rate Allowed"
+colnames(cbb_20)[15] <- "Free Throw Rate"
+colnames(cbb_20)[16] <- "Free Throw Rate Allowed"
+colnames(cbb_20)[17] <- "Two Point Shooting Range"
+colnames(cbb_20)[18] <- "Two Point Shooting Range Allowed"
+colnames(cbb_20)[19] <- "Three Point Shooting Range"
+colnames(cbb_20)[20] <- "Three Point Shooting Range Allowed"
+colnames(cbb_20)[21] <- "Adjusted Tempo"
+colnames(cbb_20)[22] <- "Wins Above Bubble"
+cbb20_new = subset(cbb_20, select = -c(RK, TEAM, G, W))
+```
+
+```{r}
+cbb_21 <- read.csv("cbb21.csv")
+
+colnames(cbb_21)[2] <- "Conference"
+colnames(cbb_21)[5] <- "Adjusted Offensive Efficiency"
+colnames(cbb_21)[6] <- "Adjusted Defensive Efficiency"
+colnames(cbb_21)[7] <- "Power Rating"
+colnames(cbb_21)[8] <- "Effective Field Goal Percentage Shot"
+colnames(cbb_21)[9] <- "Effective Field Goal Percentage Allowed"
+colnames(cbb_21)[10] <- "Turnover Percentage"
+colnames(cbb_21)[11] <- "Steal Rate"
+colnames(cbb_21)[12] <- "Offensive Rebound Rate"
+colnames(cbb_21)[13] <- "Offensive Rebound Rate Allowed"
+colnames(cbb_21)[14] <- "Free Throw Rate"
+colnames(cbb_21)[15] <- "Free Throw Rate Allowed"
+colnames(cbb_21)[16] <- "Two Point Shooting Range"
+colnames(cbb_21)[17] <- "Two Point Shooting Range Allowed"
+colnames(cbb_21)[18] <- "Three Point Shooting Range"
+colnames(cbb_21)[19] <- "Three Point Shooting Range Allowed"
+colnames(cbb_21)[20] <- "Adjusted Tempo"
+colnames(cbb_21)[21] <- "Wins Above Bubble"
+cbb21_new = subset(cbb_21, select = -c(TEAM, G, W, POSTSEASON, SEED))
+```
+
+```{r}
+cbb_22 <- read.csv("cbb22.csv")
+
+colnames(cbb_22)[2] <- "Conference"
+colnames(cbb_22)[5] <- "Adjusted Offensive Efficiency"
+colnames(cbb_22)[6] <- "Adjusted Defensive Efficiency"
+colnames(cbb_22)[7] <- "Power Rating"
+colnames(cbb_22)[8] <- "Effective Field Goal Percentage Shot"
+colnames(cbb_22)[9] <- "Effective Field Goal Percentage Allowed"
+colnames(cbb_22)[10] <- "Turnover Percentage"
+colnames(cbb_22)[11] <- "Steal Rate"
+colnames(cbb_22)[12] <- "Offensive Rebound Rate"
+colnames(cbb_22)[13] <- "Offensive Rebound Rate Allowed"
+colnames(cbb_22)[14] <- "Free Throw Rate"
+colnames(cbb_22)[15] <- "Free Throw Rate Allowed"
+colnames(cbb_22)[16] <- "Two Point Shooting Range"
+colnames(cbb_22)[17] <- "Two Point Shooting Range Allowed"
+colnames(cbb_22)[18] <- "Three Point Shooting Range"
+colnames(cbb_22)[19] <- "Three Point Shooting Range Allowed"
+colnames(cbb_22)[20] <- "Adjusted Tempo"
+colnames(cbb_22)[21] <- "Wins Above Bubble"
+cbb22_new = subset(cbb_22, select = -c(TEAM, G, W, POSTSEASON, SEED))
+```
+
+```{r}
+cbb_23 <- read.csv("cbb23.csv")
+
+colnames(cbb_23)[2] <- "Conference"
+colnames(cbb_23)[5] <- "Adjusted Offensive Efficiency"
+colnames(cbb_23)[6] <- "Adjusted Defensive Efficiency"
+colnames(cbb_23)[7] <- "Power Rating"
+colnames(cbb_23)[8] <- "Effective Field Goal Percentage Shot"
+colnames(cbb_23)[9] <- "Effective Field Goal Percentage Allowed"
+colnames(cbb_23)[10] <- "Turnover Percentage"
+colnames(cbb_23)[11] <- "Steal Rate"
+colnames(cbb_23)[12] <- "Offensive Rebound Rate"
+colnames(cbb_23)[13] <- "Offensive Rebound Rate Allowed"
+colnames(cbb_23)[14] <- "Free Throw Rate"
+colnames(cbb_23)[15] <- "Free Throw Rate Allowed"
+colnames(cbb_23)[16] <- "Two Point Shooting Range"
+colnames(cbb_23)[17] <- "Two Point Shooting Range Allowed"
+colnames(cbb_23)[18] <- "Three Point Shooting Range"
+colnames(cbb_23)[19] <- "Three Point Shooting Range Allowed"
+colnames(cbb_23)[20] <- "Adjusted Tempo"
+colnames(cbb_23)[21] <- "Wins Above Bubble"
+cbb23_new = subset(cbb_23, select = -c(TEAM, G, W, POSTSEASON, SEED))
+```
 
