@@ -9,6 +9,7 @@ library(d3heatmap)
 # specifying our conference data used in conference tab
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
+heatmap_stats <- read.csv("heatmap_data.csv")
 
 
 function(input,output,session){

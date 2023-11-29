@@ -4,6 +4,7 @@ library(ggplot2)
 library(d3heatmap)
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
+heatmap_stats <- read.csv("heatmap_data.csv")
 dashboardPage(
   skin = "purple",
   dashboardHeader(title = "NCAA Basketball"),
