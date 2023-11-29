@@ -40,11 +40,8 @@ conf_stats <- read.csv("conference_stats.csv")
 ```
 
 ```{r}
-library(d3heatmap)
-conf_heatmapdata <- read.csv("conference_stats.csv")
-    row_labels <- conf_heatmapdata$Conference
-    heatmap_data <- conf_heatmapdata[, -1]
-d3heatmap(log1p(heatmap_data), scale = "column", Rowv = row_labels, dendrogram = "none", colors = "Blues", )
+
+d3heatmap(log1p(conf_avg), scale = "column", Rowv = row_labels, dendrogram = "none", colors = "Blues", )
 
 ```
 ```{r}
@@ -67,8 +64,25 @@ summary(conf_avg)
 ```{r}
 dput(head(conf_avg))
 ```
+```{r}
+df = subset(merged_data, select = -c(TEAM, G, W, POSTSEASON, SEED, UNITID, STREET, CITY, STATE, ZIP, STFIP, NMCNTY, LOCALE, LAT, LON, CBSA, NMCBSA, CBSATYPE, CSA, NMCSA, NMNECTA, CD, SLDL, SLDU, SCHOOLYEAR, CNTY, NECTA))
+
+write.csv(df,"heatmap_data.csv", row.names=FALSE)
+
+heatmap_stats <- read.csv("heatmap_data.csv")
 
 
+
+```
+```{r}
+set.seed(123)
+years <- rep(2013:2023, each = 34)
+conferences <- rep(c("A1O", "ACC", "AE", "Amer", "ASun", "B10","B12", "BE", "BSky", "BSth","BW", "CAA", "CUSA", "GWC", "Horz", "ind", "Ivy", "MAAC", "MAC", "MEAC", "MVC", "MWC", "NEC", "OVC", "P12", "Pat", "SB", "SC", "SEC", "Slnd", "Sum", "SWAC", "WAC", "WCC"), times = 10)
+variables <- matrix(rnorm(18*10), nrow= 10)
+variables[sample(length(variables), 50)] <- NA
+heatmap_stats <- data.frame(Year = rep(years, times = 34),
+                            Conference = rep(conferences, each = 35) conferences,as.data.frame(variables))
+```
 
 
 

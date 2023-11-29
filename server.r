@@ -10,6 +10,7 @@ library(d3heatmap)
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
 
+
 function(input,output,session){
   
   # Conference tab bar graph
@@ -21,20 +22,8 @@ function(input,output,session){
   })
         
   # Conference Tab Heat Map
-        filtered_data <- reactive({
-          subset(conf_avg, Conference == input$selected_conference)
-        })
-        output$heatmap <- renderD3heatmap({
-        heatmap_data <- select(filtered_data(), -Conference) %>% t() %>% as.matrix()
-      
-        
-        d3heatmap(
-          heatmap_data,
-          scale = "column",
-          dendrogram = "none",
-          colors = "Blues"
+       output$heatmapPlot <- renderD3heatmap({
+       d3heatmap(heatmap_stats, YEAR == input$selectedYEAR)
+         })
           
-        )
-          
-        })
-}
+}       
