@@ -93,8 +93,36 @@ heatmap_matrix <- as.matrix(heatmap_stats)
 ```
 ```{r}
 row.names(heatmap_stats) <- heatmap_stats$Conference
-heatmap_stats$Conference <- NULL
 ```
+
+
+```{r}
+df <- heatmap_stats %>%
+  filter(YEAR == input$YEAR)
+
+row.names(df) <- df$Conference
+
+
+d3heatmap(as.matrix(df))
+```
+
+
+```{r}
+df <- heatmap_stats %>%
+  filter(YEAR == input$YEAR)
+
+# Check for duplicate row names and handle them
+if (anyDuplicated(df$Conference)) {
+  # Make row names unique if there are duplicates
+  df$Conference <- make.names(df$Conference, unique = TRUE)
+}
+
+# Create the heatmap
+d3heatmap(as.matrix(df))
+```
+
+
+
 ```{r}
 library(dplyr)
 selected_year <- c(2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023)
