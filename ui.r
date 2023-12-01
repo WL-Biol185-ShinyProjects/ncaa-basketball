@@ -9,9 +9,9 @@ conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
 
 ui <- fluidPage(
-  theme = shinytheme("")
+  theme = shinytheme(""),
   titlePanel("A Decade of NCAA Basketball Growth"),
-  setBackgroundColor(CornflowerBlue)
+  setBackgroundColor(CornflowerBlue),
   
   #Firsttab - Home/About
   
@@ -65,45 +65,32 @@ ui <- fluidPage(
                  width = 5,
                  status = "info",
                  textOutput("confExp")),
+               box(
+                 title = "Conference Data",
+                 status = "primary",
+                 width = 6,
+                 selectInput(
+                   "y_var",
+                   label = "Conference Data",
+                   choices = colnames(conf_avg),
+                   selected = "Conference")
+               ),
+               plotOutput("plot")
+             )
                
               
-             ))
-  
-  
+             ),
 
-
-confstats <- fluidPage(
-  titlePanel("Statistics by Conference"),
-  fluidRow(
-    column(
-      width = 12,
-      box(
-        status = "info",
-        solidHeader = TRUE,
-        width = 12,
-        tags$figure(
-          class = "centerFigure",
-          img(
-            src = "underwater.JPEG",
-            width = 600,
-            alt = "Picture of Pari, Estelle, and Abby"
-          )
-        )
-      )
-    )
-  ),
-  
-
-  fluidRow(
-    column(
-      width = 12,
-      box(
-        title = "References",
-        status = "primary",
-        solidHeader = TRUE,
-        width = 12,
-        p("Works Cited... I would like to put an option to download the data file here")
-      )
+  tabPanel("Maps of Stats by State",
+           fluidPage(
+             tags$h2("How do teams compare across states?"),
+             selectInput(),
+             leafletOutput("map"),
+             box(
+               width = 5,
+               status = "info",
+               textOutput("confExp"))
+           )),
 
   # Heat Map for Conference
               fluidRow(
@@ -125,42 +112,12 @@ confstats <- fluidPage(
   )
 )
 
-textbox <- fluidPage(
-  titlePanel("A Decade of NCAA Basketball Growth"),
-  fluidRow(
-    column(
-      width = 12,
-      box(
-        status = "info",
-        solidHeader = TRUE,
-        width = 12,
-        tags$img(src = "header_img.png", 
-                 align = "center", 
-                 width = "100%",
-                 alt = "NCAA Basketball Teams")
-      )
-    )
-  ),
-  
-  fluidRow(
-    column(
-      width = 12,
-      box(
-        title = "Introduction",
-        status = "primary",
-        solidHeader = TRUE,
-        width = 12,
-        p("")
-      )
-    )
-  ),
-
 
 body <- dashboardBody(
   tabItems(
     tabItem(tabName = "Home", homePage),
     tabItem(tabName = "ConferenceStatistics", confstats),
-    tabItem(tabName = "StatisticsbyStateMaps")
+    tabItem(tabName = "StatisticsbyStateMaps", maps)
     
   )
 )
