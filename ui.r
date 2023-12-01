@@ -93,6 +93,7 @@ confstats <- fluidPage(
     )
   ),
   
+
   fluidRow(
     column(
       width = 12,
@@ -103,6 +104,23 @@ confstats <- fluidPage(
         width = 12,
         p("Works Cited... I would like to put an option to download the data file here")
       )
+
+  # Heat Map for Conference
+              fluidRow(
+            box(
+              title = "Choose Conference",
+              status = "primary",
+              width = 6,
+              selectInput( "selectededyear", "Select Year", unique(heatmap_stats$YEAR),
+                           selected = max(heatmap_stats$YEAR, multiple =FALSE)),
+  # This is the actual heatmap
+              fluidRow(
+                box(
+                  d3heatmapOutput("heatmapPlot")
+                )
+              )
+    )
+    
     )
   )
 )

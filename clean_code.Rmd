@@ -48,6 +48,19 @@ conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
 ```
 
+```{r}
+heatmap_13 <- filter(heatmap_stats, YEAR == "2013")
+heatmap_14 <- filter(heatmap_stats, YEAR == "2014")
+heatmap_15 <- filter(heatmap_stats, YEAR == "2015")
+heatmap_16 <- filter(heatmap_stats, YEAR == "2016")
+heatmap_17 <- filter(heatmap_stats, YEAR == "2017")
+heatmap_18 <- filter(heatmap_stats, YEAR == "2018")
+heatmap_19 <- filter(heatmap_stats, YEAR == "2019")
+heatmap_21 <- filter(heatmap_stats, YEAR == "2021")
+heatmap_22 <- filter(heatmap_stats, YEAR == "2022")
+heatmap_23 <- filter(heatmap_stats, YEAR == "2023")
+```
+
 
 ```{r}
 cbb_13 <- read.csv("cbb13.csv")
