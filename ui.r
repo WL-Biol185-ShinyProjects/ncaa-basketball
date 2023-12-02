@@ -1,4 +1,6 @@
 library(shiny)
+library(shinythemes)
+library(shinyWidgets)
 library(shinydashboard)
 library(ggplot2)
 library(d3heatmap)
@@ -9,9 +11,9 @@ conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
 
 ui <- fluidPage(
-  theme = shinytheme(""),
+  theme = shinytheme("yeti"),
   titlePanel("A Decade of NCAA Basketball Growth"),
-  setBackgroundColor(CornflowerBlue),
+  setBackgroundColor(color = "CornflowerBlue", shinydashboard = TRUE),
   
   #Firsttab - Home/About
   
@@ -46,7 +48,7 @@ ui <- fluidPage(
                  solidHeader = TRUE,
                  width = 12,
                  "This dashboard features data covering ten seasons of NCAA DI Men's basketball, illustrated in graphs by conference, and state maps."
-               ),
+               )
                
              ))),
     
@@ -110,7 +112,7 @@ ui <- fluidPage(
     
     )
   )
-)
+
 
 
 body <- dashboardBody(
