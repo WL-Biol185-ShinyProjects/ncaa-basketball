@@ -42,7 +42,7 @@ dashboardPage(
                 status = "info",
                 textOutput("confExp")),
                 
-      tabItem(tabName = "page2", 
+      tabItem(tabName = "page3", 
               tabPanel("Conference Statistics",
   # Bar Graph for Conference           
               fluidRow(
@@ -65,7 +65,7 @@ dashboardPage(
               title = "Choose Conference",
               status = "primary",
               width = 6,
-              selectInput( "selectededyear", "Select Year", unique(heatmap_stats$YEAR),
+              selectInput( "YEAR", "Select Year", unique(heatmap_stats$YEAR),
                            selected = max(heatmap_stats$YEAR, multiple =FALSE)),
   # This is the actual heatmap
               fluidRow(
