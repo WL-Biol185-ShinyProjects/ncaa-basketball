@@ -38,7 +38,7 @@ server <- function(input,output) {
     last decade. Data can be used to understand conference performance, recruitment patterns, the impact of rule changes and adaptations, 
     and team trends over time. This app provides a comprehensive understanding of the sport's development over time by identifying patterns and
     trends useful for anyone who appreciates the sport. Important to note, however, is the COVID-19 pandemic that occurred; there is not data from the year 2020,
-    because postseason college basketbakll games were not held."
+    because postseason college basketball games were not held."
   })
   
   output$confExp <- renderText({

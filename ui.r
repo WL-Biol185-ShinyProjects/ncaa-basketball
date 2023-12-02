@@ -69,51 +69,32 @@ ui <- fluidPage(
                  width = 5,
                  status = "info",
                  textOutput("confExp")),
-               box(
-                 title = "Conference Data",
-                 status = "primary",
-                 width = 6,
-                 selectInput(
-                   "y_var",
-                   label = "Conference Data",
-                   choices = colnames(conf_avg),
-                   selected = "Conference")
-               ),
-               plotOutput("plot")
              )
                
               
              ),
 
   #State maps page
-  tabPanel("Maps of Stats by State",
-           fluidPage(
-             tags$h2("How do teams compare across states?"),
-             selectInput(),
-             leafletOutput("map"),
-             box(
-               width = 5,
-               status = "info",
-               textOutput("confExp"))
-           )),
+  # tabPanel("Maps of Stats by State",
+  #          fluidPage(
+  #            tags$h2("How do teams compare across states?"),
+  #            selectInput(),
+  #            leafletOutput("map"),
+  #            box(
+  #              width = 5,
+  #              status = "info",
+  #              textOutput("confExp"))
+  #          )),
 
   # Heat Map for Conference
               fluidRow(
             box(
-              title = "Choose Conference",
+              title = "Choose Year",
               status = "primary",
               width = 6,
               selectInput( "selectededyear", "Select Year", unique(heatmap_stats$YEAR),
-                           selected = max(heatmap_stats$YEAR, multiple =FALSE)),
-  # This is the actual heatmap
-              fluidRow(
-                box(
-                  title = "Choose Conference",
-                  status = "primary",
-                  width = 6,
-                  selectInput("YEAR", "Select Year", unique(heatmap_stats$YEAR),
-                              selected = c(max(heatmap_stats$YEAR)), multiple = TRUE),
-                  
+                           selected = max(heatmap_stats$YEAR, multiple =TRUE)),
+              
                   # This is the actual heatmap
                   fluidRow(
                     box(
@@ -132,9 +113,9 @@ ui <- fluidPage(
       
       
     )
-    )
     
-    )
+    
+    
   
 
 
