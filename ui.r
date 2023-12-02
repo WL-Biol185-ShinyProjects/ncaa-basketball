@@ -83,6 +83,7 @@ ui <- fluidPage(
               
              ),
 
+  #State maps page
   tabPanel("Maps of Stats by State",
            fluidPage(
              tags$h2("How do teams compare across states?"),

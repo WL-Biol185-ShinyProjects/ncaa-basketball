@@ -41,6 +41,17 @@ server <- function(input,output) {
     because postseason college basketbakll games were not held."
   })
   
+  output$confExp <- renderText({
+    "In each of the graphs shown above, important statistics are displayed for each conference. Each graph shows an average value of the given variable 
+    for each conference for the last ten years. In basketballl, four factors are considered the most important strategies for winning a basketball game - scoring 
+    every possession, picking up rebounds, getting to the foul line, and protecting the ball. While all the variables analyzed are important for analyizng a team's 
+    past, present, and future success, four of these bargraphs are the most notable for determining a team's success. 'Scoring every possession' is analyzed through 
+    effective field goals, 'picking up all rebounds' is analyzed through the turnovers precentage, 'getting to the fou line' is analyzed through the 
+rebounding percentage, and 'protecting the ball' is analyzed through the free throw rate. Additionally, it is not only important for a team to score points through these
+factors, but it is important to minimize the points scored by the other team, so the opponent's average data for each of these factors is also shown."
+})
+ 
+
 
   # Conference tab bar graph
         output$plot <- renderPlot({
