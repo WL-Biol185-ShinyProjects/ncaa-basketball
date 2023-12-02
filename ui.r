@@ -1,35 +1,10 @@
 library(shiny)
+library(shinythemes)
+library(shinyWidgets)
 library(shinydashboard)
 library(ggplot2)
-<<<<<<< HEAD
-
-dashboardPage(
-  skin = "purple",
-  dashboardHeader(title = "NCAA Basketball"),
-  dashboardSidebar(
-    sidebarMenu(
-      menuItem("Home", tabName = "page1"),
-      menuItem("Conference Statistics", tabName = "page2")
-    )
-  ),
-  dashboardBody(
-    tabItems(
-      tabItem(tabName = "page1", p("Home"),
-              h2("Welcome!"),
-              box(background = "purple", p("Introduction!"))
-      ),
-      
-      tabItem(tabName = "page2", p("Conference Statistics"),
-              selectInput(
-                "y_var",
-                label = "Conference Data",
-                choices = colnames(conf_stats),
-                selected = ("Conference"),
-                plotOutput("plot")
-              ),
-              # Heat Map for Conference
-=======
 library(d3heatmap)
+
 
 #Reading the Data
 conf_stats <- read.csv("conference_stats.csv")
@@ -37,11 +12,12 @@ conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
 
 ui <- fluidPage(
-  theme = shinytheme(""),
+  theme = shinytheme("yeti"),
   titlePanel("A Decade of NCAA Basketball Growth"),
-  setBackgroundColor(CornflowerBlue),
+  setBackgroundColor(color = "CornflowerBlue", shinydashboard = TRUE),
   
-  #Firsttab - Home/About
+  
+#Firsttab - Home/About
   
   navbarPage(
     "Tabs",
@@ -74,7 +50,7 @@ ui <- fluidPage(
                  solidHeader = TRUE,
                  width = 12,
                  "This dashboard features data covering ten seasons of NCAA DI Men's basketball, illustrated in graphs by conference, and state maps."
-               ),
+               )
                
              ))),
     
@@ -109,6 +85,7 @@ ui <- fluidPage(
               
              ),
 
+  #State maps page
   tabPanel("Maps of Stats by State",
            fluidPage(
              tags$h2("How do teams compare across states?"),
@@ -129,7 +106,6 @@ ui <- fluidPage(
               selectInput( "selectededyear", "Select Year", unique(heatmap_stats$YEAR),
                            selected = max(heatmap_stats$YEAR, multiple =FALSE)),
   # This is the actual heatmap
->>>>>>> 03c01f23ad0473400771d2962fefde8182618870
               fluidRow(
                 box(
                   title = "Choose Conference",
@@ -148,7 +124,7 @@ ui <- fluidPage(
                   )
                 )
               )
-<<<<<<< HEAD
+
       
       
       
@@ -156,38 +132,12 @@ ui <- fluidPage(
       
       
     )
-=======
     )
     
     )
-  )
-)
+  
 
 
-body <- dashboardBody(
-  tabItems(
-    tabItem(tabName = "Home", homePage),
-    tabItem(tabName = "ConferenceStatistics", confstats),
-    tabItem(tabName = "StatisticsbyStateMaps", maps)
-    
->>>>>>> 03c01f23ad0473400771d2962fefde8182618870
-  )
-)
-)
 
 
-dashboardPage(skin = "blue",
-              dashboardHeader(title = "NCAA Men's Basketball Dashboard",
-                              titleWidth = 200),
-              dashboardSidebar(
-                sidebarMenu(style = "white-space: normal;",
-                            "Contents",
-                            menuItem("Home", tabName = "Home", icon = icon("basketball-hoop")),
-                            menuItem("Conference Statistics", tabName = "ConferenceStatistics", icon = icon("medal")),    
-                            menuItem("Statistics-by-State Maps", tabName = "StatisticsbyStateMaps", icon = icon("ranking-star"))
-                            
-                )
-              ),
-              body
-)
 
