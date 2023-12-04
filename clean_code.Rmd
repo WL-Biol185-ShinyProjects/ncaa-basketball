@@ -45,6 +45,25 @@ write.csv(df, "conference_stats.csv", row.names=FALSE)
 
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
+colnames(conf_avg)[2] <- "Adjusted Offensive Efficiency"
+colnames(conf_avg)[3] <- "Adjusted Defensive Efficiency"
+colnames(conf_avg)[4] <- "Power Rating"
+colnames(conf_avg)[5] <- "Effective Field Goal Percentage Shot"
+colnames(conf_avg)[6] <- "Effective Field Goal Percentage Allowed"
+colnames(conf_avg)[7] <- "Turnover Percentage"
+colnames(conf_avg)[8] <- "Steal Rate"
+colnames(conf_avg)[9] <- "Offensive Rebound Rate"
+colnames(conf_avg)[10] <- "Offensive Rebound Rate Allowed"
+colnames(conf_avg)[11] <- "Free Throw Rate"
+colnames(conf_avg)[12] <- "Free Throw Rate Allowed"
+colnames(conf_avg)[13] <- "Two Point Shooting Range"
+colnames(conf_avg)[14] <- "Two Point Shooting Range Allowed"
+colnames(conf_avg)[15] <- "Three Point Shooting Range"
+colnames(conf_avg)[16] <- "Three Point Shooting Range Allowed"
+colnames(conf_avg)[17] <- "Adjusted Tempo"
+colnames(conf_avg)[18] <- "Wins Above Bubble"
+write.csv(conf_avg, "conf_stats_avg.csv", row.names=FALSE)
+confavg <- read.csv("conf_stats_avg.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
 ```
 

@@ -62,9 +62,7 @@ factors, but it is important to minimize the points scored by the other team, so
   })
         
         output$yVar <- renderText({
-          "
-          
-          Adjusted Offensive Efficiency = Points scored per 100 possessions.
+          "Adjusted Offensive Efficiency = Points scored per 100 possessions.
 Adjusted Defensive Efficiency = Points allowed per 100 possessions.
 Power Rating = Chance of beating an average Division 1 team.
 Effective Field Goal Percentage Shot = A field goal is either a two or three point shot.
