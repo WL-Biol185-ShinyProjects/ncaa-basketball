@@ -96,9 +96,34 @@ Wins Above Bubble = The bubble is the cut off between qualifying for the tournam
      
   # Maps tab   
         output$map <- renderLeaflet ({
-          leaflet(date = ) %>%
-            setView(lng = , lat = , zoom = ) %>%
-            addTiles
-        })
+          chosen_stat <- switch(input$map_stat,
+                                "avgPR" = "BARTHAG",
+                                "avgFT" = "EFG_O",
+                                "avgFG" = "EFG_O",
+                                "avgTOR" = "TOR",
+                                "avgTORD" = "TORD",
+                                "avgORB" = "ORB",
+                                "avgFTR" = "FTR",
+                                "avgTEMPO" = "ADJ_T")
           
+          state_stat <- merged_data %>%
+            group_by(state) %>%
+            summarize(stat_value = mean(!!sym(chosen_stat)), na.rm = TRUE)
+          
+          geo <- geojson_read("states.geo.json", what = "sp")
+          geo@data <- left_join(geo@data, state_stat, by = c("NAME" = "state"))
+          
+          pal <- colorBin("Blues", domain = geo@data$stat_value)
+          
+          leaflet(geo) %>%
+            addPolygons(
+              fillOpacity = 2.5,
+              fillColor = ~pal(stat_value),
+              color = "white",
+              dashArray = '3',
+              weight = 3
+            ) %>%
+            setView(lng = -79.442778, lat = 37.783889, zoom = 5) %>%
+            addTiles()
+        })
 }       

@@ -4,6 +4,7 @@ library(shinyWidgets)
 library(shinydashboard)
 library(ggplot2)
 library(d3heatmap)
+library(leaflet)
 
 #Reading the Data
 conf_stats <- read.csv("conference_stats.csv")
@@ -101,12 +102,7 @@ ui <- fluidPage(
                                        "Average Free Throw Rate" = "avgFTR",
                                        "Average Tempo" = "avgTEMPO"),
                            selected = "avgPR"),
-             leafletOutput("map"),
-             box(
-               choices = 
-               width = 5,
-               status = "info",
-               textOutput("confExp"))
+             leafletOutput("geo")
            )),
 
   # Heat Map for Conference
@@ -127,7 +123,7 @@ ui <- fluidPage(
     
     )
   )
-)
+
 
 
 # body <- dashboardBody(
