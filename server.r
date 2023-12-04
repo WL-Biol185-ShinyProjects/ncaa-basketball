@@ -30,18 +30,7 @@ server <- function(input,output) {
     
   }, deleteFile = F)
   
-  
-  tags$h2(
-    "Welcome to our cutting-edge dashboard, where we look at a decades worth of statistical data on NCAA Division 1 basketball teams. The postseason
-    period of college basketball, coined March Madness, is one of the most revered sporting events of all time. Statistical data covers both in-season and post-season information, including importatn points such as power ranking, win percentage,
-    period of college basketball, coined 'March Madness'', is one of the most revered sporting events of all time. Statistical data covers both in-season and post-season information, including importatn points such as power ranking, win percentage,
-    period of college basketball, coined 'March Madness'', is one of the most revered sporting events of all time. Statistical data covers both in-season and post-season information, including important points such as power ranking, win percentage,
-    and free throw success. This data illustrates a unique narrative about each season and how the game of basektball has evolved over the 
-    last decade. Data can be used to understand conference performance, recruitment patterns, the impact of rule changes and adaptations, 
-    and team trends over time. This app provides a comprehensive understanding of the sport's development over time by identifying patterns and
-    trends useful for anyone who appreciates the sport. Important to note, however, is the COVID-19 pandemic that occurred; there is not data from the year 2020,
-    because postseason college basketball games were not held."
-  )
+
   
   output$confExp <- renderText({
     "In each of the graphs shown above, important statistics are displayed for each conference. Each graph shows an average value of the given variable 
@@ -93,7 +82,7 @@ Wins Above Bubble = The bubble is the cut off between qualifying for the tournam
          })
      
   # Maps tab   
-        output$map <- renderLeaflet ({
+        output$geo <- renderLeaflet ({
           chosen_stat <- switch(input$map_stat,
                                 "avgPR" = "BARTHAG",
                                 "avgFT" = "EFG_O",

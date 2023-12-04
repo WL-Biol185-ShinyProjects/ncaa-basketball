@@ -401,3 +401,11 @@ addPolygons(
                width = 5,
                status = "info",
                textOutput("confExp"))
+               
+               
+               
+               
+
+#                             menuItem("Home", tabName = "Home", icon = icon("basketball-hoop")),
+#                             menuItem("Conference Statistics", tabName = "ConferenceStatistics", icon = icon("medal")),    
+#                             menuItem("Statistics-by-State Maps", tabName = "StatisticsbyStateMaps", icon = icon("ranking-star"))
