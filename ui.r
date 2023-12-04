@@ -78,13 +78,12 @@ ui <- fluidPage(
                    choices = colnames(conf_avg),
                    selected = "Conference")
                ),
-               plotOutput("plot")
-             )
-             ),
-             box(
-               width = 5,
-               status = "info",
-               textOutput("yVar"))
+               plotOutput("plot"),
+               box(
+                 width = 5,
+                 status = "info",
+                 textOutput("yVar"))
+               )
              ),
 
   #State maps page
