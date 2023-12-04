@@ -79,8 +79,11 @@ ui <- fluidPage(
                ),
                plotOutput("plot")
              )
-               
-              
+             ),
+             box(
+               width = 5,
+               status = "info",
+               textOutput("yVar"))
              ),
 
   #State maps page
