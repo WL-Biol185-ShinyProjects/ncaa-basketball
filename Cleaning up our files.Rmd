@@ -169,6 +169,23 @@ output$home_img <- renderImage({
 
 ```
 
+```{r}
+df2 <- data.frame(cbind(names(df), t(df)))
+colnames(df2) <- c('Variables')
+
+```
+```{r}
+all_years <- df
+filter(all_years) %>%
+  select(Conference)
+
+row.names(all_years) <- all_years$Conference
+
+```
+```{r}
+library(dplyr)
+ all_years <- filter(df, input==YEAR)
+```
 
 
 

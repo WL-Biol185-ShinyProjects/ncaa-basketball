@@ -11,6 +11,7 @@ conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
 
+
 ui <- fluidPage(
   theme = shinytheme("yeti"),
   titlePanel("A Decade of NCAA Basketball Growth"),
@@ -66,7 +67,7 @@ ui <- fluidPage(
                  selected = "Conference"),
                plotOutput("plot"),
                box(
-                 width = 5,
+                 width = 18,
                  status = "info",
                  textOutput("confExp")),
              )
@@ -92,18 +93,15 @@ ui <- fluidPage(
               title = "Choose Year",
               status = "primary",
               width = 6,
-              selectInput( "selectededyear", "Select Year", unique(heatmap_stats$YEAR),
-                           selected = max(heatmap_stats$YEAR, multiple =TRUE)),
-              
-                  # This is the actual heatmap
-                  fluidRow(
-                    box(
-                      d3heatmapOutput("heatmapPlot")
+              selectInput( "YEAR",
+                           label = "Select Year",
+                           choices = unique(all_years$YEAR),
+                           selected = max(all_years$YEAR), multiple = FALSE),
+                  d3heatmapOutput("heatmapPlot")
               
               
               )
                   )
-                )
               )
 
       
@@ -112,8 +110,7 @@ ui <- fluidPage(
       
       
       
-    )
-    
+
     
     
   
