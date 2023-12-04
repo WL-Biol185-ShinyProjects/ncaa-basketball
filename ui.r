@@ -69,9 +69,11 @@ ui <- fluidPage(
                  width = 5,
                  status = "info",
                  textOutput("confExp")),
-             )
-               
-              
+             ),
+             box(
+               width = 5,
+               status = "info",
+               textOutput("yVar"))
              ),
 
   #State maps page

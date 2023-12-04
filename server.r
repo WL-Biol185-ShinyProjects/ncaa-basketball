@@ -52,7 +52,6 @@ server <- function(input,output) {
 rebounding percentage, and 'protecting the ball' is analyzed through the free throw rate. Additionally, it is not only important for a team to score points through these
 factors, but it is important to minimize the points scored by the other team, so the opponent's average data for each of these factors is also shown."
 })
- 
 
   # Conference tab bar graph
         output$plot <- renderPlot({
@@ -61,6 +60,29 @@ factors, but it is important to minimize the points scored by the other team, so
               geom_bar(stat = "identity", width = 0.8) +
               labs(x="Conference", y=input$y_var)
   })
+        
+        output$yVar <- renderText({
+          "
+          
+          Adjusted Offensive Efficiency = Points scored per 100 possessions.
+Adjusted Defensive Efficiency = Points allowed per 100 possessions.
+Power Rating = Chance of beating an average Division 1 team.
+Effective Field Goal Percentage Shot = A field goal is either a two or three point shot.
+Effective Field Goal Percentage Allowed = The rate at which a team allowed the other team to make a two or three point shot.
+Turnover Percentage = A turnover is when a team loses possession of the ball and the other team gains possession.
+Steal Rate = The rate at which one team causes a turnover and gets the ball back.
+Offensive Rebound Rate = The rate at which a team recovers the ball after a failed shot and doesn’t lose possession.
+Offensive Rebound Rate Allowed = The rate at which a team playing defensive allows the other team’s offensive to recover the ball after a failed shot.
+Free Throw Rate = A free throw is a one-point shot attempt given to a player who was fouled.
+Free Throw Rate Allowed = The rate at which a team allows the opposing team to shoot free throws.
+Two Point Shooting Rate = The rate at which a team shoots two-pointers.
+Two Point Shooting Rate Allowed = The rate at which a team allows the other team to shoot two-pointers.
+Three Point Shooting Rate = The rate at which a team shoots three-pointers.
+Three Point Shooting Rate Allowed = The rate at which a team allows the other team to shoot three-pointers.
+Adjusted Tempo = The tempo is described as the number of possessions a team has per 40 minutes of playing time.
+Wins Above Bubble = The bubble is the cut off between qualifying for the tournament and not qualifying for the tournament. So, the wins above bubble refers to the number of won games that a team has that is over the number of games they need to qualify for the tournament.
+"
+        })
         
         # Conference Tab Heat Map
     output$heatmapPlot <- renderD3heatmap({

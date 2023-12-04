@@ -66,6 +66,8 @@ colnames(conf_avg)[15] <- "Three Point Shooting Range"
 colnames(conf_avg)[16] <- "Three Point Shooting Range Allowed"
 colnames(conf_avg)[17] <- "Adjusted Tempo"
 colnames(conf_avg)[18] <- "Wins Above Bubble"
+
+write.csv(conf_avg, "conf_stats_avg.csv", row.names=FALSE)
 ```
 
 
