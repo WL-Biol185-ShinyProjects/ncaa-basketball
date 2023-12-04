@@ -6,14 +6,13 @@ library(ggplot2)
 library(dplyr)
 library(d3heatmap)
 
-# specifying our conference data used in conference tab
+# reading the data, specifying our conference data used in conference tab
 conf_stats <- read.csv("conference_stats.csv")
-
 conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
 
 
-function(input,output,session){
+server <- function(input,output) {
   
   output$home_img <- renderImage({
     
@@ -34,8 +33,12 @@ function(input,output,session){
   
   output$textBox <- renderText({
     "Welcome to our cutting-edge dashboard, where we look at a decades worth of statistical data on NCAA Division 1 basketball teams. The postseason
+<<<<<<< HEAD
     period of college basketball, coined March Madness, is one of the most revered sporting events of all time. Statistical data covers both in-season and post-season information, including importatn points such as power ranking, win percentage,
     period of college basketball, coined 'March Madness'', is one of the most revered sporting events of all time. Statistical data covers both in-season and post-season information, including importatn points such as power ranking, win percentage,
+=======
+    period of college basketball, coined 'March Madness'', is one of the most revered sporting events of all time. Statistical data covers both in-season and post-season information, including important points such as power ranking, win percentage,
+>>>>>>> 25cf78def4cf9460d80d877ac87018e06df09880
     and free throw success. This data illustrates a unique narrative about each season and how the game of basektball has evolved over the 
     last decade. Data can be used to understand conference performance, recruitment patterns, the impact of rule changes and adaptations, 
     and team trends over time. This app provides a comprehensive understanding of the sport's development over time by identifying patterns and
@@ -43,8 +46,18 @@ function(input,output,session){
     because postseason college basketbakll games were not held."
   })
   
+  output$confExp <- renderText({
+    "In each of the graphs shown above, important statistics are displayed for each conference. Each graph shows an average value of the given variable 
+    for each conference for the last ten years. In basketballl, four factors are considered the most important strategies for winning a basketball game - scoring 
+    every possession, picking up rebounds, getting to the foul line, and protecting the ball. While all the variables analyzed are important for analyizng a team's 
+    past, present, and future success, four of these bargraphs are the most notable for determining a team's success. 'Scoring every possession' is analyzed through 
+    effective field goals, 'picking up all rebounds' is analyzed through the turnovers precentage, 'getting to the fou line' is analyzed through the 
+rebounding percentage, and 'protecting the ball' is analyzed through the free throw rate. Additionally, it is not only important for a team to score points through these
+factors, but it is important to minimize the points scored by the other team, so the opponent's average data for each of these factors is also shown."
+})
+ 
 
-  
+
   # Conference tab bar graph
         output$plot <- renderPlot({
         ggplot(data=conf_avg, aes_string(x='Conference',
@@ -52,23 +65,20 @@ function(input,output,session){
               geom_bar(stat = "identity", width = 0.8) +
               labs(x="Conference", y=input$y_var)
   })
-
-  
-  output$confExp <- renderText({
-    "In each of the graphs shown above, important statistics are displayed for each conference. Each graph shows an average value of the given variable 
-    for each conference for the last ten years. In basketballl, four factors are considered the most important strategies for winning a basketball game - scoring 
-    every possession, picking up rebounds, getting to the foul line, and protecting the ball. While all the variables analyzed are important for analyizng a team's 
-    past, present, and future success, four of these bargraphs are the most notable for determining a team's success. 'Scoring every possession' is analyzed through
-    effective field goals, 'picking up all rebounds' is analyzed through the turnovers precentage, 'getting to the fou line' is analyzed through the 
-    rebounding percentage, and 'protecting the ball' is analyzed through the free throw rate. Additionally, it is not only important for a team to score points through these
-    factors, but it is important to minimize the points scored by the other team, so the opponent's average data for each of these factors is also shown."
-  })
- 
-  
-}
         
   # Conference Tab Heat Map
-       output$heatmapPlot <- renderD3heatmap({
-       d3heatmap(heatmap_stats, YEAR == input$selectedYEAR)
+        df <- heatmap_stats %>%
+          filter(YEAR == input$YEAR)
+        row.names(df) <- df$Conference
+        output$heatmapPlot <- renderD3heatmap({
+       d3heatmap(df)
          })
+     
+  # Maps tab   
+        output$map <- renderLeaflet ({
+          leaflet(date = ) %>%
+            setView(lng = , lat = , zoom = ) %>%
+            addTiles
+        })
           
+}       
