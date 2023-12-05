@@ -9,16 +9,9 @@ output: html_document
 geodf <- read.csv("geodata.csv")
 colnames(geodf)[2] <- "TEAM"
 write.csv(geodf, "geodata.csv", row.names=FALSE)
-
 college_geo <- read.csv("geodata.csv")
 bb_data <- read.csv("cbb.csv")
-
-library(dplyr)
 merged_data <- left_join(bb_data, college_geo, by = "TEAM")
-<<<<<<< HEAD
-=======
-
->>>>>>> 9a340ebbbd93ce8acd1de7a41ecda70d2a78f163
 ```
 
 
@@ -136,6 +129,12 @@ library(sf)
 library(dplyr)
 library(ggplot2)
 
+geodf <- read.csv("geodata.csv")
+colnames(geodf)[2] <- "TEAM"
+write.csv(geodf, "geodata.csv", row.names=FALSE)
+college_geo <- read.csv("geodata.csv")
+bb_data <- read.csv("cbb.csv")
+merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 state_names_data <- read.csv("table-data.csv")
 merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
