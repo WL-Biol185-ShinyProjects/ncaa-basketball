@@ -5,11 +5,21 @@ library(leaflet)
 library(ggplot2)
 library(dplyr)
 library(d3heatmap)
+library(geojsonio)
 
 # reading the data, specifying our conference data used in conference tab
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
+geodf <- read.csv("geodata.csv")
+colnames(geodf)[2] <- "TEAM"
+write.csv(geodf, "geodata.csv", row.names=FALSE)
+college_geo <- read.csv("geodata.csv")
+bb_data <- read.csv("cbb.csv")
+merged_data <- left_join(bb_data, college_geo, by = "TEAM")
+state_names_data <- read.csv("table-data.csv")
+merged_data <- merged_data  %>%
+  left_join(state_names_data, by = c("STATE" = "code"))
 
 
 server <- function(input,output) {
@@ -52,16 +62,7 @@ server <- function(input,output) {
        d3heatmap(as.matrix(df))
          })
      
-  # Maps tab   
-    geodf <- read.csv("geodata.csv")
-    colnames(geodf)[2] <- "TEAM"
-    write.csv(geodf, "geodata.csv", row.names=FALSE)
-    college_geo <- read.csv("geodata.csv")
-    bb_data <- read.csv("cbb.csv")
-    merged_data <- left_join(bb_data, college_geo, by = "TEAM")
-    state_names_data <- read.csv("table-data.csv")
-    merged_data <- merged_data  %>%
-      left_join(state_names_data, by = c("STATE" = "code"))
+  # Maps tab
     
     
         output$geo <- renderLeaflet ({

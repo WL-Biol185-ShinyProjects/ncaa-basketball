@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ```{r}
+library(dplyr)
 geodf <- read.csv("geodata.csv")
 colnames(geodf)[2] <- "TEAM"
 write.csv(geodf, "geodata.csv", row.names=FALSE)
