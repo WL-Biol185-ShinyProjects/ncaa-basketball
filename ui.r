@@ -125,21 +125,11 @@ ui <- fluidPage(
   )),
   
   # # Tab 4: Yearly Success heat map page
-  # tabPanel("Yearly Success",
-  #          fluidPage(
-  #            box(
-  #              title = "Choose Conference",
-  #              status = "primary",
-  #              width = 6,
-  #              selectInput( 
-  #                           inputId = "YEAR",
-  #                           label = "Select Year",
-  #                           choices = unique(all_years$YEAR),
-  #                           selected = max(all_years$YEAR), multiple = FALSE),
-  #              d3heatmapOutput("heatmapPlot")
-  #          ))
-  #   
-  # ),
+   tabPanel("Yearly Success",
+            fluidPage(
+              tags$h2("How individual teams compare over the years?"),
+              tags$p("Use the drop-down box to select which team you want to look at.")
+            )),
   
   #Tab 5: About the creators
   tabPanel("About the Creators",
