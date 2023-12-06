@@ -9,7 +9,6 @@ library(ggplot2)
 library(d3heatmap)
 library(geojsonio)
 
-
 #Reading the Data
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
@@ -83,6 +82,7 @@ ui <- fluidPage(
                  "y_var",
                  label = "Conference Data",
                  choices = colnames(conf_stats)[-which(colnames(conf_stats) == "Conference")],
+                
                  selected = "Adjusted Offensive Efficiency"),
                plotOutput("plot"),
                box(
@@ -161,12 +161,54 @@ ui <- fluidPage(
    tabPanel("Yearly Success",
             fluidPage(
               tags$h2("How individual teams compare over the years?"),
-              tags$p("Use the drop-down box to select which team you want to look at.")
-            )),
+              tags$p("Use the drop-down box to select which team you want to look at."),
+  
+  sliderInput("year_selector", "Select Year Range",min = 2013,max = 2023,value = c(2000, 2013)),
+  pickerInput("choicePicker","Pick Teams",choices = merged_data$TEAM,
+              options =list("actions-box" = TRUE), 
+              multiple=FALSE,
+              selected="North Carolina"),
+  pickerInput("choicePicker","Pick Variable",choices = colnames(bb_data),
+              options =list("actions-box" = TRUE), 
+              multiple=FALSE,
+              selected="ADJOE"),
+  plotOutput("trend"),
+   )),
   
   #Tab 5: About the creators
   tabPanel("About the Creators",
            fluidPage(
+
+
+
+# body <- dashboardBody(
+#   tabItems(
+#     tabItem(tabName = "Home", homePage),
+#     tabItem(tabName = "ConferenceStatistics", confstats),
+#     tabItem(tabName = "StatisticsbyStateMaps", maps)
+#     
+#   )
+# )
+# 
+# dashboardPage(skin = "blue",
+#               dashboardHeader(title = "NCAA Men's Basketball Dashboard",
+#                               titleWidth = 200),
+#               dashboardSidebar(
+#                 sidebarMenu(style = "white-space: normal;",
+#                             "Contents",
+#                             menuItem("Home", tabName = "Home", icon = icon("basketball-hoop")),
+#                             menuItem("Conference Statistics", tabName = "ConferenceStatistics", icon = icon("medal")),    
+#                             menuItem("Statistics-by-State Maps", tabName = "StatisticsbyStateMaps", icon = icon("ranking-star"))
+#                             
+#                 )
+#               ),
+#               body
+# )
+# 
+
+
+             tags$h2("Created by Allyssa Utecht, Katelyn Gamble, and Sophia Rollo"),
+
              tags$h2("Created by Allyssa Utecht, Katelyn Gamble, and Sophia Rollo"),
              box(
                status = "success",
@@ -176,7 +218,9 @@ ui <- fluidPage(
                         align = "center", 
                         width = "8",
                         alt = "group picture")),
+
            ))
 
 ))
     
+

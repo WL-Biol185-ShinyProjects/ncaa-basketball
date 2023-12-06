@@ -100,12 +100,12 @@ factors, but it is important to minimize the points scored by the other team, so
             summarize(stat_value = mean(!!sym(chosen_stat)), na.rm = TRUE)
          # print(state_stat)
          # print(merged_data)
-          
           geo <- geojson_read("states.geo.json", what = "sp")
           geo@data <- left_join(geo@data, state_stat, by = c("NAME" = "state"))
           
           pal <- colorBin("Blues", domain = geo@data$stat_value)
           
+  
           leaflet(data = geo) %>%
             addPolygons(
               fillOpacity = 2.5,
@@ -115,8 +115,9 @@ factors, but it is important to minimize the points scored by the other team, so
               weight = 3
             ) %>%
             setView(lng = -80, lat = 38, zoom = 4) %>%
-            addTiles()
+          addTiles()
         })
+<<<<<<< HEAD
         
         # Yearly success heap map tab
         output$heatmapPlot <- renderD3heatmap({
@@ -131,5 +132,20 @@ factors, but it is important to minimize the points scored by the other team, so
         
 }) 
     
+=======
+
+          
+        
+        output$group_pic <- renderImage({
+          
+          list(src = "www/group_pic.png",
+               width = "800",
+               height = 200)
+          
+        }, deleteFile = F)
+
+>>>>>>> b4f3593f17e13358b7209594e0c6e06037ab8905
 }
+        
+
 
