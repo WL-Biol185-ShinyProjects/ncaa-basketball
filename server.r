@@ -10,8 +10,7 @@ library(shinyjs)
 library(shinyWidgets)
 library(shinydashboard)
 library(geojsonio)
-library(leaflet.extras)
-library(sf)
+
 
 
 # reading the data, specifying our conference data used in conference tab
