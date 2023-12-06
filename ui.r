@@ -1,3 +1,4 @@
+# loading the necessary libraries
 library(shiny)
 library(shinythemes)
 library(leaflet)
@@ -6,21 +7,23 @@ library(shinyWidgets)
 library(shinydashboard)
 library(ggplot2)
 library(d3heatmap)
+library(geojsonio)
+library(leaflet.extras)
+library(sf)
+
 #Reading the Data
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
 
 
-
-
+# using fluidPage to construct site
 ui <- fluidPage(
   theme = shinytheme("yeti"),
   titlePanel("A Decade of NCAA Basketball Growth"),
   setBackgroundColor(color = "CornflowerBlue", shinydashboard = TRUE),
   
-  #Firsttab - Home/About
-  
+  #First tab - Home/About
   navbarPage(
     "Tabs",
     tabPanel("About",
@@ -95,18 +98,11 @@ ui <- fluidPage(
                  Wins Above Bubble = The bubble is the cut off between qualifying for the tournament and not qualifying for the tournament. So, the wins above bubble refers to the number of won games that a team has that is over the number of games they need to qualify for the tournament.",  
                  width = "1500px", 
                  height = "400px"
-               ),
-               tags$p("In each of the graphs shown above, important statistics are displayed for each conference. Each graph shows an average value of the given variable 
-                     for each conference for the last ten years. In basketballl, four factors are considered the most important strategies for winning a basketball game: scoring 
-                     every possession, picking up rebounds, getting to the foul line, and protecting the ball. While all the variables analyzed are important for analyizng a team's 
-                     past, present, and future success, four of these bargraphs are the most notable for determining a team's success. 'Scoring every possession' is analyzed through 
-                     effective field goals, 'picking up all rebounds' is analyzed through the turnovers precentage, 'getting to the foul line' is analyzed through the 
-                     rebounding percentage, and 'protecting the ball' is analyzed through the free throw rate. Additionally, it is not only important for a team to score points through these
-                     factors, but it is important to minimize the points scored by the other team, so the opponent's average data for each of these factors is also shown.")
+               )
                )
              ),
 
-  #State maps page
+  #Tab 3: State maps page
   tabPanel("Maps of Stats by State",
            fluidPage(
              tags$h2("How do teams compare across states?"),
@@ -129,15 +125,26 @@ ui <- fluidPage(
           
   )),
   
-  tabPanel("Yearly Success",
+  # # Tab 4: Yearly Success heat map page
+  # tabPanel("Yearly Success",
+  #          fluidPage(
+  #            box(
+  #              title = "Choose Conference",
+  #              status = "primary",
+  #              width = 6,
+  #              selectInput( 
+  #                           inputId = "YEAR",
+  #                           label = "Select Year",
+  #                           choices = unique(all_years$YEAR),
+  #                           selected = max(all_years$YEAR), multiple = FALSE),
+  #              d3heatmapOutput("heatmapPlot")
+  #          ))
+  #   
+  # ),
+  
+  #Tab 5: About the creators
+  tabPanel("About the Creators",
            fluidPage(
-             selectInput(
-               inputId = "YEAR",
-               label = "Selectyear",
-              choices = heatmap_year_list
-            )),
-           d3heatmapOutput("heatmapPlot")
-           )))
 
 
 
@@ -165,4 +172,11 @@ ui <- fluidPage(
 #               body
 # )
 # 
+
+
+             tags$h2("Created by Allyssa Utecht, Katelyn Gamble, and Sophia Rollo")
+           ))
+
+))
+    
 

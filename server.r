@@ -9,7 +9,9 @@ library(shinythemes)
 library(shinyjs)
 library(shinyWidgets)
 library(shinydashboard)
-
+library(geojsonio)
+library(leaflet.extras)
+library(sf)
 
 
 # reading the data, specifying our conference data used in conference tab
@@ -26,13 +28,10 @@ state_names_data <- read.csv("table-data.csv")
 merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
 
-
-
-
-
+# making a function
 server <- function(input,output) {
 
-  
+  # first image
   output$home_img <- renderImage({
     
     list(src = "www/header_img.png",
@@ -41,6 +40,7 @@ server <- function(input,output) {
     
   }, deleteFile = F)
   
+  # second image
   output$logo_img <- renderImage({
     
     list(src = "www/logo_img.png",
@@ -49,7 +49,7 @@ server <- function(input,output) {
     
   }, deleteFile = F)
   
-  
+  # text
   tags$h2(
     "Welcome to our cutting-edge dashboard, where we look at a decades worth of statistical data on NCAA Division 1 basketball teams. The postseason
     period of college basketball, coined March Madness, is one of the most revered sporting events of all time. Statistical data covers both in-season and post-season information, including importatn points such as power ranking, win percentage,
@@ -62,6 +62,7 @@ server <- function(input,output) {
     because postseason college basketball games were not held."
   )
   
+  #text
   output$confExp <- renderText({
     "In each of the graphs shown above, important statistics are displayed for each conference. Each graph shows an average value of the given variable 
     for each conference for the last ten years. 
@@ -80,14 +81,13 @@ factors, but it is important to minimize the points scored by the other team, so
 })
  
 
-
   # Conference tab bar graph
         output$plot <- renderPlot({
         ggplot(data=conf_stats, aes_string(x='Conference',
                                        y=input$y_var)) +
               geom_bar(stat = "identity", width = 0.8, fill = "royal blue") + theme(axis.title.x = element_text(size=20), 
                                                                                     axis.title.y = element_text(size=20),
-                                                                                    axis.text.x = element_text(size=15),
+                                                                                    axis.text.x = element_text(size=15, angle = 60, hjust = 1),
                                                                                     axis.text.y = element_text(size=15)
                                                                                     ) +
               labs(x="Conference", y=input$y_var)
@@ -97,9 +97,8 @@ factors, but it is important to minimize the points scored by the other team, so
      
   # Maps tab
     
-    
         output$geo <- renderLeaflet ({
-          print(state_stat)
+        #  print(state_stat)
           chosen_stat <- switch(input$map_stat,
                                 "avgPR" = "BARTHAG",
                                 "avgFT" = "EFG_O",
@@ -113,14 +112,14 @@ factors, but it is important to minimize the points scored by the other team, so
           state_stat <- merged_data %>%
             group_by(state) %>%
             summarize(stat_value = mean(!!sym(chosen_stat)), na.rm = TRUE)
-          print(state_stat)
-          print(merged_data)
-          
+         # print(state_stat)
+         # print(merged_data)
           geo <- geojson_read("states.geo.json", what = "sp")
           geo@data <- left_join(geo@data, state_stat, by = c("NAME" = "state"))
           
           pal <- colorBin("Blues", domain = geo@data$stat_value)
           
+  
           leaflet(data = geo) %>%
             addPolygons(
               fillOpacity = 2.5,
@@ -130,15 +129,9 @@ factors, but it is important to minimize the points scored by the other team, so
               weight = 3
             ) %>%
             setView(lng = -80, lat = 38, zoom = 4) %>%
-            addTiles()
+          addTiles()
         })
-          
-        output$heatmapPlot <- renderD3heatmap({
-          Success <- colnames(tables[[input$YEAR]])
-          d3heatmap(cor(tables[[input$YEAR]]),
-                    labRow = genre,
-                    colors = "Spectral")
-        })      
+
           
         
 }
