@@ -184,7 +184,7 @@ row.names(all_years) <- all_years$Conference
 ```
 ```{r}
 library(dplyr)
- all_years <- filter(df, input==YEAR)
+ all_years <- filter(df, input == YEAR)
 ```
 
 
