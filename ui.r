@@ -97,14 +97,7 @@ ui <- fluidPage(
                  Wins Above Bubble = The bubble is the cut off between qualifying for the tournament and not qualifying for the tournament. So, the wins above bubble refers to the number of won games that a team has that is over the number of games they need to qualify for the tournament.",  
                  width = "1500px", 
                  height = "400px"
-               ),
-               tags$p("In each of the graphs shown above, important statistics are displayed for each conference. Each graph shows an average value of the given variable 
-                     for each conference for the last ten years. In basketballl, four factors are considered the most important strategies for winning a basketball game: scoring 
-                     every possession, picking up rebounds, getting to the foul line, and protecting the ball. While all the variables analyzed are important for analyizng a team's 
-                     past, present, and future success, four of these bargraphs are the most notable for determining a team's success. 'Scoring every possession' is analyzed through 
-                     effective field goals, 'picking up all rebounds' is analyzed through the turnovers precentage, 'getting to the foul line' is analyzed through the 
-                     rebounding percentage, and 'protecting the ball' is analyzed through the free throw rate. Additionally, it is not only important for a team to score points through these
-                     factors, but it is important to minimize the points scored by the other team, so the opponent's average data for each of these factors is also shown.")
+               )
                )
              ),
 
@@ -131,22 +124,22 @@ ui <- fluidPage(
           
   )),
   
-  # Tab 4: Yearly Success heat map page
-  tabPanel("Yearly Success",
-           fluidPage(
-             box(
-               title = "Choose Conference",
-               status = "primary",
-               width = 6,
-               selectInput( 
-                            inputId = "YEAR",
-                            label = "Select Year",
-                            choices = unique(all_years$YEAR),
-                            selected = max(all_years$YEAR), multiple = FALSE),
-               d3heatmapOutput("heatmapPlot")
-           ))
-    
-  ),
+  # # Tab 4: Yearly Success heat map page
+  # tabPanel("Yearly Success",
+  #          fluidPage(
+  #            box(
+  #              title = "Choose Conference",
+  #              status = "primary",
+  #              width = 6,
+  #              selectInput( 
+  #                           inputId = "YEAR",
+  #                           label = "Select Year",
+  #                           choices = unique(all_years$YEAR),
+  #                           selected = max(all_years$YEAR), multiple = FALSE),
+  #              d3heatmapOutput("heatmapPlot")
+  #          ))
+  #   
+  # ),
   
   #Tab 5: About the creators
   tabPanel("About the Creators",
@@ -156,32 +149,3 @@ ui <- fluidPage(
 
 ))
     
-  
-
-
-
-# body <- dashboardBody(
-#   tabItems(
-#     tabItem(tabName = "Home", homePage),
-#     tabItem(tabName = "ConferenceStatistics", confstats),
-#     tabItem(tabName = "StatisticsbyStateMaps", maps)
-#     
-#   )
-# )
-# 
-# dashboardPage(skin = "blue",
-#               dashboardHeader(title = "NCAA Men's Basketball Dashboard",
-#                               titleWidth = 200),
-#               dashboardSidebar(
-#                 sidebarMenu(style = "white-space: normal;",
-#                             "Contents",
-#                             menuItem("Home", tabName = "Home", icon = icon("basketball-hoop")),
-#                             menuItem("Conference Statistics", tabName = "ConferenceStatistics", icon = icon("medal")),    
-#                             menuItem("Statistics-by-State Maps", tabName = "StatisticsbyStateMaps", icon = icon("ranking-star"))
-#                             
-#                 )
-#               ),
-#               body
-# )
-# 
-
