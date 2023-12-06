@@ -25,6 +25,8 @@ merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 state_names_data <- read.csv("table-data.csv")
 merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
+df = subset(merged_data, select = -c(TEAM, G, W, POSTSEASON, SEED, UNITID, STREET, CITY, STATE, ZIP, STFIP, NMCNTY, LOCALE, LAT, LON, CBSA, NMCBSA, CBSATYPE, CSA, NMCSA, NMNECTA, CD, SLDL, SLDU, SCHOOLYEAR, CNTY, NECTA))
+
 
 
 server <- function(input,output) {
