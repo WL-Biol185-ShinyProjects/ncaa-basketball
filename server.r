@@ -26,6 +26,7 @@ state_names_data <- read.csv("table-data.csv")
 merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
 df = subset(merged_data, select = -c(TEAM, G, W, POSTSEASON, SEED, UNITID, STREET, CITY, STATE, ZIP, STFIP, NMCNTY, LOCALE, LAT, LON, CBSA, NMCBSA, CBSATYPE, CSA, NMCSA, NMNECTA, CD, SLDL, SLDU, SCHOOLYEAR, CNTY, NECTA))
+all_years <- filter(df, YEAR %in% as.numeric(input$YEAR))
 
 
 
@@ -75,11 +76,9 @@ server <- function(input,output) {
     Additionally, it is not only important for a team to score points through these
 factors, but it is important to minimize the points scored by the other team, so the opponent's average data for each of these factors is also shown."
 
-<<<<<<< HEAD
-=======
 })
  
->>>>>>> f6cd72097fc781f8b0d801d3c29572df53f4b6ab
+
 
   # Conference tab bar graph
         output$plot <- renderPlot({
