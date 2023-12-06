@@ -1,18 +1,29 @@
 # loading the necessary libraries
 library(shiny)
-library(shinythemes)
+library(tidyverse)
 library(leaflet)
+library(ggplot2)
+library(dplyr)
+library(d3heatmap)
+library(shinythemes)
 library(shinyjs)
 library(shinyWidgets)
 library(shinydashboard)
-library(ggplot2)
-library(d3heatmap)
 library(geojsonio)
 
 #Reading the Data
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
+geodf <- read.csv("geodata.csv")
+colnames(geodf)[2] <- "TEAM"
+write.csv(geodf, "geodata.csv", row.names=FALSE)
+college_geo <- read.csv("geodata.csv")
+bb_data <- read.csv("cbb.csv")
+merged_data <- left_join(bb_data, college_geo, by = "TEAM")
+state_names_data <- read.csv("table-data.csv")
+merged_data <- merged_data  %>%
+  left_join(state_names_data, by = c("STATE" = "code"))
 
 
 # using fluidPage to construct site
@@ -163,7 +174,7 @@ ui <- fluidPage(
               tags$h2("How individual teams compare over the years?"),
               tags$p("Use the drop-down box to select which team you want to look at."),
   
-  sliderInput("year_selector", "Select Year Range",min = 2013,max = 2023,value = c(2000, 2013)),
+  sliderInput("year_selector", "Select Year Range", min = 2013, max = 2023, value = c(2000, 2013)),
   pickerInput("choicePicker","Pick Teams",choices = merged_data$TEAM,
               options =list("actions-box" = TRUE), 
               multiple=FALSE,
