@@ -31,6 +31,7 @@ merged_data <- merged_data  %>%
 
 
 server <- function(input,output) {
+  library(geojsonio)
   
   output$home_img <- renderImage({
     
