@@ -5,6 +5,10 @@ library(leaflet)
 library(ggplot2)
 library(dplyr)
 library(d3heatmap)
+library(shinythemes)
+library(shinyjs)
+library(shinyWidgets)
+library(shinydashboard)
 
 # reading the data, specifying our conference data used in conference tab
 conf_stats <- read.csv("conference_stats.csv")
@@ -69,6 +73,8 @@ factors, but it is important to minimize the points scored by the other team, so
               labs(x="Conference", y=input$y_var)
   })
         
+        runjs('$("#statsdesc_textbox").css("background-color", "lightblue");')
+        
         # Conference Tab Heat Map
     output$heatmapPlot <- renderD3heatmap({
       all_years <- filter(df, YEAR %in% as.numeric(input$YEAR))
@@ -78,10 +84,35 @@ factors, but it is important to minimize the points scored by the other team, so
          })
      
   # Maps tab   
-        output$map <- renderLeaflet ({
-          leaflet(date = ) %>%
-            setView(lng = , lat = , zoom = ) %>%
-            addTiles
-        })
+        output$geo <- renderLeaflet ({
+          chosen_stat <- switch(input$map_stat,
+                                "avgPR" = "BARTHAG",
+                                "avgFT" = "EFG_O",
+                                "avgFG" = "EFG_O",
+                                "avgTOR" = "TOR",
+                                "avgTORD" = "TORD",
+                                "avgORB" = "ORB",
+                                "avgFTR" = "FTR",
+                                "avgTEMPO" = "ADJ_T")
           
+          state_stat <- merged_data %>%
+            group_by(state) %>%
+            summarize(stat_value = mean(!!sym(chosen_stat)), na.rm = TRUE)
+          
+          geo <- geojson_read("states.geo.json", what = "sp")
+          geo@data <- left_join(geo@data, state_stat, by = c("NAME" = "state"))
+          
+          pal <- colorBin("Blues", domain = geo@data$stat_value)
+          
+          leaflet(geo) %>%
+            addPolygons(
+              fillOpacity = 2.5,
+              fillColor = ~pal(stat_value),
+              color = "white",
+              dashArray = '3',
+              weight = 3
+            ) %>%
+            setView(lng = -79.442778, lat = 37.783889, zoom = 5) %>%
+            addTiles()
+        })
 }       
