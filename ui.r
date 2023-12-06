@@ -1,5 +1,6 @@
 library(shiny)
 library(shinythemes)
+library(leaflet)
 library(shinyjs)
 library(shinyWidgets)
 library(shinydashboard)
@@ -43,14 +44,11 @@ ui <- fluidPage(
                tags$h1("Welcome to our NCAA Basketball App"),
                tags$p("Welcome to a comprehensive analysis of a decade of data on Division 1 Men's Basketball."),
                tags$h2("Data Sourcing and Extraction"),
-               tags$p("Data was pulled from a dataset on Kaggle called 'College Basketball Dataset', created by Andrew Sundberg. Additionally, geographical data was downloaded from the National Center for Education Statistics (NCES) Integrated Postsecondary Education Data System (IPEDS)."),
-               box(
-                 title = "Dashboard Features",
-                 status = "info",
-                 solidHeader = TRUE,
-                 width = 12,
-                 "This dashboard features data covering ten seasons of NCAA DI Men's basketball, illustrated in graphs by conference, and state maps."
-               )
+               tags$p("Data was pulled from a dataset on Kaggle called 'College Basketball Dataset', created by Andrew Sundberg. Additionally, geographical data was downloaded from the National Center for Education Statistics (NCES) Integrated Postsecondary Education Data System (IPEDS).
+                      https://www.kaggle.com/datasets/andrewsundberg/college-basketball-dataset
+                      "),
+               tags$h2("Dashboard Features"),
+               tags$p("This dashboard features data covering ten seasons of NCAA DI Men's basketball, illustrated in graphs by conference, and state maps.")
                
              )),
     
@@ -122,6 +120,7 @@ ui <- fluidPage(
   tabPanel("Maps of Stats by State",
            fluidPage(
              tags$h2("How do teams compare across states?"),
+             tags$p("Use the drop-down box to select which statistic you would like to see."),
              selectInput(  "map_stat",
                            label = "Choose a Statistic",
                            choices = c("Average Power Ranking" = "avgPR",
@@ -133,13 +132,12 @@ ui <- fluidPage(
                                        "Average Free Throw Rate" = "avgFTR",
                                        "Average Tempo" = "avgTEMPO"),
                            selected = "avgPR"),
-             leafletOutput("map"),
-             box(
-               choices = 
-               width = 5,
-               status = "info",
-               textOutput("confExp"))
-           )),
+             leafletOutput("geo"),
+           
+           tags$h3("Our Main Takeaways"),
+           tags$p("")
+          
+  ),
 
   # Heat Map for Conference
               fluidRow(
@@ -158,6 +156,7 @@ ui <- fluidPage(
                   )
     
   )
+<<<<<<< HEAD
 )
     
   
@@ -188,3 +187,6 @@ ui <- fluidPage(
 #               body
 # )
 # 
+=======
+))
+>>>>>>> 0583c472dc57a121d314ffd57d650e2fb9959073

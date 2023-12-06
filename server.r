@@ -5,15 +5,28 @@ library(leaflet)
 library(ggplot2)
 library(dplyr)
 library(d3heatmap)
+<<<<<<< HEAD
 library(shinythemes)
 library(shinyjs)
 library(shinyWidgets)
 library(shinydashboard)
+=======
+library(geojsonio)
+>>>>>>> 0583c472dc57a121d314ffd57d650e2fb9959073
 
 # reading the data, specifying our conference data used in conference tab
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
+geodf <- read.csv("geodata.csv")
+colnames(geodf)[2] <- "TEAM"
+write.csv(geodf, "geodata.csv", row.names=FALSE)
+college_geo <- read.csv("geodata.csv")
+bb_data <- read.csv("cbb.csv")
+merged_data <- left_join(bb_data, college_geo, by = "TEAM")
+state_names_data <- read.csv("table-data.csv")
+merged_data <- merged_data  %>%
+  left_join(state_names_data, by = c("STATE" = "code"))
 
 
 server <- function(input,output) {
@@ -83,8 +96,11 @@ factors, but it is important to minimize the points scored by the other team, so
                  height = 600)
          })
      
-  # Maps tab   
+  # Maps tab
+    
+    
         output$geo <- renderLeaflet ({
+          print(state_stat)
           chosen_stat <- switch(input$map_stat,
                                 "avgPR" = "BARTHAG",
                                 "avgFT" = "EFG_O",
@@ -98,13 +114,15 @@ factors, but it is important to minimize the points scored by the other team, so
           state_stat <- merged_data %>%
             group_by(state) %>%
             summarize(stat_value = mean(!!sym(chosen_stat)), na.rm = TRUE)
+          print(state_stat)
+          print(merged_data)
           
           geo <- geojson_read("states.geo.json", what = "sp")
           geo@data <- left_join(geo@data, state_stat, by = c("NAME" = "state"))
           
           pal <- colorBin("Blues", domain = geo@data$stat_value)
           
-          leaflet(geo) %>%
+          leaflet(data = geo) %>%
             addPolygons(
               fillOpacity = 2.5,
               fillColor = ~pal(stat_value),
@@ -112,7 +130,12 @@ factors, but it is important to minimize the points scored by the other team, so
               dashArray = '3',
               weight = 3
             ) %>%
-            setView(lng = -79.442778, lat = 37.783889, zoom = 5) %>%
+            setView(lng = -80, lat = 38, zoom = 4) %>%
             addTiles()
         })
+        
+        
+        
+        
+        
 }       
