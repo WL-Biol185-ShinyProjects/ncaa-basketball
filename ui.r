@@ -222,14 +222,15 @@ ui <- fluidPage(
             
 
              tags$h2("Created by Allyssa Utecht, Katelyn Gamble, and Sophia Rollo"),
-             box(
-               status = "success",
-               solidHeader = TRUE,
-               width = 12,
-               tags$img(src = "www/group_pic.png", 
-                        align = "center", 
-                        width = "8",
-                        alt = "group picture")),
+             box(status = "info",
+                 solidHeader = TRUE,
+                 width = 12,
+                 tags$figure(
+                   class = "centerFigure",
+                   img(
+                     src = "group_img.png",
+                     width = 600,
+                     alt = "group pic"))),
 
            ))
 
