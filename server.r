@@ -41,7 +41,6 @@ server <- function(input,output) {
   }, deleteFile = F)
 
 
-
   # Conference tab bar graph
         output$plot <- renderPlot({
         ggplot(data=conf_avg, aes_string(x='Conference',
