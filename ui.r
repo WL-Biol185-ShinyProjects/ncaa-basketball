@@ -135,7 +135,8 @@ ui <- fluidPage(
                title = "Choose Conference",
                status = "primary",
                width = 6,
-               selectInput( "YEAR",
+               selectInput( 
+                            inputId = "YEAR",
                             label = "Select Year",
                             choices = unique(all_years$YEAR),
                             selected = max(all_years$YEAR), multiple = FALSE),

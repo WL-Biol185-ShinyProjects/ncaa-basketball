@@ -9,7 +9,7 @@ library(shinythemes)
 library(shinyjs)
 library(shinyWidgets)
 library(shinydashboard)
-library(geojsonio)
+
 
 
 # reading the data, specifying our conference data used in conference tab
@@ -31,7 +31,7 @@ merged_data <- merged_data  %>%
 
 
 server <- function(input,output) {
-  library(geojsonio)
+
   
   output$home_img <- renderImage({
     
@@ -132,10 +132,14 @@ factors, but it is important to minimize the points scored by the other team, so
         # Conference Tab Heat Map
         output$heatmapPlot <- renderD3heatmap({
           all_years <- filter(heatmap_stats, YEAR %in% as.numeric(input$YEAR))
-          d3heatmap(all_years,
-                    width = 800, 
-                    height = 600)})    
+          d3heatmap(cor(all_years))
+                    width = "500px"
+                    key = TRUE
+                    keysize = 2
+                    height = "600px"   
         
         
         
-}       
+}) 
+}
+
