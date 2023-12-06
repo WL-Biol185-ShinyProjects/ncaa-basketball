@@ -1,3 +1,4 @@
+# loading the necessary libraries
 library(shiny)
 library(shinythemes)
 library(leaflet)
@@ -6,21 +7,22 @@ library(shinyWidgets)
 library(shinydashboard)
 library(ggplot2)
 library(d3heatmap)
+library(geojsonio)
+
+
 #Reading the Data
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
 
 
-
-
+# using fluidPage to construct site
 ui <- fluidPage(
   theme = shinytheme("yeti"),
   titlePanel("A Decade of NCAA Basketball Growth"),
   setBackgroundColor(color = "CornflowerBlue", shinydashboard = TRUE),
   
-  #Firsttab - Home/About
-  
+  #First tab - Home/About
   navbarPage(
     "Tabs",
     tabPanel("About",
@@ -106,7 +108,7 @@ ui <- fluidPage(
                )
              ),
 
-  #State maps page
+  #Tab 3: State maps page
   tabPanel("Maps of Stats by State",
            fluidPage(
              tags$h2("How do teams compare across states?"),
@@ -129,6 +131,7 @@ ui <- fluidPage(
           
   )),
   
+  # Tab 4: Yearly Success heat map page
   tabPanel("Yearly Success",
            fluidPage(
              box(
@@ -143,7 +146,13 @@ ui <- fluidPage(
                d3heatmapOutput("heatmapPlot")
            ))
     
-  )
+  ),
+  
+  #Tab 5: About the creators
+  tabPanel("About the Creators",
+           fluidPage(
+             tags$h2("Created by Allyssa Utecht, Katelyn Gamble, and Sophia Rollo")
+           ))
 
 ))
     
