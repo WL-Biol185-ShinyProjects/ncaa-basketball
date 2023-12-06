@@ -368,3 +368,7 @@ colnames(cbb_23)[21] <- "Wins Above Bubble"
 cbb23_new = subset(cbb_23, select = -c(TEAM, G, W, POSTSEASON, SEED))
 ```
 
+```{r}
+no_conf_col = subset(conf_avg, select = -c(Conference))
+```
+
