@@ -81,185 +81,8 @@ ui <- fluidPage(
                selectInput(
                  "y_var",
                  label = "Conference Data",
-                 choices = colnames(conf_stats)
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 ,
+                 choices = colnames(conf_stats)[-which(colnames(conf_stats) == "Conference")],
+                
                  selected = "Adjusted Offensive Efficiency"),
                plotOutput("plot"),
                box(
@@ -338,8 +161,7 @@ ui <- fluidPage(
    tabPanel("Yearly Success",
             fluidPage(
               tags$h2("How individual teams compare over the years?"),
-              tags$p("Use the drop-down box to select which team you want to look at.")
-            )),
+              tags$p("Use the drop-down box to select which team you want to look at."),
   
   sliderInput("year_selector", "Select Year Range",min = 2013,max = 2023,value = c(2000, 2013)),
   pickerInput("choicePicker","Pick Teams",choices = merged_data$TEAM,
@@ -351,6 +173,7 @@ ui <- fluidPage(
               multiple=FALSE,
               selected="ADJOE"),
   plotOutput("trend"),
+   )),
   
   #Tab 5: About the creators
   tabPanel("About the Creators",
