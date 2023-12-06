@@ -129,8 +129,15 @@ ui <- fluidPage(
           
   )),
   
-
-  
+  tabPanel("Yearly Success",
+           fluidPage(
+             selectInput(
+               inputId = "YEAR",
+               label = "Selectyear",
+              choices = heatmap_year_list
+            )),
+           d3heatmapOutput("heatmapPlot")
+           )))
 
 
 

@@ -132,6 +132,16 @@ factors, but it is important to minimize the points scored by the other team, so
             setView(lng = -80, lat = 38, zoom = 4) %>%
             addTiles()
         })
+          
+        output$heatmapPlot <- renderD3heatmap({
+          Success <- colnames(tables[[input$YEAR]])
+          d3heatmap(cor(tables[[input$YEAR]]),
+                    labRow = genre,
+                    colors = "Spectral")
+        })      
+          
+        
+}
         
 
 
