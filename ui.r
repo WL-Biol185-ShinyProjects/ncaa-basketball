@@ -8,8 +8,6 @@ library(shinydashboard)
 library(ggplot2)
 library(d3heatmap)
 library(geojsonio)
-library(leaflet.extras)
-library(sf)
 
 #Reading the Data
 conf_stats <- read.csv("conference_stats.csv")
