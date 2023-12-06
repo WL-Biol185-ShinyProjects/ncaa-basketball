@@ -77,7 +77,8 @@ factors, but it is important to minimize the points scored by the other team, so
                                                                                     axis.text.x = element_text(size=15, angle = 60, hjust = 1),
                                                                                     axis.text.y = element_text(size=15)
                                                                                     ) +
-              labs(x="Conference", y=input$y_var)
+              labs(x= "Conference", y=input$y_var)
+        
   })
         
         runjs('$("#statsdesc_textbox").css("background-color", "lightblue");')

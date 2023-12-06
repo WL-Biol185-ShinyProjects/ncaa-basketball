@@ -82,7 +82,7 @@ ui <- fluidPage(
                selectInput(
                  "y_var",
                  label = "Conference Data",
-                 choices = colnames(conf_stats)[-which(colnames(conf_stats) == "Conference")],
+                 choices = colnames(conf_stats),
                 
                  selected = "Adjusted Offensive Efficiency"),
                plotOutput("plot"),
