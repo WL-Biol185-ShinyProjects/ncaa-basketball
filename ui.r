@@ -6,11 +6,11 @@ library(shinyWidgets)
 library(shinydashboard)
 library(ggplot2)
 library(d3heatmap)
-
 #Reading the Data
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
+
 
 ui <- fluidPage(
   theme = shinytheme("yeti"),
@@ -70,20 +70,9 @@ ui <- fluidPage(
                  selected = "Conference"),
                plotOutput("plot"),
                box(
-                 width = 5,
+                 width = 18,
                  status = "info",
                  textOutput("confExp")),
-               box(
-                 title = "Conference Data",
-                 status = "primary",
-                 width = 6,
-                 selectInput(
-                   "y_var",
-                   label = "Conference Data",
-                   choices = colnames(conf_avg),
-                   selected = "Conference")
-               ),
-               plotOutput("plot"),
                box(
                  width = 5,
                  status = "info",
@@ -144,16 +133,46 @@ ui <- fluidPage(
               title = "Choose Conference",
               status = "primary",
               width = 6,
-              selectInput( "selectededyear", "Select Year", unique(heatmap_stats$YEAR),
-                           selected = max(heatmap_stats$YEAR, multiple =FALSE)),
-  # This is the actual heatmap
-              fluidRow(
-                box(
+              selectInput( "YEAR",
+                           label = "Select Year",
+                           choices = unique(all_years$YEAR),
+                           selected = max(all_years$YEAR), multiple = FALSE),
                   d3heatmapOutput("heatmapPlot")
-                )
+              
+              
               )
-    )
+                  )
     
-    )
   )
-))
+)
+)
+    
+  
+
+
+
+# body <- dashboardBody(
+#   tabItems(
+#     tabItem(tabName = "Home", homePage),
+#     tabItem(tabName = "ConferenceStatistics", confstats),
+#     tabItem(tabName = "StatisticsbyStateMaps", maps)
+#     
+#   )
+# )
+# 
+# dashboardPage(skin = "blue",
+#               dashboardHeader(title = "NCAA Men's Basketball Dashboard",
+#                               titleWidth = 200),
+#               dashboardSidebar(
+#                 sidebarMenu(style = "white-space: normal;",
+#                             "Contents",
+#                             menuItem("Home", tabName = "Home", icon = icon("basketball-hoop")),
+#                             menuItem("Conference Statistics", tabName = "ConferenceStatistics", icon = icon("medal")),    
+#                             menuItem("Statistics-by-State Maps", tabName = "StatisticsbyStateMaps", icon = icon("ranking-star"))
+#                             
+#                 )
+#               ),
+#               body
+# )
+# 
+
