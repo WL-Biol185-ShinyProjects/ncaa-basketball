@@ -6,7 +6,6 @@ library(shinyWidgets)
 library(shinydashboard)
 library(ggplot2)
 library(d3heatmap)
-
 #Reading the Data
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
@@ -74,17 +73,6 @@ ui <- fluidPage(
                  width = 18,
                  status = "info",
                  textOutput("confExp")),
-               box(
-                 title = "Conference Data",
-                 status = "primary",
-                 width = 6,
-                 selectInput(
-                   "y_var",
-                   label = "Conference Data",
-                   choices = colnames(conf_avg),
-                   selected = "Conference")
-               ),
-               plotOutput("plot"),
                box(
                  width = 5,
                  status = "info",
@@ -156,7 +144,7 @@ ui <- fluidPage(
                   )
     
   )
-<<<<<<< HEAD
+)
 )
     
   
@@ -187,6 +175,4 @@ ui <- fluidPage(
 #               body
 # )
 # 
-=======
-))
->>>>>>> 0583c472dc57a121d314ffd57d650e2fb9959073
+

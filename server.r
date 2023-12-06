@@ -5,14 +5,12 @@ library(leaflet)
 library(ggplot2)
 library(dplyr)
 library(d3heatmap)
-<<<<<<< HEAD
 library(shinythemes)
 library(shinyjs)
 library(shinyWidgets)
 library(shinydashboard)
-=======
 library(geojsonio)
->>>>>>> 0583c472dc57a121d314ffd57d650e2fb9959073
+
 
 # reading the data, specifying our conference data used in conference tab
 conf_stats <- read.csv("conference_stats.csv")
