@@ -127,27 +127,24 @@ ui <- fluidPage(
            tags$h3("Our Main Takeaways"),
            tags$p("")
           
-  ),
-
-  # Heat Map for Conference
-              fluidRow(
-            box(
-              title = "Choose Conference",
-              status = "primary",
-              width = 6,
-              selectInput( "YEAR",
-                           label = "Select Year",
-                           choices = unique(all_years$YEAR),
-                           selected = max(all_years$YEAR), multiple = FALSE),
-                  d3heatmapOutput("heatmapPlot")
-              
-              
-              )
-                  )
+  )),
+  
+  tabPanel("Yearly Success",
+           fluidPage(
+             box(
+               title = "Choose Conference",
+               status = "primary",
+               width = 6,
+               selectInput( "YEAR",
+                            label = "Select Year",
+                            choices = unique(all_years$YEAR),
+                            selected = max(all_years$YEAR), multiple = FALSE),
+               d3heatmapOutput("heatmapPlot")
+           ))
     
   )
-)
-)
+
+))
     
   
 

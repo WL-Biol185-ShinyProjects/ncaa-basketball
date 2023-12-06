@@ -89,14 +89,6 @@ factors, but it is important to minimize the points scored by the other team, so
   })
         
         runjs('$("#statsdesc_textbox").css("background-color", "lightblue");')
-        
-        # Conference Tab Heat Map
-    output$heatmapPlot <- renderD3heatmap({
-      all_years <- filter(heatmap_stats, YEAR %in% as.numeric(input$YEAR))
-       d3heatmap(all_years,
-                 width = 800, 
-                 height = 600)
-         })
      
   # Maps tab
     
@@ -136,7 +128,12 @@ factors, but it is important to minimize the points scored by the other team, so
             addTiles()
         })
         
-        
+        # Conference Tab Heat Map
+        output$heatmapPlot <- renderD3heatmap({
+          all_years <- filter(heatmap_stats, YEAR %in% as.numeric(input$YEAR))
+          d3heatmap(all_years,
+                    width = 800, 
+                    height = 600)})    
         
         
         
