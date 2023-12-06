@@ -218,7 +218,7 @@ ui <- fluidPage(
 # 
 
 
-             tags$h2("Created by Allyssa Utecht, Katelyn Gamble, and Sophia Rollo"),
+            
 
              tags$h2("Created by Allyssa Utecht, Katelyn Gamble, and Sophia Rollo"),
              box(
