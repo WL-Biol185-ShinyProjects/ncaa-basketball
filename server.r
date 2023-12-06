@@ -12,7 +12,6 @@ library(shinydashboard)
 library(geojsonio)
 
 
-
 # reading the data, specifying our conference data used in conference tab
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
@@ -102,12 +101,12 @@ factors, but it is important to minimize the points scored by the other team, so
             summarize(stat_value = mean(!!sym(chosen_stat)), na.rm = TRUE)
          # print(state_stat)
          # print(merged_data)
+          
           geo <- geojson_read("states.geo.json", what = "sp")
           geo@data <- left_join(geo@data, state_stat, by = c("NAME" = "state"))
           
           pal <- colorBin("Blues", domain = geo@data$stat_value)
           
-  
           leaflet(data = geo) %>%
             addPolygons(
               fillOpacity = 2.5,
@@ -117,20 +116,28 @@ factors, but it is important to minimize the points scored by the other team, so
               weight = 3
             ) %>%
             setView(lng = -80, lat = 38, zoom = 4) %>%
-          addTiles()
+            addTiles()
         })
-
-          
+        
+        # Yearly success heap map tab
+        output$heatmapPlot <- renderD3heatmap({
+          all_years <- filter(heatmap_stats, YEAR %in% as.numeric(input$YEAR))
+          d3heatmap(cor(all_years))
+                    width = "500px"
+                    key = TRUE
+                    keysize = 2
+                    height = "600px"   
+        
+        
+        
+}) 
         
         output$group_pic <- renderImage({
           
           list(src = "www/group_pic.png",
-               width = "800",
+               width = "80%",
                height = 200)
           
         }, deleteFile = F)
-
 }
-        
-
 

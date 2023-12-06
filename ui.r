@@ -9,7 +9,6 @@ library(ggplot2)
 library(d3heatmap)
 library(geojsonio)
 
-
 #Reading the Data
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
@@ -215,7 +214,7 @@ ui <- fluidPage(
                status = "success",
                solidHeader = TRUE,
                width = 12,
-               tags$img(src = "group_pic.png", 
+               tags$img(src = "www/group_pic.png", 
                         align = "center", 
                         width = "8",
                         alt = "group picture")),
