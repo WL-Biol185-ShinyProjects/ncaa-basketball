@@ -131,15 +131,27 @@ factors, but it is important to minimize the points scored by the other team, so
         
         # Conference Tab Heat Map
         output$heatmapPlot <- renderD3heatmap({
-          all_years <- filter(heatmap_stats, YEAR %in% as.numeric(input$YEAR))
-          d3heatmap(cor(all_years))
-                    width = "500px"
-                    key = TRUE
-                    keysize = 2
-                    height = "600px"   
+          all_years <- subset(heatmap_stats, YEAR == as.numeric(input$selectedYear))
+          selected_data <- dcast(all_years, Conference ~ variable, value.var = "value")
+          
+          
+          # all_years <- filter(heatmap_stats, YEAR %in% as.numeric(input$YEAR))
+          # if ("VALUE" %in% colnames(all_years)) {
+          #   rownames(all_years) <- make.unique(all_years$Conference, sep = "_")
+          #   all_years$Conference <- NULL
+          d3heatmap(selected_data, 
+                    width = "500px",
+                    key = TRUE,
+                    keysize = 2,
+                    height = "600px"   )
+# } else {
+#   return(NULL)
+# }
+})
+
+
         
         
-        
-}) 
+
 }
 
