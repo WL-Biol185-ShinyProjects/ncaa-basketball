@@ -10,6 +10,8 @@ library(d3heatmap)
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
+df = subset(merged_data, select = -c(TEAM, G, W, POSTSEASON, SEED, UNITID, STREET, CITY, STATE, ZIP, STFIP, NMCNTY, LOCALE, LAT, LON, CBSA, NMCBSA, CBSATYPE, CSA, NMCSA, NMNECTA, CD, SLDL, SLDU, SCHOOLYEAR, CNTY, NECTA))
+all_years <- filter(df, YEAR %in% as.numeric(input$YEAR))
 
 
 ui <- fluidPage(
