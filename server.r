@@ -85,7 +85,11 @@ factors, but it is important to minimize the points scored by the other team, so
         output$plot <- renderPlot({
         ggplot(data=conf_stats, aes_string(x='Conference',
                                        y=input$y_var)) +
-              geom_bar(stat = "identity", width = 0.8) +
+              geom_bar(stat = "identity", width = 0.8, fill = "royal blue") + theme(axis.title.x = element_text(size=20), 
+                                                                                    axis.title.y = element_text(size=20),
+                                                                                    axis.text.x = element_text(size=15),
+                                                                                    axis.text.y = element_text(size=15)
+                                                                                    ) +
               labs(x="Conference", y=input$y_var)
   })
         
