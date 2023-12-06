@@ -75,8 +75,11 @@ server <- function(input,output) {
     Additionally, it is not only important for a team to score points through these
 factors, but it is important to minimize the points scored by the other team, so the opponent's average data for each of these factors is also shown."
 
+<<<<<<< HEAD
+=======
 })
  
+>>>>>>> f6cd72097fc781f8b0d801d3c29572df53f4b6ab
 
   # Conference tab bar graph
         output$plot <- renderPlot({
