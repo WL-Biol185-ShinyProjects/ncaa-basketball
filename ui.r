@@ -55,15 +55,8 @@ ui <- fluidPage(
     
     #Tab 2: Conference Stats
     tabPanel("Conference Statistics",
-             tags$p("In each of the graphs shown above, important statistics are displayed for each conference. Each graph shows an average value of the given variable 
-                     for each conference for the last ten years. In basketballl, four factors are considered the most important strategies for winning a basketball game: scoring 
-                     every possession, picking up rebounds, getting to the foul line, and protecting the ball. While all the variables analyzed are important for analyizng a team's 
-                     past, present, and future success, four of these bargraphs are the most notable for determining a team's success. 'Scoring every possession' is analyzed through 
-                     effective field goals, 'picking up all rebounds' is analyzed through the turnovers precentage, 'getting to the fou line' is analyzed through the 
-                     rebounding percentage, and 'protecting the ball' is analyzed through the free throw rate. Additionally, it is not only important for a team to score points through these
-                     factors, but it is important to minimize the points scored by the other team, so the opponent's average data for each of these factors is also shown."),
+             tags$h2("How do conferences compare based on different basketball statitsics?"),
              fluidPage(
-               tags$h3("Below is a graph of data, by conference, that is the average of 10 years of data for that conference."),
                tags$p("Using the dropdown box, select which statistic you would like to see, and how each conference matches up."),
                selectInput(
                  "y_var",
@@ -102,7 +95,14 @@ ui <- fluidPage(
                  Wins Above Bubble = The bubble is the cut off between qualifying for the tournament and not qualifying for the tournament. So, the wins above bubble refers to the number of won games that a team has that is over the number of games they need to qualify for the tournament.",  
                  width = "1500px", 
                  height = "400px"
-               )
+               ),
+               tags$p("In each of the graphs shown above, important statistics are displayed for each conference. Each graph shows an average value of the given variable 
+                     for each conference for the last ten years. In basketballl, four factors are considered the most important strategies for winning a basketball game: scoring 
+                     every possession, picking up rebounds, getting to the foul line, and protecting the ball. While all the variables analyzed are important for analyizng a team's 
+                     past, present, and future success, four of these bargraphs are the most notable for determining a team's success. 'Scoring every possession' is analyzed through 
+                     effective field goals, 'picking up all rebounds' is analyzed through the turnovers precentage, 'getting to the foul line' is analyzed through the 
+                     rebounding percentage, and 'protecting the ball' is analyzed through the free throw rate. Additionally, it is not only important for a team to score points through these
+                     factors, but it is important to minimize the points scored by the other team, so the opponent's average data for each of these factors is also shown.")
                )
              ),
 
