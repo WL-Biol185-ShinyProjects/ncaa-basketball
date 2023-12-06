@@ -94,7 +94,6 @@ ggplot(data = merged_data, aes(x = factor(CONF), y = factor(YEAR), fill = FTR)) 
 ```{r}
 library(leaflet)
 library(sf)
-library(leaflet.extras)
 
 us_map <- leaflet() %>%
   setView(lng = -96, lat = 37.8, zoom = 4) %>%

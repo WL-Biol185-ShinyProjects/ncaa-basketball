@@ -45,14 +45,33 @@ ui <- fluidPage(
                      src = "logo_img.png",
                      width = 600,
                      alt = "NCAA Basketball Teams"))),
-               tags$h1("Welcome to our NCAA Basketball App"),
-               tags$p("Welcome to a comprehensive analysis of a decade of data on Division 1 Men's Basketball."),
+               box(
+                 title = "Welcome to our NCAA Basketball App",
+                 width = 12,
+                 solidHeader = TRUE,
+                 status = "success",
+                 background = "light-blue",
+                tags$p("Welcome to our cutting-edge dashboard, where we look at a decades worth of statistical data on NCAA Division 1 basketball teams. The postseason
+                      period of college basketball, coined March Madness, is one of the most revered sporting events of all time. Statistical data covers both in-season and post-season information, including importatn points such as power ranking, win percentage,
+                      and free throw success. This data illustrates a unique narrative about each season and how the game of basektball has evolved over the 
+                      last decade. Data can be used to understand conference performance, recruitment patterns, the impact of rule changes and adaptations, 
+                      and team trends over time. This app provides a comprehensive understanding of the sport's development over time by identifying patterns and
+    trends useful for anyone who appreciates the sport. Important to note, however, is the COVID-19 pandemic that occurred; there is not data from the year 2020,
+    because postseason college basketball games were not held."),
+                style = "border: 2px solid #333; border-radius: 5px;"
+                ),
                tags$h2("Data Sourcing and Extraction"),
                tags$p("Data was pulled from a dataset on Kaggle called 'College Basketball Dataset', created by Andrew Sundberg. Additionally, geographical data was downloaded from the National Center for Education Statistics (NCES) Integrated Postsecondary Education Data System (IPEDS).
                       https://www.kaggle.com/datasets/andrewsundberg/college-basketball-dataset
                       "),
-               tags$h2("Dashboard Features"),
-               tags$p("This dashboard features data covering ten seasons of NCAA DI Men's basketball, illustrated in graphs by conference, and state maps.")
+               box(
+                 title = "Dashboard Features",
+                 width = 12,
+                 solidHeader = TRUE,
+                 status = "info",
+                 background = "light-blue",
+                 tags$p("This dashboard features data covering ten seasons of NCAA DI Men's basketball, illustrated in graphs by conference, and state maps."),
+                 style = "border: 2px solid #333; border-radius: 5px;")
                
              )),
     
@@ -248,10 +267,12 @@ ui <- fluidPage(
                box(
                  width = 18,
                  status = "info",
-                 textOutput("confExp")),
+                 textOutput("confExp"),
+                 style = "border: 2px solid #333; border-radius: 5px;"),
                box(
                  width = 5,
                  status = "info",
+                 background = "light-blue",
                  textOutput("yVar")),
                textAreaInput(
                  "statsdesc_textbox", 
@@ -297,10 +318,22 @@ ui <- fluidPage(
                                        "Average Tempo" = "avgTEMPO"),
                            selected = "avgPR"),
              leafletOutput("geo"),
-           
-           tags$h3("Our Main Takeaways"),
-           tags$p("")
-          
+        
+           box(
+             title = "Our Main Takeaways",
+             width = 12,
+             solidHeader = TRUE,
+             status = "success",
+             background = "light-blue",
+              tags$p("As seen in the above US maps, teams vary widely across states. Additionally, teams vary in which facets they excel at. Teams 
+                  nationwide are notable for different things. For example, Connecticut is the leading state for free throws, which is in large part
+                  due to University of Connecticut, Yale, and Fairfield. Maine has the highest turnover percentage, thanks to University of Maine.
+                  Looking at data by state is useful for recruits and may influence their decision on where to apply. Moreover, it is helpful for 
+                  understanding the impact of regional differences and factors, and how geographical factors influence performance. This could be useful
+                  for players, coaches, recruits, individuals who bet and gamble on games, and tournament-planning. If a state contains multiple teams who
+                  excel in many categories, it would be beneficial and profitable to host a tournament in that state, in order to maximize fan engagement and profit."),
+             style = "border: 2px solid #333; border-radius: 5px;"
+           )
   )),
   
   # # Tab 4: Yearly Success heat map page
@@ -353,7 +386,18 @@ ui <- fluidPage(
 # 
 
 
-             tags$h2("Created by Allyssa Utecht, Katelyn Gamble, and Sophia Rollo")
+             tags$h2("Created by Allyssa Utecht, Katelyn Gamble, and Sophia Rollo"),
+
+             tags$h2("Created by Allyssa Utecht, Katelyn Gamble, and Sophia Rollo"),
+             box(
+               status = "success",
+               solidHeader = TRUE,
+               width = 12,
+               tags$img(src = "group_pic.png", 
+                        align = "center", 
+                        width = "8",
+                        alt = "group picture")),
+
            ))
 
 ))
