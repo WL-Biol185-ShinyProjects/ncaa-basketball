@@ -26,6 +26,7 @@ merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
 
 
+
 # using fluidPage to construct site
 ui <- fluidPage(
   theme = shinytheme("yeti"),
@@ -174,7 +175,7 @@ ui <- fluidPage(
               tags$h2("How individual teams compare over the years?"),
               tags$p("Use the drop-down box to select which team you want to look at."),
   
-  sliderInput("year_selector", "Select Year Range", min = 2013, max = 2023, value = c(2000, 2013)),
+  sliderInput("year_selector", "Select Year Range", sep = "", min = 2013, max = 2023, value = c(2000, 2013)),
   pickerInput("choicePicker","Pick Teams",choices = merged_data$TEAM,
               options =list("actions-box" = TRUE), 
               multiple=FALSE,

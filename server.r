@@ -69,6 +69,7 @@ factors, but it is important to minimize the points scored by the other team, so
 
   # Conference tab bar graph
         output$plot <- renderPlot({
+          
         ggplot(data=conf_stats, aes_string(x='Conference',
                                        y=input$y_var)) +
               geom_bar(stat = "identity", width = 0.8, fill = "royal blue") + theme(axis.title.x = element_text(size=20), 
