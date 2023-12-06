@@ -172,7 +172,7 @@ ui <- fluidPage(
                status = "success",
                solidHeader = TRUE,
                width = 12,
-               tags$img(src = "group_pic.png", 
+               tags$img(src = "www/group_pic.png", 
                         align = "center", 
                         width = "8",
                         alt = "group picture")),
