@@ -29,6 +29,7 @@ merged_data <- merged_data  %>%
 # making a function
 server <- function(input,output) {
 
+
   # first image
   output$home_img <- renderImage({
     

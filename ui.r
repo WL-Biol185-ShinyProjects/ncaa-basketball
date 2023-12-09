@@ -8,11 +8,15 @@ library(shinydashboard)
 library(ggplot2)
 library(d3heatmap)
 library(geojsonio)
+library(dplyr)
 
 #Reading the Data
 conf_stats <- read.csv("conference_stats.csv")
 conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
+merged_data <- left_join(bb_data, college_geo, by = "TEAM")
+merged_data <- merged_data  %>%
+  left_join(state_names_data, by = c("STATE" = "code"))
 
 
 # using fluidPage to construct site
@@ -20,6 +24,7 @@ ui <- fluidPage(
   theme = shinytheme("yeti"),
   titlePanel("A Decade of NCAA Basketball Growth"),
   setBackgroundColor(color = "CornflowerBlue", shinydashboard = TRUE),
+  
   
   #First tab - Home/About
   navbarPage(
@@ -81,7 +86,7 @@ ui <- fluidPage(
                selectInput(
                  "y_var",
                  label = "Conference Data",
-                 choices = colnames(conf_stats),
+                 choices = colnames(conf_stats)[-which(colnames(conf_stats) == "Conference")],
                 
                  selected = "Adjusted Offensive Efficiency"),
                plotOutput("plot"),
