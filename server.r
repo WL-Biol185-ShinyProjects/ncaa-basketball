@@ -117,7 +117,8 @@ factors, but it is important to minimize the points scored by the other team, so
               weight = 3
             ) %>%
             setView(lng = -80, lat = 38, zoom = 4) %>%
-            addTiles()
+            addTiles() %>%
+            addLegend(pal = pal, values = ~stat_value, opacity = 2.5, title = NULL, position = "bottomright")
         })
         
         # Yearly success heap map tab
