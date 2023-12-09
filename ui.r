@@ -24,6 +24,7 @@ merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 state_names_data <- read.csv("table-data.csv")
 merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
+aggregated_data <- read.csv(aggregated_data.csv)
 
 
 
@@ -174,22 +175,24 @@ ui <- fluidPage(
   )),
   
   # # Tab 4: Yearly Success heat map page
-   tabPanel("Yearly Success",
-            fluidPage(
-              tags$h2("How individual teams compare over the years?"),
-              tags$p("Use the drop-down box to select which team you want to look at."),
-  
-  sliderInput("year_selector", "Select Year Range", sep = "", min = 2013, max = 2023, value = c(2013, 2023)),
-  pickerInput("choicePicker","Pick Teams",choices = merged_data$TEAM,
-              options =list("actions-box" = TRUE), 
-              multiple=FALSE,
-              selected="North Carolina"),
-  pickerInput("choicePicker","Pick Variable",choices = colnames(bb_data),
-              options =list("actions-box" = TRUE), 
-              multiple=FALSE,
-              selected="ADJOE"),
-  plotOutput("trend")
-   )),
+  tabPanel("Yearly Success",
+           fluidPage(
+             tags$h2("How individual teams compare over the years?"),
+             tags$p("Use the drop-down box to select which team you want to look at."),
+             
+             
+             
+             sliderInput("year_selector", "Select Year Range", sep = "", min = 2013, max = 2023, value = c(2013, 2023)),
+             pickerInput("choicePicker1","Pick Teams",choices = unique(aggregated_data$TEAM),
+                         options =list("actions-box" = TRUE), 
+                         multiple=FALSE,
+                         selected="North Carolina"),
+             pickerInput("choicePicker2","Pick Variable",choices = colnames(aggregated_data)[5:22],
+                         options =list("actions-box" = TRUE), 
+                         multiple=FALSE,
+                         selected="Adjusted Offesnive Efficency"),
+             plotOutput("trend"),
+           )),
   
   #Tab 5: About the creators
   tabPanel("About the Creators",
@@ -238,3 +241,4 @@ ui <- fluidPage(
              )
            )
 )))
+

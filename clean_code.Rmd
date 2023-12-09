@@ -6,6 +6,27 @@ output: html_document
 ---
 
 ```{r}
+colnames(conf_stats)[2] <- "Adjusted Offensive Efficiency"
+colnames(conf_stats)[3] <- "Adjusted Defensive Efficiency"
+colnames(conf_stats)[4] <- "Power Rating"
+colnames(conf_stats)[5] <- "Effective Field Goal Percentage Shot"
+colnames(conf_stats)[6] <- "Effective Field Goal Percentage Allowed"
+colnames(conf_stats)[7] <- "Turnover Percentage"
+colnames(conf_stats)[8] <- "Steal Rate"
+colnames(conf_stats)[9] <- "Offensive Rebound Rate"
+colnames(conf_stats)[10] <- "Offensive Rebound Rate Allowed"
+colnames(conf_stats)[11] <- "Free Throw Rate"
+colnames(conf_stats)[12] <- "Free Throw Rate Allowed"
+colnames(conf_stats)[13] <- "Two Point Shooting Range"
+colnames(conf_stats)[14] <- "Two Point Shooting Range Allowed"
+colnames(conf_stats)[15] <- "Three Point Shooting Range"
+colnames(conf_stats)[16] <- "Three Point Shooting Range Allowed"
+colnames(conf_stats)[17] <- "Adjusted Tempo"
+colnames(conf_stats)[18] <- "Wins Above Bubble"
+```
+
+
+```{r}
 library(shiny)
 library(tidyverse)
 library(leaflet)
@@ -46,7 +67,7 @@ write.csv(df, "conference_stats.csv", row.names=FALSE)
 conf_stats <- read.csv("conference_stats.csv")
 colnames(conf_stats) <- gsub("\\.", " ", colnames(conf_stats))
 conf_avg <- read.csv("conference_statsAVG.csv")
-colnames(conf_avg)[2] <- "Adjusted Offensive Efficiency"
+colnames(conf_stats)[2] <- "Adjusted Offensive Efficiency"
 colnames(conf_avg)[3] <- "Adjusted Defensive Efficiency"
 colnames(conf_avg)[4] <- "Power Rating"
 colnames(conf_avg)[5] <- "Effective Field Goal Percentage Shot"

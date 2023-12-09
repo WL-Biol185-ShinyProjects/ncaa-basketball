@@ -25,6 +25,7 @@ merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 state_names_data <- read.csv("table-data.csv")
 merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
+aggregated_data <- read.csv(aggregated_data.csv)
 
 # making a function
 server <- function(input,output) {
@@ -140,3 +141,4 @@ factors, but it is important to minimize the points scored by the other team, so
         }, deleteFile = F)
 }
 
+>>>>>>> ed34c4b99f847c3f937a82382e49d67a3a58641c

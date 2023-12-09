@@ -1,0 +1,23 @@
+---
+title: "aggregated data"
+author: "Katelyn G"
+date: "12/9/2023"
+output: html_document
+---
+```{r}
+library(dplyr)
+aggregated_data <- merged_data %>%
+  group_by(TEAM, YEAR) %>%
+  summarize_all(mean)
+yearly_success <-subset(aggregated_data, select = -c(W, POSTSEASON, SEED, UNITID, STREET, CITY, STATE, ZIP, STFIP, NMCNTY, LOCALE, LAT, LON, CBSA, NMCBSA, CBSATYPE, CSA, NMCSA, NMNECTA, CD, SLDL, SLDU, SCHOOLYEAR, CNTY, NECTA))# You can use other aggregation functions like sum, median, etc.
+
+# The result will have one row for each unique combination of TEAM and YEAR,
+# with aggregated values for all numeric columns
+# You can save this aggregated data to a new CSV file if needed
+write.csv(yearly_success, "yearly_success.csv", row.names = FALSE)
+
+```
+```{r}
+aggregated_data <- read.csv("aggregated_data.csv")
+```
+
