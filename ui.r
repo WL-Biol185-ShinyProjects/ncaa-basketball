@@ -13,7 +13,6 @@ library(geojsonio)
 
 #Reading the Data
 conf_stats <- read.csv("conference_stats.csv")
-conf_stats$Conference <- gsub("ind", "Ind", df$Conference)
 conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
 geodf <- read.csv("geodata.csv")
