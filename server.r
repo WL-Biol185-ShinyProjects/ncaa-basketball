@@ -28,7 +28,6 @@ merged_data <- merged_data  %>%
 aggregated_data <- read.csv("aggregated_data.csv")
 
 
-
 # making a function
 server <- function(input,output) {
 
@@ -79,6 +78,16 @@ factors, but it is important to minimize the points scored by the other team, so
             axis.text.x = element_text(size = 15, angle = 60, hjust = 1),
             axis.text.y = element_text(size = 15)) +
       labs(x = "Conference", y = gsub("\\.", " ", input$y_var))
+        output$plot <- renderPlot({
+          
+        ggplot(data= conf_stats, aes_string(x='Conference',
+                                       y=input$y_var)) +
+              geom_bar(stat = "identity", width = 0.8, fill = "royal blue") + theme(axis.title.x = element_text(size=20), 
+                                                                                    axis.title.y = element_text(size=20),
+                                                                                    axis.text.x = element_text(size=15, angle = 60, hjust = 1),
+                                                                                    axis.text.y = element_text(size=15)
+                                                                                    ) +
+              labs(x="Conference", y=input$y_var)
   })
         
         runjs('$("#statsdesc_textbox").css("background-color", "lightblue");')
@@ -119,17 +128,21 @@ factors, but it is important to minimize the points scored by the other team, so
               weight = 3
             ) %>%
             setView(lng = -80, lat = 38, zoom = 4) %>%
-            addTiles()
+            addTiles() %>%
+            addLegend(pal = pal, values = ~stat_value, opacity = 2.5, title = NULL, position = "bottomright")
         })
         
         # Yearly success heap map tab
-        output$heatmapPlot <- renderD3heatmap({
-          all_years <- filter(heatmap_stats, YEAR %in% as.numeric(input$YEAR))
-          d3heatmap(cor(all_years))
-                    width = "500px"
-                    key = TRUE
-                    keysize = 2
-                    height = "600px"   
+        output$yearlysuccess <- renderPlot({
+         
+          ggplot(aggregated_data, aes(x = year_selector, y = !!sym(selected_variable))) +
+            geom_line() +
+            geom_point() +
+            labs(title = paste("Trend for", selected_team, "-", selected_variable),
+                 x = year_selector,
+                 y = selected_variable)
+          
+          
         
         
         

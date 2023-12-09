@@ -109,11 +109,10 @@ ui <- fluidPage(
                    width = 5,
                    status = "info",
                    textOutput("yVar")
-                 )
-               ),
-               tags$div(
-                 style = "background-color: lightblue; padding: 15px;",
-                 textAreaInput(
+                 ),
+                 tags$div(
+                   style = "background-color: lightblue; padding: 15px;",
+                   textAreaInput(
                    "statsdesc_textbox",
                    label = "Statistic descriptions",
                    value = "
@@ -187,15 +186,16 @@ ui <- fluidPage(
              
              
              sliderInput("year_selector", "Select Year Range", sep = "", min = 2013, max = 2023, value = c(2013, 2023)),
-             pickerInput("choicePicker1","Pick Teams",choices = unique(aggregated_data$TEAM),
-                         options =list("actions-box" = TRUE), 
+             selectInput("choicePicker1","Pick Teams",choices = unique(aggregated_data$TEAM),
                          multiple=FALSE,
                          selected="North Carolina"),
-             pickerInput("choicePicker2","Pick Variable",choices = colnames(aggregated_data)[5:22],
-                         options =list("actions-box" = TRUE), 
+             selectInput("choicePicker2","Pick Variable",choices = colnames(aggregated_data)[5:22],
                          multiple=FALSE,
                          selected="Adjusted Offensive Efficiency"),
              plotOutput("trend"),
+
+                         selected="Adjusted Offesnive Efficency"),
+             plotOutput("yearly_sucess")
            )),
   
   #Tab 5: About the creators
