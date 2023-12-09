@@ -25,11 +25,11 @@ merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 state_names_data <- read.csv("table-data.csv")
 merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
+aggregated_data <- read.csv("aggregated_data.csv")
 
 # making a function
 server <- function(input,output) {
-
-
+  
   # first image
   output$home_img <- renderImage({
     
@@ -64,76 +64,67 @@ server <- function(input,output) {
     
     Additionally, it is not only important for a team to score points through these
 factors, but it is important to minimize the points scored by the other team, so the opponent's average data for each of these factors is also shown."
-
-})
- 
-
-  # Conference tab bar graph
-        output$plot <- renderPlot({
-          
-        ggplot(data=conf_stats, aes_string(x='Conference',
-                                       y=input$y_var)) +
-              geom_bar(stat = "identity", width = 0.8, fill = "royal blue") + theme(axis.title.x = element_text(size=20), 
-                                                                                    axis.title.y = element_text(size=20),
-                                                                                    axis.text.x = element_text(size=15, angle = 60, hjust = 1),
-                                                                                    axis.text.y = element_text(size=15)
-                                                                                    ) +
-              labs(x= "Conference", y=input$y_var)
-        
-  })
-        
-        runjs('$("#statsdesc_textbox").css("background-color", "lightblue");')
-     
-  # Maps tab
     
-        output$geo <- renderLeaflet ({
-        #  print(state_stat)
-          chosen_stat <- switch(input$map_stat,
-                                "avgPR" = "BARTHAG",
-                                "avgFT" = "EFG_O",
-                                "avgFG" = "EFG_O",
-                                "avgTOR" = "TOR",
-                                "avgTORD" = "TORD",
-                                "avgORB" = "ORB",
-                                "avgFTR" = "FTR",
-                                "avgTEMPO" = "ADJ_T")
-          
-          state_stat <- merged_data %>%
-            group_by(state) %>%
-            summarize(stat_value = mean(!!sym(chosen_stat)), na.rm = TRUE)
-         # print(state_stat)
-         # print(merged_data)
-          
-          geo <- geojson_read("states.geo.json", what = "sp")
-          geo@data <- left_join(geo@data, state_stat, by = c("NAME" = "state"))
-          
-          pal <- colorBin("Blues", domain = geo@data$stat_value)
-          
-          leaflet(data = geo) %>%
-            addPolygons(
-              fillOpacity = 2.5,
-              fillColor = ~pal(stat_value),
-              color = "white",
-              dashArray = '3',
-              weight = 3
-            ) %>%
-            setView(lng = -80, lat = 38, zoom = 4) %>%
-            addTiles()
-        })
+  })
+  
+  
+  # Conference tab bar graph
+  output$plot <- renderPlot({
+    
+    ggplot(data=conf_stats, aes_string(x='Conference',
+                                       y=input$y_var)) +
+      geom_bar(stat = "identity", width = 0.8, fill = "royal blue") + theme(axis.title.x = element_text(size=20), 
+                                                                            axis.title.y = element_text(size=20),
+                                                                            axis.text.x = element_text(size=15, angle = 60, hjust = 1),
+                                                                            axis.text.y = element_text(size=15)
+      ) +
+      labs(x="Conference", y=input$y_var)
+  })
+  
+  runjs('$("#statsdesc_textbox").css("background-color", "lightblue");')
+  
+  # Maps tab
+  
+  output$geo <- renderLeaflet ({
+    #  print(state_stat)
+    chosen_stat <- switch(input$map_stat,
+                          "avgPR" = "BARTHAG",
+                          "avgFT" = "EFG_O",
+                          "avgFG" = "EFG_O",
+                          "avgTOR" = "TOR",
+                          "avgTORD" = "TORD",
+                          "avgORB" = "ORB",
+                          "avgFTR" = "FTR",
+                          "avgTEMPO" = "ADJ_T")
+    
+    state_stat <- merged_data %>%
+      group_by(state) %>%
+      summarize(stat_value = mean(!!sym(chosen_stat)), na.rm = TRUE)
+    # print(state_stat)
+    # print(merged_data)
+    
+    geo <- geojson_read("states.geo.json", what = "sp")
+    geo@data <- left_join(geo@data, state_stat, by = c("NAME" = "state"))
+    
+    pal <- colorBin("Blues", domain = geo@data$stat_value)
+    
+    leaflet(data = geo) %>%
+      addPolygons(
+        fillOpacity = 2.5,
+        fillColor = ~pal(stat_value),
+        color = "white",
+        dashArray = '3',
+        weight = 3
+      ) %>%
+      setView(lng = -80, lat = 38, zoom = 4) %>%
+      addTiles()
+  })
+  
+  # Yearly success heap map tab
+
+
         
-        # Yearly success heap map tab
-        output$heatmapPlot <- renderD3heatmap({
-          all_years <- filter(heatmap_stats, YEAR %in% as.numeric(input$YEAR))
-          d3heatmap(cor(all_years))
-                    width = "500px"
-                    key = TRUE
-                    keysize = 2
-                    height = "600px"   
-        
-        
-        
-}) 
-        
+  # Images       
         output$group_img <- renderImage({
           
           list(src = "group_img.png",
