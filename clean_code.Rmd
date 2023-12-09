@@ -65,6 +65,7 @@ df = subset(merged_data, select = -c(TEAM, G, W, POSTSEASON, SEED, YEAR, UNITID,
 write.csv(df, "conference_stats.csv", row.names=FALSE)
 
 conf_stats <- read.csv("conference_stats.csv")
+colnames(conf_stats) <- gsub("\\.", " ", colnames(conf_stats))
 conf_avg <- read.csv("conference_statsAVG.csv")
 colnames(conf_stats)[2] <- "Adjusted Offensive Efficiency"
 colnames(conf_avg)[3] <- "Adjusted Defensive Efficiency"
