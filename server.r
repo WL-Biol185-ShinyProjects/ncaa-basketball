@@ -134,7 +134,7 @@ factors, but it is important to minimize the points scored by the other team, so
         
         output$group_img <- renderImage({
           
-          list(src = "group_img.png",
+          list(src = "groupPic.png",
                width = "8")
           
         }, deleteFile = F)

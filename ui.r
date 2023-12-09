@@ -46,7 +46,10 @@ ui <- fluidPage(
                           align = "center", 
                           width = "100%",
                           alt = "NCAA Basketball Teams")),
-               box(status = "info",
+               fluidRow(
+                 column(
+                   width=6,
+                   box(status = "info",
                    solidHeader = TRUE,
                    width = 12,
                    tags$figure(
@@ -54,36 +57,32 @@ ui <- fluidPage(
                    img(
                      src = "logo_img.png",
                      width = 600,
-                     alt = "NCAA Basketball Teams"))),
-               box(
-                 title = "Welcome to our NCAA Basketball App",
-                 width = 12,
-                 solidHeader = TRUE,
-                 status = "success",
-                 background = "light-blue",
-                tags$p("Welcome to our cutting-edge dashboard, where we look at a decades worth of statistical data on NCAA Division 1 basketball teams. The postseason
+                     alt = "NCAA Basketball Teams")))),
+                 column(
+                   width=6,
+                   tags$div(
+                    style = "background-color: lightblue; padding: 15px;",
+                      box(
+                        title = "Welcome to our NCAA Basketball App",
+                        width = 12,
+                        style = "border: 2px solid #333; border-radius: 5px;",
+                        solidHeader = TRUE,
+                        status = "success",
+                    tags$p("Welcome to our cutting-edge dashboard, where we look at a decades worth of statistical data on NCAA Division 1 basketball teams. The postseason
                       period of college basketball, coined March Madness, is one of the most revered sporting events of all time. Statistical data covers both in-season and post-season information, including importatn points such as power ranking, win percentage,
                       and free throw success. This data illustrates a unique narrative about each season and how the game of basektball has evolved over the 
                       last decade. Data can be used to understand conference performance, recruitment patterns, the impact of rule changes and adaptations, 
                       and team trends over time. This app provides a comprehensive understanding of the sport's development over time by identifying patterns and
     trends useful for anyone who appreciates the sport. Important to note, however, is the COVID-19 pandemic that occurred; there is not data from the year 2020,
     because postseason college basketball games were not held."),
-                style = "border: 2px solid #333; border-radius: 5px;"
-                ),
+                )))),
                tags$h2("Data Sourcing and Extraction"),
                tags$p("Data was pulled from a dataset on Kaggle called 'College Basketball Dataset', created by Andrew Sundberg. Additionally, geographical data was downloaded from the National Center for Education Statistics (NCES) Integrated Postsecondary Education Data System (IPEDS).
                       https://www.kaggle.com/datasets/andrewsundberg/college-basketball-dataset
                       "),
-               box(
-                 title = "Dashboard Features",
-                 width = 12,
-                 solidHeader = TRUE,
-                 status = "info",
-                 background = "light-blue",
-                 tags$p("This dashboard features data covering ten seasons of NCAA DI Men's basketball, illustrated in graphs by conference, and state maps."),
-                 style = "border: 2px solid #333; border-radius: 5px;")
-               
-             )),
+               tags$div(
+                 style = "background-color: lightblue; padding: 15px;"
+             ))),
     
     #Tab 2: Conference Stats
     tabPanel("Conference Statistics",
@@ -97,6 +96,8 @@ ui <- fluidPage(
                 
                  selected = "Adjusted Offensive Efficiency"),
                plotOutput("plot"),
+               tags$div(
+                 style = "background-color: lightblue; padding: 15px;",
                box(
                  width = 18,
                  status = "info",
@@ -105,8 +106,9 @@ ui <- fluidPage(
                box(
                  width = 5,
                  status = "info",
-                 background = "light-blue",
                  textOutput("yVar")),
+               tags$div(
+                 style = "background-color: lightblue; padding: 15px;",
                textAreaInput(
                  "statsdesc_textbox", 
                  label = "Statistic descriptions",  
@@ -130,9 +132,9 @@ ui <- fluidPage(
                  Wins Above Bubble = The bubble is the cut off between qualifying for the tournament and not qualifying for the tournament. So, the wins above bubble refers to the number of won games that a team has that is over the number of games they need to qualify for the tournament.",  
                  width = "1500px", 
                  height = "400px"
+               ))
                )
-               )
-             ),
+             )),
 
   #Tab 3: State maps page
   tabPanel("Maps of Stats by State",
@@ -152,7 +154,9 @@ ui <- fluidPage(
                            selected = "avgPR"),
              leafletOutput("geo"),
         
-           box(
+             tags$div(
+               style = "background-color: lightblue; padding: 15px;",
+             box(
              title = "Our Main Takeaways",
              width = 12,
              solidHeader = TRUE,
@@ -166,7 +170,7 @@ ui <- fluidPage(
                   for players, coaches, recruits, individuals who bet and gamble on games, and tournament-planning. If a state contains multiple teams who
                   excel in many categories, it would be beneficial and profitable to host a tournament in that state, in order to maximize fan engagement and profit."),
              style = "border: 2px solid #333; border-radius: 5px;"
-           )
+           ))
   )),
   
   # # Tab 4: Yearly Success heat map page
@@ -184,56 +188,53 @@ ui <- fluidPage(
               options =list("actions-box" = TRUE), 
               multiple=FALSE,
               selected="ADJOE"),
-  plotOutput("trend"),
+  plotOutput("trend")
    )),
   
   #Tab 5: About the creators
   tabPanel("About the Creators",
            fluidPage(
-
-
-
-# body <- dashboardBody(
-#   tabItems(
-#     tabItem(tabName = "Home", homePage),
-#     tabItem(tabName = "ConferenceStatistics", confstats),
-#     tabItem(tabName = "StatisticsbyStateMaps", maps)
-#     
-#   )
-# )
-# 
-# dashboardPage(skin = "blue",
-#               dashboardHeader(title = "NCAA Men's Basketball Dashboard",
-#                               titleWidth = 200),
-#               dashboardSidebar(
-#                 sidebarMenu(style = "white-space: normal;",
-#                             "Contents",
-#                             menuItem("Home", tabName = "Home", icon = icon("basketball-hoop")),
-#                             menuItem("Conference Statistics", tabName = "ConferenceStatistics", icon = icon("medal")),    
-#                             menuItem("Statistics-by-State Maps", tabName = "StatisticsbyStateMaps", icon = icon("ranking-star"))
-#                             
-#                 )
-#               ),
-#               body
-# )
-# 
-
-
-            
-
-             tags$h2("Created by Allyssa Utecht, Katelyn Gamble, and Sophia Rollo"),
-             box(status = "info",
-                 solidHeader = TRUE,
-                 width = 12,
-                 tags$figure(
-                   class = "centerFigure",
-                   img(
-                     src = "group_img.png",
-                     width = 600,
-                     alt = "group pic"))),
-
-           ))
-
-))
-    
-
+             fluidRow(
+               column(
+                 width = 6,
+                 tags$div(
+                   style = "background-color: lightblue; padding: 15px;",
+                   box(
+                     width = 12,
+                     solidHeader = TRUE,
+                     status = "info",
+                     tags$h2("Created by Allyssa Utecht, Katelyn Gamble, and Sophia Rollo"),
+                     box(
+                       status = "info",
+                       solidHeader = TRUE,
+                       width = 12,
+                       tags$figure(
+                         class = "centerFigure",
+                         img(
+                           src = "groupPic.png",
+                           width = 600,
+                           alt = "group pic"
+                         )
+                       )
+                     )
+                   )
+                 )
+               ),
+               column(
+                 width = 6,
+                 tags$div(
+                   style = "background-color: lightblue; padding: 15px;", 
+                   box(
+                     title = "About the Authors",
+                     width = 12,
+                     solidHeader = TRUE,
+                     status = "info",
+                     tags$p(
+                       "Allyssa Utecht, Sophia Rollo, and Katelyn are all senior student-athletes at Washington and Lee University, with a passion for NCAA athletics. 
+                     Allyssa is an Environmental Studies - Sustainable Commerce major, with minors in Data Science and Poverty Studies. Sophia is a biology major with 
+                     minors in Math and Environmental Studies. Katelyn is a Neuroscience major and Studio Art minor. Sophia and Allyssa are on the swim team, and 
+                       Katelyn is on the track team. They are all passionate fans of NCAA basketball, especially March Madness. Allyssa is a Villanova fan, Sophia is a 
+                       UVA fan, and Katelyn is a Texas fan."))))
+             )
+           )
+)))
