@@ -25,7 +25,9 @@ merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 state_names_data <- read.csv("table-data.csv")
 merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
-aggregated_data <- read.csv(aggregated_data.csv)
+aggregated_data <- read.csv("aggregated_data.csv")
+
+
 
 # making a function
 server <- function(input,output) {
@@ -69,19 +71,19 @@ factors, but it is important to minimize the points scored by the other team, so
  
 
   # Conference tab bar graph
-        output$plot <- renderPlot({
-          
-        ggplot(data=conf_stats, aes_string(x='Conference',
-                                       y=input$y_var)) +
-              geom_bar(stat = "identity", width = 0.8, fill = "royal blue") + theme(axis.title.x = element_text(size=20), 
-                                                                                    axis.title.y = element_text(size=20),
-                                                                                    axis.text.x = element_text(size=15, angle = 60, hjust = 1),
-                                                                                    axis.text.y = element_text(size=15)
-                                                                                    ) +
-              labs(x="Conference", y=input$y_var)
+  output$plot <- renderPlot({
+    ggplot(data = conf_stats, aes_string(x = 'Conference', y = input$y_var)) +
+      geom_bar(stat = "identity", width = 0.8, fill = "royal blue") +
+      theme(axis.title.x = element_text(size = 20), 
+            axis.title.y = element_text(size = 20),
+            axis.text.x = element_text(size = 15, angle = 60, hjust = 1),
+            axis.text.y = element_text(size = 15)) +
+      labs(x = "Conference", y = gsub("\\.", " ", input$y_var))
   })
         
         runjs('$("#statsdesc_textbox").css("background-color", "lightblue");')
+        
+       
      
   # Maps tab
     
@@ -141,4 +143,3 @@ factors, but it is important to minimize the points scored by the other team, so
         }, deleteFile = F)
 }
 
->>>>>>> ed34c4b99f847c3f937a82382e49d67a3a58641c

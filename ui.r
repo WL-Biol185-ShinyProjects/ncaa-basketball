@@ -24,7 +24,7 @@ merged_data <- left_join(bb_data, college_geo, by = "TEAM")
 state_names_data <- read.csv("table-data.csv")
 merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
-aggregated_data <- read.csv(aggregated_data.csv)
+aggregated_data <- read.csv("aggregated_data.csv")
 
 
 
@@ -87,33 +87,36 @@ ui <- fluidPage(
     
     #Tab 2: Conference Stats
     tabPanel("Conference Statistics",
-             tags$h2("How do conferences compare based on different basketball statitsics?"),
+             tags$h2("How do conferences compare based on different basketball statistics?"),
              fluidPage(
                tags$p("Using the dropdown box, select which statistic you would like to see, and how each conference matches up."),
                selectInput(
                  "y_var",
                  label = "Conference Data",
-                 choices = colnames(conf_stats)[-which(colnames(conf_stats) == "Conference")],
-                
-                 selected = "Adjusted Offensive Efficiency"),
+                 choices = gsub("\\.", " ", colnames(conf_stats)[-which(colnames(conf_stats) == "Conference")]),
+                 selected = "Adjusted Offensive Efficiency"
+               ),
                plotOutput("plot"),
                tags$div(
                  style = "background-color: lightblue; padding: 15px;",
-               box(
-                 width = 18,
-                 status = "info",
-                 textOutput("confExp"),
-                 style = "border: 2px solid #333; border-radius: 5px;"),
-               box(
-                 width = 5,
-                 status = "info",
-                 textOutput("yVar")),
+                 box(
+                   width = 18,
+                   status = "info",
+                   textOutput("confExp"),
+                   style = "border: 2px solid #333; border-radius: 5px;"
+                 ),
+                 box(
+                   width = 5,
+                   status = "info",
+                   textOutput("yVar")
+                 )
+               ),
                tags$div(
                  style = "background-color: lightblue; padding: 15px;",
-               textAreaInput(
-                 "statsdesc_textbox", 
-                 label = "Statistic descriptions",  
-                 value = "
+                 textAreaInput(
+                   "statsdesc_textbox",
+                   label = "Statistic descriptions",
+                   value = "
                  Adjusted Offensive Efficiency = Points scored per 100 possessions.
                  Adjusted Defensive Efficiency = Points allowed per 100 possessions.
                  Power Rating = Chance of beating an average Division 1 team.
@@ -131,11 +134,12 @@ ui <- fluidPage(
                  Three Point Shooting Rate Allowed = The rate at which a team allows the other team to shoot three-pointers.
                  Adjusted Tempo = The tempo is described as the number of possessions a team has per 40 minutes of playing time.
                  Wins Above Bubble = The bubble is the cut off between qualifying for the tournament and not qualifying for the tournament. So, the wins above bubble refers to the number of won games that a team has that is over the number of games they need to qualify for the tournament.",  
-                 width = "1500px", 
-                 height = "400px"
-               ))
-               )
-             )),
+                   width = "1500px", 
+                   height = "400px"
+                 ))
+             
+    )
+  ),
 
   #Tab 3: State maps page
   tabPanel("Maps of Stats by State",
@@ -190,7 +194,7 @@ ui <- fluidPage(
              pickerInput("choicePicker2","Pick Variable",choices = colnames(aggregated_data)[5:22],
                          options =list("actions-box" = TRUE), 
                          multiple=FALSE,
-                         selected="Adjusted Offesnive Efficency"),
+                         selected="Adjusted Offensive Efficiency"),
              plotOutput("trend"),
            )),
   
