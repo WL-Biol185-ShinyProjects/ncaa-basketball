@@ -1,9 +1,3 @@
----
-title: "clean_server"
-author: "Sophia"
-date: "11/28/2023"
-output: html_document
----
 
 ```{r}
 library(shiny)

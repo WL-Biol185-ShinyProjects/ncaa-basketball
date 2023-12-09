@@ -408,3 +408,15 @@ addPolygons(
 #                             menuItem("Home", tabName = "Home", icon = icon("basketball-hoop")),
 #                             menuItem("Conference Statistics", tabName = "ConferenceStatistics", icon = icon("medal")),    
 #                             menuItem("Statistics-by-State Maps", tabName = "StatisticsbyStateMaps", icon = icon("ranking-star"))
+
+
+
+
+
+
+
+
+
+a(href = "_", "This text")
+Add what each conference called
+Get rid of periods in conf sats 
