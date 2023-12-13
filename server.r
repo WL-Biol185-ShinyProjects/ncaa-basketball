@@ -78,7 +78,7 @@ factors, but it is important to minimize the points scored by the other team, so
             axis.title.y = element_text(size = 20),
             axis.text.x = element_text(size = 15, angle = 60, hjust = 1),
             axis.text.y = element_text(size = 15)) +
-      labs(x = "Conference", y = gsub("\\.", " ", input$y_var))
+      labs(x = "Conference", y = input$y_var)
         
   })
         

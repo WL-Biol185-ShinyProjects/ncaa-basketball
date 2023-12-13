@@ -13,6 +13,8 @@ library(geojsonio)
 
 #Reading the Data
 conf_stats <- read.csv("conference_stats.csv")
+choices <- colnames(conf_stats)
+names(choices) <- gsub(".", " ", choices, fixed = TRUE)
 conf_avg <- read.csv("conference_statsAVG.csv")
 heatmap_stats <- read.csv("heatmap_data.csv")
 geodf <- read.csv("geodata.csv")
@@ -94,7 +96,7 @@ ui <- fluidPage(
                selectInput(
                  "y_var",
                  label = "Conference Data",
-                 choices = gsub("\\.", " ", colnames(conf_stats)[-which(colnames(conf_stats) == "Conference")]),
+                 choices = choices[-which(colnames(conf_stats) == "Conference")],
                  selected = "Adjusted Offensive Efficiency"
                ),
                plotOutput("plot"),
