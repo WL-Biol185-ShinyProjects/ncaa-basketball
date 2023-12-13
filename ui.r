@@ -193,12 +193,12 @@ ui <- fluidPage(
              plotOutput("yearly_success"),
              
   tags$div(
-    style = "background-color: lightblue; padding: 15px;",
+    style = "background-color: white; padding: 15px;",
     textAreaInput(
       "statsdesc_textbox",
       label = "Statistic descriptions",
       value = "
-                
+                 Wins = Games Won
                  Adjusted Offensive Efficiency = Points scored per 100 possessions.
                  Adjusted Defensive Efficiency = Points allowed per 100 possessions.
                  Power Rating = Chance of beating an average Division 1 team.
@@ -215,7 +215,8 @@ ui <- fluidPage(
                  Three Point Shooting Rate = The rate at which a team shoots three-pointers.
                  Three Point Shooting Rate Allowed = The rate at which a team allows the other team to shoot three-pointers.
                  Adjusted Tempo = The tempo is described as the number of possessions a team has per 40 minutes of playing time.
-                 Wins Above Bubble = The bubble is the cut off between qualifying for the tournament and not qualifying for the tournament. So, the wins above bubble refers to the number of won games that a team has that is over the number of games they need to qualify for the tournament.",
+                 Wins Above Bubble = The bubble is the cut off between qualifying for the tournament and not qualifying for the tournament. So, the wins above bubble refers to 
+                 the number of won games that a team has that is over the number of games they need to qualify for the tournament.",
       width = "1500px",
       height = "400px"
     ))
