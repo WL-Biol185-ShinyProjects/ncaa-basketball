@@ -138,7 +138,7 @@ ui <- fluidPage(
                  ))
              
     )
-  ),
+  )),
 
   #Tab 3: State maps page
   tabPanel("Maps of Stats by State",
@@ -185,16 +185,13 @@ ui <- fluidPage(
              
              
              
-             sliderInput("year_selector", "Select Year Range", sep = "", min = 2013, max = 2023, value = c(2013, 2023)),
-             selectInput("choicePicker1","Pick Teams",choices = unique(aggregated_data$TEAM),
+
+              selectInput("choicePicker1","Pick Teams",choices = unique(aggregated_data$TEAM),
                          multiple=FALSE,
                          selected="North Carolina"),
              selectInput("choicePicker2","Pick Variable",choices = colnames(aggregated_data)[5:22],
                          multiple=FALSE,
                          selected="Adjusted Offensive Efficiency"),
-             plotOutput("trend"),
-
-                         selected="Adjusted Offesnive Efficency"),
              plotOutput("yearly_sucess")
            )),
   

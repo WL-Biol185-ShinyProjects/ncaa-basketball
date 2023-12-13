@@ -92,7 +92,7 @@ factors, but it is important to minimize the points scored by the other team, so
         
         runjs('$("#statsdesc_textbox").css("background-color", "lightblue");')
         
-       
+  })
      
   # Maps tab
     
@@ -132,21 +132,23 @@ factors, but it is important to minimize the points scored by the other team, so
             addLegend(pal = pal, values = ~stat_value, opacity = 2.5, title = NULL, position = "bottomright")
         })
         
-        # Yearly success heap map tab
-        output$yearlysuccess <- renderPlot({
-         
-          ggplot(aggregated_data, aes(x = year_selector, y = !!sym(selected_variable))) +
-            geom_line() +
-            geom_point() +
-            labs(title = paste("Trend for", selected_team, "-", selected_variable),
-                 x = year_selector,
-                 y = selected_variable)
+        # Yearly success  tab
+        output$yearly_success <- filtered_data <- reactive({
+          subset(aggregated_data, TEAM == input$choicePicker1)
+        })
+        
+        output$yearly_sucess <- renderPlot({
+          ggplot(filtered_data(), aes_string(x = "YEAR", y = input$choicePicker2)) +
+            geom_line(color = "blue") +
+            geom_point(color = "blue", size = 4) +
+            labs(title = paste("Trends in", input$choicePicker2, "for", input$choicePicker1),
+                 x = "Year", y = input$choicePicker2) +
+            scale_x_continuous(breaks = c(2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023),
+                               labels = c(2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023))
+
+        })
           
-          
         
-        
-        
-}) 
         
         output$group_img <- renderImage({
           
@@ -154,5 +156,7 @@ factors, but it is important to minimize the points scored by the other team, so
                width = "8")
           
         }, deleteFile = F)
-}
+        
+  }
+
 
