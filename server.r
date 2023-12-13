@@ -26,6 +26,7 @@ state_names_data <- read.csv("table-data.csv")
 merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
 aggregated_data <- read.csv("aggregated_data.csv")
+colnames(aggregated_data)[5] <- "Wins"
 
 
 # making a function
@@ -138,7 +139,7 @@ factors, but it is important to minimize the points scored by the other team, so
         })
         
         
-        output$yearly_sucess <- renderPlot({
+        output$yearly_success <- renderPlot({
           ggplot(filtered_data(), aes_string(x = "YEAR", y = input$choicePicker2)) +
             geom_line(color = "blue") +
             geom_point(color = "blue", size = 4) +

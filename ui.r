@@ -25,6 +25,7 @@ state_names_data <- read.csv("table-data.csv")
 merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
 aggregated_data <- read.csv("aggregated_data.csv")
+colnames(aggregated_data)[5] <- "Wins"
 
 
 
@@ -182,17 +183,14 @@ ui <- fluidPage(
            fluidPage(
              tags$h2("How individual teams compare over the years?"),
              tags$p("Use the drop-down box to select which team you want to look at."),
-             
-             
-             
 
               selectInput("choicePicker1","Pick Teams",choices = unique(aggregated_data$TEAM),
                          multiple=FALSE,
                          selected="North Carolina"),
              selectInput("choicePicker2","Pick Variable",choices = colnames(aggregated_data)[5:22],
                          multiple=FALSE,
-                         selected="Adjusted Offensive Efficiency"),
-             plotOutput("yearly_sucess"),
+                         selected="Wins"),
+             plotOutput("yearly_success"),
              
   tags$div(
     style = "background-color: lightblue; padding: 15px;",
@@ -200,7 +198,7 @@ ui <- fluidPage(
       "statsdesc_textbox",
       label = "Statistic descriptions",
       value = "
-                 W = Wins
+                
                  Adjusted Offensive Efficiency = Points scored per 100 possessions.
                  Adjusted Defensive Efficiency = Points allowed per 100 possessions.
                  Power Rating = Chance of beating an average Division 1 team.
