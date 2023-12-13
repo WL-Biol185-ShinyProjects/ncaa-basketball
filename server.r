@@ -78,16 +78,7 @@ factors, but it is important to minimize the points scored by the other team, so
             axis.text.x = element_text(size = 15, angle = 60, hjust = 1),
             axis.text.y = element_text(size = 15)) +
       labs(x = "Conference", y = gsub("\\.", " ", input$y_var))
-        output$plot <- renderPlot({
-          
-        ggplot(data= conf_stats, aes_string(x='Conference',
-                                       y=input$y_var)) +
-              geom_bar(stat = "identity", width = 0.8, fill = "royal blue") + theme(axis.title.x = element_text(size=20), 
-                                                                                    axis.title.y = element_text(size=20),
-                                                                                    axis.text.x = element_text(size=15, angle = 60, hjust = 1),
-                                                                                    axis.text.y = element_text(size=15)
-                                                                                    ) +
-              labs(x="Conference", y=input$y_var)
+        
   })
         
         runjs('$("#statsdesc_textbox").css("background-color", "lightblue");')
@@ -154,5 +145,14 @@ factors, but it is important to minimize the points scored by the other team, so
                width = "8")
           
         }, deleteFile = F)
+        
+        output$downloadData <- downloadHandler(
+          filename = function() {
+            "merged_data.csv" 
+          },
+          content = function(file) {
+            write.csv(merged_data, file, row.names = FALSE)
+          }
+        )
 }
 

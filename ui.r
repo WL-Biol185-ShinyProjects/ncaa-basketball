@@ -75,7 +75,7 @@ ui <- fluidPage(
                       last decade. Data can be used to understand conference performance, recruitment patterns, the impact of rule changes and adaptations, 
                       and team trends over time. This app provides a comprehensive understanding of the sport's development over time by identifying patterns and
     trends useful for anyone who appreciates the sport. Important to note, however, is the COVID-19 pandemic that occurred; there is not data from the year 2020,
-    because postseason college basketball games were not held."),
+    because postseason college basketball games were not held.")
                 )))),
                tags$h2("Data Sourcing and Extraction"),
                tags$p("Data was pulled from a dataset on Kaggle called 'College Basketball Dataset', created by Andrew Sundberg. Additionally, geographical data was downloaded from the National Center for Education Statistics (NCES) Integrated Postsecondary Education Data System (IPEDS).
@@ -138,7 +138,7 @@ ui <- fluidPage(
                  ))
              
     )
-  ),
+  )),
 
   #Tab 3: State maps page
   tabPanel("Maps of Stats by State",
@@ -178,9 +178,9 @@ ui <- fluidPage(
   )),
   
   # # Tab 4: Yearly Success heat map page
-  tabPanel("Yearly Success",
+  tabPanel("Annual Success",
            fluidPage(
-             tags$h2("How individual teams compare over the years?"),
+             tags$h2("How do individual teams compare over the years?"),
              tags$p("Use the drop-down box to select which team you want to look at."),
              
              
@@ -194,12 +194,12 @@ ui <- fluidPage(
                          selected="Adjusted Offensive Efficiency"),
              plotOutput("trend"),
 
-                         selected="Adjusted Offesnive Efficency"),
-             plotOutput("yearly_sucess")
-           )),
+                         selected="Adjusted Offensive Efficency"),
+             plotOutput("yearlysucess")
+           ),
   
   #Tab 5: About the creators
-  tabPanel("About the Creators",
+  tabPanel("About the Creators and Data",
            fluidPage(
              fluidRow(
                column(
@@ -210,18 +210,12 @@ ui <- fluidPage(
                      width = 12,
                      solidHeader = TRUE,
                      status = "info",
-                     tags$h2("Created by Allyssa Utecht, Katelyn Gamble, and Sophia Rollo"),
-                     box(
-                       status = "info",
-                       solidHeader = TRUE,
-                       width = 12,
-                       tags$figure(
-                         class = "centerFigure",
-                         img(
-                           src = "groupPic.png",
-                           width = 600,
-                           alt = "group pic"
-                         )
+                     tags$figure(
+                       class = "centerFigure",
+                       img(
+                         src = "groupPic.png",
+                         width = 600,
+                         alt = "group pic"
                        )
                      )
                    )
@@ -240,9 +234,18 @@ ui <- fluidPage(
                        "Allyssa Utecht, Sophia Rollo, and Katelyn are all senior student-athletes at Washington and Lee University, with a passion for NCAA athletics. 
                      Allyssa is an Environmental Studies - Sustainable Commerce major, with minors in Data Science and Poverty Studies. Sophia is a biology major with 
                      minors in Math and Environmental Studies. Katelyn is a Neuroscience major and Studio Art minor. Sophia and Allyssa are on the swim team, and 
-                       Katelyn is on the track team. They are all passionate fans of NCAA basketball, especially March Madness. Allyssa is a Villanova fan, Sophia is a 
-                       UVA fan, and Katelyn is a Texas fan."))))
+                     Katelyn is on the track team. They are all passionate fans of NCAA basketball, especially March Madness. Allyssa is a Villanova fan, Sophia is a 
+                     UVA fan, and Katelyn is a Texas fan."
+                     )
+                   ),
+                   tags$div(
+                     style = "background-color: lightblue; padding: 15px;",
+                     downloadButton("downloadData", label = "Download CSV of Data", icon = icon("download"))
+                   )
+                 )
+               )
              )
            )
-)))
+  )
+))
 
