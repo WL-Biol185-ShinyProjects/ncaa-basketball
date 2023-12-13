@@ -26,6 +26,7 @@ state_names_data <- read.csv("table-data.csv")
 merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
 aggregated_data <- read.csv("aggregated_data.csv")
+colnames(aggregated_data)[5] <- "Wins"
 
 
 # making a function
@@ -83,7 +84,7 @@ factors, but it is important to minimize the points scored by the other team, so
         
         runjs('$("#statsdesc_textbox").css("background-color", "lightblue");')
         
-       
+  })
      
   # Maps tab
     
@@ -123,21 +124,24 @@ factors, but it is important to minimize the points scored by the other team, so
             addLegend(pal = pal, values = ~stat_value, opacity = 2.5, title = NULL, position = "bottomright")
         })
         
-        # Yearly success heap map tab
-        output$yearlysuccess <- renderPlot({
-         
-          ggplot(aggregated_data, aes(x = year_selector, y = !!sym(selected_variable))) +
-            geom_line() +
-            geom_point() +
-            labs(title = paste("Trend for", selected_team, "-", selected_variable),
-                 x = year_selector,
-                 y = selected_variable)
-          
-          
+        # Yearly success  tab
+        output$yearly_success <- filtered_data <- reactive({
+          subset(aggregated_data, TEAM == input$choicePicker1)
+        })
+        
+        
+        output$yearly_success <- renderPlot({
+          ggplot(filtered_data(), aes_string(x = "YEAR", y = input$choicePicker2)) +
+            geom_line(color = "blue") +
+            geom_point(color = "blue", size = 4) +
+            labs(title = paste("Trends in", input$choicePicker2, "for", input$choicePicker1),
+                 x = "Year", y = input$choicePicker2) +
+            scale_x_continuous(breaks = c(2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023),
+                               labels = c(2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023))
+           })
         
         
         
-}) 
         
         output$group_img <- renderImage({
           
@@ -146,6 +150,7 @@ factors, but it is important to minimize the points scored by the other team, so
           
         }, deleteFile = F)
         
+<<<<<<< HEAD
         output$downloadData <- downloadHandler(
           filename = function() {
             "merged_data.csv" 
@@ -155,4 +160,8 @@ factors, but it is important to minimize the points scored by the other team, so
           }
         )
 }
+=======
+  }
+
+>>>>>>> c390604e971f2a09ea21c81cddfb1b1bb4a5c5f9
 
