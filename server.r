@@ -137,6 +137,7 @@ factors, but it is important to minimize the points scored by the other team, so
           subset(aggregated_data, TEAM == input$choicePicker1)
         })
         
+        
         output$yearly_sucess <- renderPlot({
           ggplot(filtered_data(), aes_string(x = "YEAR", y = input$choicePicker2)) +
             geom_line(color = "blue") +
@@ -145,9 +146,9 @@ factors, but it is important to minimize the points scored by the other team, so
                  x = "Year", y = input$choicePicker2) +
             scale_x_continuous(breaks = c(2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023),
                                labels = c(2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023))
-
-        })
-          
+           })
+        
+        
         
         
         output$group_img <- renderImage({

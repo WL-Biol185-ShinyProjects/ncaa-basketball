@@ -18,6 +18,6 @@ write.csv(yearly_success, "yearly_success.csv", row.names = FALSE)
 
 ```
 ```{r}
-aggregated_data <- read.csv("aggregated_data.csv")
+dput(aggregated_data)aggregated_data <- read.csv("aggregated_data.csv")
 ```
 
