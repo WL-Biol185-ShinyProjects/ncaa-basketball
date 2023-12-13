@@ -189,11 +189,6 @@ ui <- fluidPage(
                          selected="North Carolina"),
              selectInput("choicePicker2","Pick Variable",choices = colnames(aggregated_data)[5:22],
                          multiple=FALSE,
-                         selected="Adjusted Offensive Efficiency"),
-             plotOutput("trend",
-
-                         selected="Adjusted Offensive Efficency"),
-             plotOutput("yearlysucess",
                          selected="Wins"),
              plotOutput("yearly_success"),
              
