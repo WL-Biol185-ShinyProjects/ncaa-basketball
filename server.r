@@ -84,7 +84,7 @@ factors, but it is important to minimize the points scored by the other team, so
         
         runjs('$("#statsdesc_textbox").css("background-color", "lightblue");')
         
-  })
+
      
   # Maps tab
     
@@ -125,7 +125,7 @@ factors, but it is important to minimize the points scored by the other team, so
         })
         
         # Yearly success  tab
-        output$yearly_success <- filtered_data <- reactive({
+        output$yearlysuccess <- filtered_data <- reactive({
           subset(aggregated_data, TEAM == input$choicePicker1)
         })
         
@@ -150,7 +150,6 @@ factors, but it is important to minimize the points scored by the other team, so
           
         }, deleteFile = F)
         
-<<<<<<< HEAD
         output$downloadData <- downloadHandler(
           filename = function() {
             "merged_data.csv" 
@@ -160,8 +159,6 @@ factors, but it is important to minimize the points scored by the other team, so
           }
         )
 }
-=======
-  }
+  
 
->>>>>>> c390604e971f2a09ea21c81cddfb1b1bb4a5c5f9
 

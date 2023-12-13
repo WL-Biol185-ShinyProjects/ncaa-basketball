@@ -189,14 +189,11 @@ ui <- fluidPage(
                          selected="North Carolina"),
              selectInput("choicePicker2","Pick Variable",choices = colnames(aggregated_data)[5:22],
                          multiple=FALSE,
-<<<<<<< HEAD
                          selected="Adjusted Offensive Efficiency"),
-             plotOutput("trend"),
+             plotOutput("trend",
 
                          selected="Adjusted Offensive Efficency"),
-             plotOutput("yearlysucess")
-           ),
-=======
+             plotOutput("yearlysucess",
                          selected="Wins"),
              plotOutput("yearly_success"),
              
@@ -227,9 +224,7 @@ ui <- fluidPage(
                  the number of won games that a team has that is over the number of games they need to qualify for the tournament.",
       width = "1500px",
       height = "400px"
-    ))
-  )),
->>>>>>> c390604e971f2a09ea21c81cddfb1b1bb4a5c5f9
+    )))),
   
   #Tab 5: About the creators
   tabPanel("About the Creators and Data",
