@@ -9,7 +9,8 @@ library(dplyr)
 aggregated_data <- merged_data %>%
   group_by(TEAM, YEAR) %>%
   summarize_all(mean)
-yearly_success <-subset(aggregated_data, select = -c(W, POSTSEASON, SEED, UNITID, STREET, CITY, STATE, ZIP, STFIP, NMCNTY, LOCALE, LAT, LON, CBSA, NMCBSA, CBSATYPE, CSA, NMCSA, NMNECTA, CD, SLDL, SLDU, SCHOOLYEAR, CNTY, NECTA))# You can use other aggregation functions like sum, median, etc.
+yearly_success <-subset(aggregated_data, select = -c(W, POSTSEASON, SEED, UNITID, STREET, CITY, STATE, ZIP, STFIP, NMCNTY, LOCALE, LAT, LON, CBSA, NMCBSA, CBSATYPE, CSA, NMCSA, NMNECTA, CD, SLDL, SLDU, SCHOOLYEAR, CNTY, NECTA))
+colnames(merged_data)[2] <- "TEAM"# You can use other aggregation functions like sum, median, etc.
 
 # The result will have one row for each unique combination of TEAM and YEAR,
 # with aggregated values for all numeric columns

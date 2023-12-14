@@ -199,6 +199,9 @@ library(dplyr)
  all_years <- filter(df, input == YEAR)
 ```
 
+```{r}
+colnames(aggregated_data)[5] <- "Wins"
+```
 
 
 ```
