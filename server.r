@@ -52,6 +52,11 @@ server <- function(input,output) {
   
   
   #text
+  observeEvent(input$conf_abbreviations, {
+    conf_abbrevs <- unique(conf_stats$Conference)
+   renderText({ paste(conf_abbrevs, collapse = ", ") })
+  
+})
   output$confExp <- renderText({
     "In each of the graphs shown above, important statistics are displayed for each conference. Each graph shows an average value of the given variable 
     for each conference for the last ten years. 

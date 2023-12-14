@@ -28,6 +28,8 @@ merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
 aggregated_data <- read.csv("aggregated_data.csv")
 colnames(aggregated_data)[5] <- "Wins"
+choices_years <- colnames(aggregated_data)[5:22]
+names(choices_years) <- gsub(".", " ", choices_years, fixed = TRUE)
 
 
 
@@ -114,6 +116,7 @@ ui <- fluidPage(
                    status = "info",
                    textOutput("yVar")
                  ),
+                
                  tags$div(
                    style = "background-color: lightblue; padding: 15px;",
                    textAreaInput(
@@ -142,6 +145,7 @@ ui <- fluidPage(
                  ))
              
     ),
+    
     fluidRow(
       column(
         width = 3,
@@ -278,7 +282,7 @@ ui <- fluidPage(
               selectInput("choicePicker1","Pick Teams",choices = unique(aggregated_data$TEAM),
                          multiple=FALSE,
                          selected="North Carolina"),
-             selectInput("choicePicker2","Pick Variable",choices = colnames(aggregated_data)[5:22],
+             selectInput("choicePicker2","Pick Variable",choices = choices_years,
                          multiple=FALSE,
                          selected="Wins"),
              plotOutput("yearly_success"),
