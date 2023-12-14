@@ -27,6 +27,8 @@ merged_data <- merged_data  %>%
   left_join(state_names_data, by = c("STATE" = "code"))
 aggregated_data <- read.csv("aggregated_data.csv")
 colnames(aggregated_data)[5] <- "Wins"
+choices_years <- colnames(aggregated_data)[5:22]
+names(choices_years) <- gsub(".", " ", choices_years, fixed = TRUE)
 
 
 # making a function
