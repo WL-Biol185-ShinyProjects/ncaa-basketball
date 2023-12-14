@@ -116,7 +116,6 @@ ui <- fluidPage(
                    status = "info",
                    textOutput("yVar")
                  ),
-                
                  tags$div(
                    style = "background-color: lightblue; padding: 15px;",
                    textAreaInput(
