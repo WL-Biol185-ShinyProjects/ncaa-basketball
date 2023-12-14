@@ -140,6 +140,94 @@ ui <- fluidPage(
                    height = "400px"
                  ))
              
+    ),
+    fluidRow(
+      column(
+        width = 3,
+        tags$div(
+          box(
+            title = "Conferences",
+            width = 12,
+            solidHeader = TRUE,
+            status = "info",
+            tags$p(
+              "A10 = Atlantic Ten Conference.
+              ACC = Atlantic Coast Conference.
+              AE = America East Conference.
+              Amer = American Athletic Conference.
+              ASun = Atlantic Sun Conference.
+              B10 = Big Ten Conference.
+              B12 = Big Twelve Conference.
+              BE = Big East Conference.
+              BSky = Big Sky Conference."
+            )
+          )
+        )
+      ),
+      column(
+        width = 3,
+        tags$div(
+          box(
+            title = " ",
+            width = 12,
+            solidHeader = TRUE,
+            status = "info",
+            tags$p(
+              " BSth = Big South Conference.
+              BW = Big West Conference
+              CAA = Colonial Athletic Association.
+              CUSA = Conference USA.
+              GWC = Great West Conference.
+              Horz = Horizon League.
+              Ind = Independent team.
+              Ivy = Ivy League.
+              MAAC = Metro Antlantic Athletic Conference."
+            )
+          )
+        )
+      ),
+      column(
+        width = 3,
+        tags$div(
+          box(
+            title = " ",
+            width = 12,
+            solidHeader = TRUE,
+            status = "info",
+            tags$p("
+              MAC = Mid-American Conference.
+              MEAC = Mideastern Athletic Conference
+              MVC = Missouri Valley Conference.
+              MWC = Mountain West Conference.
+              NEC = Northeast Conference.
+              OVC = Ohio Valley Conference
+              P12 = Pacific-12 Conference.
+              Pat = Patriot League"
+            )
+          )
+        )
+      ),
+      column(
+        width = 3,
+        tags$div(
+          box(
+            title = " ",
+            width = 12,
+            solidHeader = TRUE,
+            status = "info",
+            tags$p(
+              "
+              SB = Sun Belt Conference.
+              SC = Southern Conference.
+              SEC = Southeastern Conference.
+              SInd = Second Independent Team.
+              SWAC = Southwestern Athletic Conference.
+              WAC = Western Athletic Confernece.
+              WCC = West Coast Conference."
+            )
+          )
+        )
+      )
     )
   )),
 
